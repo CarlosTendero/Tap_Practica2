@@ -15,7 +15,7 @@ public class Edificio {
 	private PanelDeControl panelDeControl;
 	
 	
-	public void  edificio() {
+	public Edificio() {
 		ascensor1 = new Ascensor();
 		ascensor2 = new Ascensor();
 		ascensor3 = new Ascensor();
