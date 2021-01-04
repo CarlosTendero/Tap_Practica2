@@ -2,23 +2,28 @@ package PracticaTAP2_20202021.Practica2;
 
 public class Planta {
 
-<<<<<<< HEAD
+
 	//Atributos
-	BotonLlamar botonAsc1;
-	BotonLlamar botonAsc2;
-	BotonLlamar botonAsc3;
+	// no se si va aqui, es para no instanciar 21 planas en edificio 
+	private Ascensor ascensor1;
+	private Ascensor ascensor2;
+	private Ascensor ascensor3;
 	
-	DisplayAscensorPlanta displayAsc1;
-	DisplayAscensorPlanta displayAsc2;
-	DisplayAscensorPlanta displayAsc3;
+	
+	private BotonLlamar botonAsc1;
+	private BotonLlamar botonAsc2;
+	private BotonLlamar botonAsc3;
+	
+	private DisplayAscensorPlanta displayAsc1;
+	private DisplayAscensorPlanta displayAsc2;
+	private DisplayAscensorPlanta displayAsc3;
 	
 	DisplayAltavoz altavoz;
 
-	public Planta(int pisoActual, Ascensor asc){
+	public Planta(int pisoActual){
 	     
-	     BotonLlamar botonAsc1 = new BotonLlamar(pisoActual, asc);
+	     this.botonAsc1 = new BotonLlamar(pisoActual, ascensor1);
 
 	}
-=======
->>>>>>> Andrea
+
 }

@@ -1,8 +1,6 @@
 package PracticaTAP2_20202021.Practica2;
 
 public class Ascensor {
-<<<<<<< HEAD
-=======
 	
 	private int pisoActual;
 	private boolean emergencia;
@@ -13,6 +11,6 @@ public class Ascensor {
 		this.emergencia = false;
 		this.current = new State_Parado_Cerrado();
 	}
->>>>>>> Andrea
+
 
 }

@@ -2,9 +2,7 @@ package PracticaTAP2_20202021.Practica2;
 
 public class Edificio {
 	
-	private Ascensor ascensor1;
-	private Ascensor ascensor2;
-	private Ascensor ascensor3;
+	
 	private Planta planta0;
 	private Planta planta1;
 	private Planta planta2;
@@ -16,17 +14,14 @@ public class Edificio {
 	
 	
 	public Edificio() {
-		ascensor1 = new Ascensor();
-		ascensor2 = new Ascensor();
-		ascensor3 = new Ascensor();
-		
-		planta0 = new Planta();
-		planta1 = new Planta();
-		planta2 = new Planta();
-		planta3 = new Planta();
-		planta4 = new Planta();
-		planta5 = new Planta();
-		planta6 = new Planta();
+				
+		planta0 = new Planta(0);
+		planta1 = new Planta(1);
+		planta2 = new Planta(2);
+		planta3 = new Planta(3);
+		planta4 = new Planta(4);
+		planta5 = new Planta(5);
+		planta6 = new Planta(6);
 		
 		panelDeControl = new PanelDeControl();
 		
