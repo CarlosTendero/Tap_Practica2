@@ -2,6 +2,7 @@ package PracticaTAP2_20202021.Practica2;
 
 public class Planta {
 
+<<<<<<< HEAD
 	//Atributos
 	BotonLlamar botonAsc1;
 	BotonLlamar botonAsc2;
@@ -18,4 +19,6 @@ public class Planta {
 	     BotonLlamar botonAsc1 = new BotonLlamar(pisoActual, asc);
 
 	}
+=======
+>>>>>>> Andrea
 }
