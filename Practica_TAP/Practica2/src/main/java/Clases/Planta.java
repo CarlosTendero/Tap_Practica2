@@ -1,5 +1,5 @@
 package Clases;
 
-public class Planta {
+public class Planta implements Clases.Impl.PlantaImpl{
 
 }
