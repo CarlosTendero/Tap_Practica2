@@ -166,15 +166,16 @@ public class MyUI extends UI {
         tab3.addComponent(emergenciaA3,5, 1);
 
         //Ascensores 
-        Label A1 = new Label("Ascensor 1");
+        Image A1 = new Image(null , res1);   
         A1.setSizeFull();
         tab3.addComponent(A1,0, 2);
         
-        Label A2 = new Label("Ascensor 2");
+
+        Image A2 = new Image(null , res1);          
         ascensor2.setSizeFull();
         tab3.addComponent(A2,2, 2);
         
-        Label A3 = new Label("Ascensor 3");
+        Image A3 = new Image(null , res1);   
         A3.setSizeFull();
         tab3.addComponent(A3,4, 2);
         
