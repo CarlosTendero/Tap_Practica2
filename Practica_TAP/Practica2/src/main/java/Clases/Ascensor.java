@@ -8,12 +8,14 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 
 	Planta planta_actual;
 	
-	private State puerta_estado;
+	private State ascensor_estado;
 	
-	public Ascensor(Planta planta_actual, State puerta_estado) {
+	private String puerta_estado;
+	
+	public Ascensor(Planta planta_actual, State ascensor_estado) {
 
 		this.planta_actual = planta_actual;
-		this.puerta_estado = puerta_estado;
+		this.ascensor_estado = ascensor_estado;
 	}
 
 	public Planta getPlanta_actual() {
@@ -24,12 +26,18 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 		this.planta_actual = planta_actual;
 	}
 
-	public State getPuerta_estado() {
-		return puerta_estado;
+	public State getAscensor_estado() {
+		return ascensor_estado;
 	}
 
-	public void setPuerta_estado(State puerta_estado) {
-		this.puerta_estado = puerta_estado;
+	public void setAscensor_estado(State ascensor_estado) {
+		this.ascensor_estado = ascensor_estado;
+	}
+	
+	public void setAscensor_puerta(String puerta) {
+		
+		this.puerta_estado = puerta;
+		
 	}
 
 
@@ -41,13 +49,15 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 
 	@Override
 	public void cambiarEstadoPuerta() {
-		// TODO Auto-generated method stub
+
+		this.ascensor_estado.cambiarEstadoPuerta(this);
 		
 	}
 
 	@Override
-	public void cambiarEstadoAscensorMovimiento() {
-		// TODO Auto-generated method stub
+	public void cambiarEstadoAscensor() {
+
+		this.ascensor_estado.cambiarEstadoAscensor(this);
 		
 	}
 

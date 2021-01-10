@@ -4,8 +4,6 @@ import Clases.Ascensor;
 
 public interface State {
 	
-	void abrirPuerta(Ascensor ascensor);
-	void cerrarPuerta(Ascensor ascensor);
-	void subiendo(Ascensor ascensor);
-	void bajando (Ascensor ascensor);
+	void cambiarEstadoPuerta(Ascensor ascensor);
+	void cambiarEstadoAscensor(Ascensor ascensor);
 }

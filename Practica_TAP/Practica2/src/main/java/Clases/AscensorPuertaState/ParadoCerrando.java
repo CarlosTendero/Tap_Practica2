@@ -6,26 +6,18 @@ import Clases.Impl.State;
 public class ParadoCerrando implements State{
 
 	@Override
-	public void abrirPuerta(Ascensor ascensor) {
-		// TODO Auto-generated method stub
+	public void cambiarEstadoPuerta(Ascensor ascensor) {
+
+		System.out.println("Esta cerrándose");
+		
+		ascensor.setAscensor_estado(new ParadoCerrado());
 		
 	}
 
 	@Override
-	public void cerrarPuerta(Ascensor ascensor) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void cambiarEstadoAscensor(Ascensor ascensor) {
 
-	@Override
-	public void subiendo(Ascensor ascensor) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void bajando(Ascensor ascensor) {
-		// TODO Auto-generated method stub
+		System.out.println("Espera a que acabe de cerrarse la puerta");
 		
 	}
 
