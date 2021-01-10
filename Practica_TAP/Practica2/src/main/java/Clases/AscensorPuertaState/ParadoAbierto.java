@@ -1,5 +1,36 @@
 package Clases.AscensorPuertaState;
 
-public class ParadoAbierto {
+import Clases.Ascensor;
+import Clases.Impl.State;
+
+public class ParadoAbierto implements State{
+
+	@Override
+	public void abrirPuerta(Ascensor ascensor) {
+
+		
+		
+	}
+
+	@Override
+	public void cerrarPuerta(Ascensor ascensor) {
+
+		
+		
+	}
+
+	@Override
+	public void subiendo(Ascensor ascensor) {
+
+		
+		
+	}
+
+	@Override
+	public void bajando(Ascensor ascensor) {
+
+		
+		
+	}
 
 }
