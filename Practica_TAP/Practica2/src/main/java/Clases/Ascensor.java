@@ -6,23 +6,54 @@ import Clases.Impl.State;
 
 public class Ascensor implements Clases.Impl.AscensorImpl{
 
-	Planta planta_actual;
-	
+	int planta_actual;
+	ArrayList<Integer> destinos = new ArrayList<Integer>();
 	private State ascensor_estado;
-	
 	private String puerta_estado;
+	private boolean emergencia;
 	
-	public Ascensor(Planta planta_actual, State ascensor_estado) {
+	public Ascensor() {
 
+	}	
+	
+	public Ascensor(int planta_actual, State ascensor_estado, String puerta_estado, boolean emergencia,ArrayList<Integer> destinos) {
 		this.planta_actual = planta_actual;
 		this.ascensor_estado = ascensor_estado;
+		this.puerta_estado = puerta_estado;
+		this.emergencia = emergencia;
+		this.destinos = destinos;
+	}
+	
+	public String getPuerta_estado() {
+		return puerta_estado;
 	}
 
-	public Planta getPlanta_actual() {
+	public void setPuerta_estado(String puerta_estado) {
+		this.puerta_estado = puerta_estado;
+	}
+
+	public boolean isEmergencia() {
+		return emergencia;
+	}
+
+	public void setEmergencia(boolean emergencia) {
+		this.emergencia = emergencia;
+	}
+
+	public ArrayList<Integer> getDestinos() {
+		return destinos;
+	}
+
+	public void setDestinos(ArrayList<Integer> destinos) {
+		this.destinos = destinos;
+	}
+
+
+	public int getPlanta_actual() {
 		return planta_actual;
 	}
 
-	public void setPlanta_actual(Planta planta_actual) {
+	public void setPlanta_actual(int planta_actual) {
 		this.planta_actual = planta_actual;
 	}
 
@@ -33,48 +64,55 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	public void setAscensor_estado(State ascensor_estado) {
 		this.ascensor_estado = ascensor_estado;
 	}
-	
+
 	public void setAscensor_puerta(String puerta) {
-		
+
 		this.puerta_estado = puerta;
-		
+
 	}
-
-
+	
+	
+	
 	@Override
-	public ArrayList<Planta> movimientoAscensor(Planta Destino) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Integer> movimientoAscensor(Planta Destino) {
+		
+		return destinos;
 	}
 
 	@Override
 	public void cambiarEstadoPuerta() {
 
 		this.ascensor_estado.cambiarEstadoPuerta(this);
-		
+
 	}
 
 	@Override
 	public void cambiarEstadoAscensor() {
 
 		this.ascensor_estado.cambiarEstadoAscensor(this);
-		
+
 	}
 
 	@Override
 	public void mostrarPlantaActual() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void activarAlarma() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
-	
-	
+
+	@Override
+	public void cambiarPiso(Planta Destino) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
+
 
 }

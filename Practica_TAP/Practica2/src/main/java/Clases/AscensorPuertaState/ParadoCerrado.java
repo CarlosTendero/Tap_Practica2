@@ -18,7 +18,7 @@ public class ParadoCerrado implements State{
 
 		//mover el ascensor
 		ascensor.setAscensor_estado(new MoviendoAscensor());
-
+		
 	}
-
+	
 }
