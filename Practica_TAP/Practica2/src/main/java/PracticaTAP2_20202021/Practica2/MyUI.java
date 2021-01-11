@@ -49,148 +49,116 @@ public class MyUI extends UI {
     	GridLayout tab2 = new GridLayout(3, 5);
     	tabsheet.addTab(tab2, "Cabina ascensor");
     	  	
-        GridLayout tab3 = new GridLayout(6, 3);
+        GridLayout tab3 = new GridLayout(8, 4);
     	tabsheet.addTab(tab3, "Planta");
     	
         layout.addComponents(tabsheet);
         
-        //TAB1
+        /*PANEL DE CONTROL*/
         //Imagen de ascensores
         Resource res1 = new ThemeResource("ascensor.png");
- 
 
-        //Introducción de 3 imagenes
-        Image ascensor = new Image(null , res1);   
-        tab1.addComponent(ascensor, 0, 0);
-        Image ascensor2 = new Image(null , res1); 
-        tab1.addComponent(ascensor2, 1,0);
-        Image ascensor3 = new Image(null , res1);
-        tab1.addComponent(ascensor3, 2,0);
-        
-        //Estados
-        Label button1A1 = new Label("Estado movimiento A1");
-        tab1.addComponent(button1A1, 0,1);
-        Label button2A1 = new Label("Estado movimiento A2");
-        tab1.addComponent(button2A1, 1,1);
-        Label button3A1 = new Label("Estado movimiento A3");
-        tab1.addComponent(button3A1, 2,1);
-        
-        
-        Label button1A2 = new Label("Estado A1");
-        tab1.addComponent(button1A2, 0,2);
-        Label button2A2 = new Label("Estado A2");
-        tab1.addComponent(button2A2, 1,2);
-        Label button3A2 = new Label("Estado A3");
-        tab1.addComponent(button3A2, 2,2);
-        
-        Label button1A3 = new Label("Estado emergencia A1");
-        tab1.addComponent(button1A3, 0,3);
-        Label button2A3 = new Label("Estado emergencia A2");
-        tab1.addComponent(button2A3, 1,3);
-        Label button3A3 = new Label("Estado emergencia A3");
-        tab1.addComponent(button3A3, 2,3);        
 
-        //TAB 2
-        Label display = new Label("Piso cansado");
+        //Añadir ascensores
+        for(int i= 0; i < 3; i++) {
+        	tab1.addComponent(new Image(null, res1), i, 0);
+        }
+        
+        //Añadir Mov A
+        for(int i= 0; i < 3; i++) {
+        	tab1.addComponent(new Label("Estado movimiento A"+i), i, 1);
+        }
+        
+        //Añadir estado A
+        for(int i= 0; i < 3; i++) {
+        	tab1.addComponent(new Label("Estado A"+i), i, 2);
+        }
+
+        //Añadir estado emergencia A
+        for(int i= 0; i < 3; i++) {
+        	tab1.addComponent(new Label("Estado emergencia A"+i), i, 3);
+        }
+
+        /*CABINA ASCENSOR*/
+        //Piso actual
+        Label display = new Label("Display del piso actual");
         tab2.addComponent(display, 0, 0, 2, 0);
+        
 
+       
+        //Botonera 1-6
+        int boton=1;
+        for (int fila= 1; fila < 3; fila++) {
+        	for (int col=0; col < 3; col++) {
+        		Button button = new Button(""+boton); 
+            	button.addClickListener(event ->
+            	//edificio.ascensorxoLoquesea.planta...
+            	System.out.println(button.getCaption()));
+        		tab2.addComponent(button, col, fila);
+        		boton++;
+        	}
+        }        
+        //Boton abrir
+        Button abrirPeta = new Button("<>");
+        tab2.addComponent(abrirPeta, 0, 3);
         
-        //Botonera
-        Button buttonPB = new Button("PB");
-        buttonPB.setWidth("100.0%");
-        buttonPB.setHeight("100.0%");
-        tab2.addComponent(buttonPB, 1, 3);
+        //Planta baja
+        Button pb = new Button("PB");
+        tab2.addComponent(pb, 1, 3);
+
+        //Boton cerrar
+        Button cerrarPeta = new Button("><");
+        tab2.addComponent(cerrarPeta, 2, 3);
         
-        Button button1 = new Button("1");
-        tab2.addComponent(button1, 0, 1);
-        
-        Button button2 = new Button("2");
-        tab2.addComponent(button2, 1, 1);
-        
-        Button button3 = new Button("3");
-        tab2.addComponent(button3, 2, 1);
-        
-        Button button4 = new Button("4");
-        tab2.addComponent(button4, 0, 2);
-        
-        Button button5 = new Button("5");
-        tab2.addComponent(button5, 1, 2);
-        
-        Button button6 = new Button("6");
-        tab2.addComponent(button6, 2, 2);
-        
-        Button buttonAbrir = new Button("<->");
-        buttonAbrir.setWidth("100.0%");
-        buttonAbrir.setHeight("100.0%");
-        tab2.addComponent(buttonAbrir, 0, 3);
-        
-        Button buttonCerrar = new Button("><");
-        buttonCerrar.setWidth("100.0%");
-        buttonCerrar.setHeight("100.0%");
-        tab2.addComponent(buttonCerrar, 2, 3);
-         
         //Emergencia
-        Label emergencia = new Label("Botón de emergencia");
+        Button emergencia = new Button("Botón de emergencia");
         tab2.addComponent(emergencia, 0, 4, 2, 4);
+       
+        /*PLANTA*/
         
-        //TAB 3
-        //6x1 altavoz
+        //Altavoz
         Label altavoz = new Label("altavoz");
         altavoz.setSizeFull();
         tab3.addComponent(altavoz, 0, 0, 5, 0);
 
-        //Displays
-        Label display1 = new Label("display ascensor 1");
-        display1.setSizeFull();
-        tab3.addComponent(display1,0, 1);
+       //Display
+       int asc = 1; 
+       for(int i= 0; i < 6 ; i++) {
+        	tab3.addComponent(new Label("display A"+asc), i, 1);
+        	asc++;
+        	i++;
+        }	
+       
+       
+       //Emergencia
+       	boolean emg= false;
         
-        Label display2 = new Label("display ascensor 2");
-        display1.setSizeFull();
-        tab3.addComponent(display2,2, 1);
-        
-        Label display3 = new Label("display ascensor 3");
-        display1.setSizeFull();
-        tab3.addComponent(display3,4, 1);
-         
-        //Emergencia
-        Label emergenciaA1 = new Label("Emergencia A1");
-        emergenciaA1.setSizeFull();
-        tab3.addComponent(emergenciaA1,1, 1);
-        
-        Label emergenciaA2 = new Label("Emergencia A2");
-        emergenciaA2.setSizeFull();
-        tab3.addComponent(emergenciaA2,3, 1);
-        
-        Label emergenciaA3 = new Label("Emergencia A3");
-        emergenciaA3.setSizeFull();
-        tab3.addComponent(emergenciaA3,5, 1);
-
-        //Ascensores 
-        Image A1 = new Image(null , res1);   
-        A1.setSizeFull();
-        tab3.addComponent(A1,0, 2);
+        for(int i= 1; i < 6; i+=2) {
+        	if(emg) {
+        		tab3.addComponent(new Label("PELIGRO!"), i, 1);
+        	}
+        	else {
+        		tab3.addComponent(new Label("OK"), i, 1);
+        	}
+        }	
         
 
-        Image A2 = new Image(null , res1);          
-        ascensor2.setSizeFull();
-        tab3.addComponent(A2,2, 2);
+        //Ascensores
+        for(int i= 0; i < 6; i+=2) {
+        	tab3.addComponent(new Image(null, res1), i, 2);
+        }
         
-        Image A3 = new Image(null , res1);   
-        A3.setSizeFull();
-        tab3.addComponent(A3,4, 2);
+        //Llamar ascensor
+        int ascensorx = 1;
+        for(int i= 1; i < 6; i+=2) {
+        	Button boton1 = new Button("Up A"+ascensorx);
+        	boton1.addClickListener(event ->
+        	//edificio.ascensorxoLoquesea.planta...
+        	System.out.println(boton1.getCaption()));
+        	tab3.addComponent(boton1, i, 2);
+        	ascensorx++;
+        }
         
-        //Boton llamar
-        Button llamarA1 = new Button("LLamar al ascensor 1");
-        llamarA1.setSizeFull();
-        tab3.addComponent(llamarA1, 1, 2);
-        
-        Button llamarA2 = new Button("LLamar al ascensor 1");
-        llamarA2.setSizeFull();
-        tab3.addComponent(llamarA2, 3, 2);
-        
-        Button llamarA3 = new Button("LLamar al ascensor 1");
-        llamarA3.setSizeFull();
-        tab3.addComponent(llamarA3, 5, 2);
         
         setContent(layout);
     }
