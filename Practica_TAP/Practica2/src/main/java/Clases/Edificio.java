@@ -10,7 +10,7 @@ public class Edificio implements Clases.Impl.EdificioImpl{
 	
 	public Edificio() {
 		for (int i = 0; i < 4; i++)
-			this.ascensores.add(new Ascensor());
+			this.ascensores.add(new Ascensor(i, null, null));
 		for	(int i = 0; i < 8; i++)
 			this.plantas.add(new Planta());
 	}
