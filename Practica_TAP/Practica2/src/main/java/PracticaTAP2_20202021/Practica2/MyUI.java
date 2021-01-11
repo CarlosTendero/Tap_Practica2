@@ -40,8 +40,7 @@ public class MyUI extends UI {
 		final HorizontalLayout layout = new HorizontalLayout();
 
 		TabSheet tabsheet = new TabSheet();
-
-
+		
 		//Crear Pestañas
 		HorizontalLayout tab1 = new HorizontalLayout();
 		tabsheet.addTab(tab1, "Panel de control");
