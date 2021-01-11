@@ -8,7 +8,7 @@ public interface AscensorImpl {
 
 	public  ArrayList<Planta> movimientoAscensor(Planta Destino);	
 	public void cambiarEstadoPuerta();
-	public void cambiarEstadoAscensorMovimiento();
+	public void cambiarEstadoAscensor();
 	public void mostrarPlantaActual();
 	public void activarAlarma();
 }

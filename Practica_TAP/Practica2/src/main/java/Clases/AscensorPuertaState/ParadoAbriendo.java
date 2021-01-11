@@ -6,30 +6,18 @@ import Clases.Impl.State;
 public class ParadoAbriendo implements State{
 
 	@Override
-	public void abrirPuerta(Ascensor ascensor) {
+	public void cambiarEstadoPuerta(Ascensor ascensor) {
 
+		System.out.println("Esta abriéndose");
 		
-		
-	}
-
-	@Override
-	public void cerrarPuerta(Ascensor ascensor) {
-
-		
+		ascensor.setAscensor_estado(new ParadoAbierto());
 		
 	}
 
 	@Override
-	public void subiendo(Ascensor ascensor) {
+	public void cambiarEstadoAscensor(Ascensor ascensor) {
 
-		
-		
-	}
-
-	@Override
-	public void bajando(Ascensor ascensor) {
-
-		
+		System.out.println("Espera a que deje de abrirse la puerta");
 		
 	}
 
