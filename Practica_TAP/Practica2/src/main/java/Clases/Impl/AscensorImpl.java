@@ -6,7 +6,7 @@ import Clases.Planta;
 
 public interface AscensorImpl {
 
-	public  ArrayList<Integer> movimientoAscensor(Planta Destino);	
+	public  ArrayList<Integer> moverAscensor(Planta Destino);	
 	public void cambiarEstadoPuerta();
 	public void cambiarEstadoAscensor();
 	public void mostrarPlantaActual();
