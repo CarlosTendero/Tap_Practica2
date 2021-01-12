@@ -30,6 +30,7 @@ import com.vaadin.ui.VerticalLayout;
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @Theme("mytheme")
+
 public class MyUI extends UI {
 
     private static final String DateField = null;
@@ -44,6 +45,8 @@ public class MyUI extends UI {
         
         //Crear Pestañas
         GridLayout tab1 = new GridLayout(3,4);
+        tab1.setWidth("80%");
+        tab1.setHeight("80%");
     	tabsheet.addTab(tab1, "Panel de control");
 
     	GridLayout tab2 = new GridLayout(3, 5);
@@ -90,7 +93,8 @@ public class MyUI extends UI {
         int boton=1;
         for (int fila= 1; fila < 3; fila++) {
         	for (int col=0; col < 3; col++) {
-        		Button button = new Button(""+boton); 
+        		Button button = new Button(""+boton);
+        		button.addStyleName("hartadekboton");
             	button.addClickListener(event ->
             	//edificio.ascensorxoLoquesea.planta...
             	System.out.println(button.getCaption()));
@@ -126,8 +130,7 @@ public class MyUI extends UI {
 	    System.out.println(emergencia.getCaption()));  
         tab2.addComponent(emergencia, 0, 4, 2, 4);
        
-        /*PLANTA*/
-        
+        /*PLANTA*/      
         //Altavoz
         Label altavoz = new Label("altavoz");
         altavoz.setSizeFull();
@@ -140,7 +143,6 @@ public class MyUI extends UI {
         	asc++;
         	i++;
         }	
-       
        
        //Emergencia
        	boolean emg= false;
@@ -170,7 +172,6 @@ public class MyUI extends UI {
         	tab3.addComponent(boton1, i, 2);
         	ascensorx++;
         }
-        
         
         setContent(layout);
     }

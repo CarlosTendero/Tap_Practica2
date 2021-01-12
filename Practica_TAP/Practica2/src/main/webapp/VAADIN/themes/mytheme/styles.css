@@ -15427,3 +15427,8 @@ div.v-layout.v-horizontal.v-widget {
 	width: 19px;
 	overflow: hidden;
 }
+
+.mytheme .v-button {
+	color: orange !important;
+	margin: 0.6em !important;
+}
