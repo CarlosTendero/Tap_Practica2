@@ -12,6 +12,7 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	
 	private int planta_actual;
 	private ArrayList<Integer> destinos;
+	private ArrayList<Integer> plantas;
 	private State ascensor_estado;
 	private String puerta_estado;
 	private boolean emergencia;
@@ -27,6 +28,10 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 
 		this.emergencia = false;
 		this.destinos = new ArrayList<Integer>();
+		
+		for(int i=1; i<8; i++) {
+			this.plantas.add(i);
+		}
 
 	}
 	
@@ -81,8 +86,8 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	
 	//Ya están
 	@Override
-	public void moverAscensor(int Destino) {
-			this.ascensor_estado.moverAscensor(this);
+	public void moverAscensor(int Destino, int plantas) {
+			this.ascensor_estado.moverAscensor(this, Destino, plantas);
 	}
 	
 	//No están.

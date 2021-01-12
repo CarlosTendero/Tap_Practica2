@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface AscensorImpl {
 
-	public void moverAscensor(int Destino);	
+	public void moverAscensor(int Destino, int plantas);	
 	public void cambiarEstadoPuerta();
 	public void mostrarPlantaActual();
 	public void activarAlarma();

@@ -1,5 +1,6 @@
 package Clases.AscensorPuertaState;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import Clases.Ascensor;
@@ -23,9 +24,11 @@ public class ParadoAbriendo implements State{
 	}
 
 	@Override
-	public void moverAscensor(Ascensor ascensor) {
+	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino, int plantas) {
 
 		System.out.println("Espera a que deje de abrirse la puerta");
+		
+		return null;
 		
 	}
 }
