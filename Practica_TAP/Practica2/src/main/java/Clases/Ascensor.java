@@ -14,6 +14,7 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	private ArrayList<Integer> destinos;
 	private State ascensor_estado;
 	private String puerta_estado;
+	//No sabemos si hace falta
 	private boolean emergencia;
 
 	//--------------------------------------------------------------
@@ -82,7 +83,7 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	//Ya están
 	@Override
 	public void moverAscensor(int Destino) {
-			this.ascensor_estado.moverAscensor(this);
+			this.ascensor_estado.moverAscensor(this, Destino);
 	}
 	
 	//No están.
@@ -92,8 +93,12 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	}
 
 	@Override
-	public void activarAlarma() {
+	public void activarAlarma(boolean emergencia) {
 		// TODO Auto-generated method stub
+		
+		this.ascensor_estado.activarAlarma(this, emergencia);
+		
+		emergencia = true;
 	}
 	@Override
 	public void anyadirDestino(int destino) {
@@ -108,12 +113,6 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 		if(this.planta_actual != destino)
 			distancia = Math.abs(destino - this.planta_actual);
 		return distancia;
-	}
-
-	@Override
-	public void mostrarPlantaActual() {
-		// TODO Auto-generated method stub
-		
 	}
 
 

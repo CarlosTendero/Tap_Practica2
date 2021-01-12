@@ -1,5 +1,7 @@
 package Clases.AscensorPuertaState;
 
+import java.util.ArrayList;
+
 import Clases.Ascensor;
 import Clases.Impl.State;
 
@@ -14,11 +16,19 @@ public class ParadoCerrado implements State{
 	}
 
 	@Override
-	public void moverAscensor(Ascensor ascensor) {
+	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino) {
 
 		//mover el ascensor
-		ascensor.setAscensor_estado(new MoviendoAscensor());
+		ascensor.setAscensor_estado(new MoviendoAscensor()); 
+		
+		return null;
 
+	}
+
+	@Override
+	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
