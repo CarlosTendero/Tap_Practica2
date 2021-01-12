@@ -9,14 +9,18 @@ public class MoviendoAscensor implements State{
 	public void cambiarEstadoPuerta(Ascensor ascensor) {
 
 		System.out.println("Espera que te estas moviendo");
-		
+		/*Ayuda*/
+		//No hacer nada.
 	}
 
 	@Override
-	public void cambiarEstadoAscensor(Ascensor ascensor) {
-
-		//Añadir planta al array del ascensor para que sea la siguiente planta a la que ir 
+	public void moverAscensor(Ascensor ascensor) {
+		
+		//Lógica de actualizar planta.
+		//Calcular tiempo en subir según cuantas plantas subamos.
+		//Al cambiar de planta informar a los observers.
+			//listadeObservers.actualizarPisoActual(int plantaActual).
+		//Al terminar cambiar estado.
 		
 	}
-
 }
