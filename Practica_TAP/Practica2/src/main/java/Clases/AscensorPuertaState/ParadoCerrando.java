@@ -15,7 +15,7 @@ public class ParadoCerrando implements State{
 	}
 
 	@Override
-	public void cambiarEstadoAscensor(Ascensor ascensor) {
+	public void moverAscensor(Ascensor ascensor) {
 
 		System.out.println("Espera a que acabe de cerrarse la puerta");
 		

@@ -6,21 +6,34 @@ import Clases.Impl.State;
 
 public class Ascensor implements Clases.Impl.AscensorImpl{
 
+	//--------------------------------------------------------------
+	//Atributos
+	//--------------------------------------------------------------
+	
 	private int planta_actual;
 	private ArrayList<Integer> destinos;
 	private State ascensor_estado;
 	private String puerta_estado;
 	private boolean emergencia;
 
-
+	//--------------------------------------------------------------
+	//Constructor
+	//--------------------------------------------------------------
+	
 	public Ascensor(int planta_actual, State ascensor_estado, String puerta_estado) {
 		this.planta_actual = planta_actual;
 		this.ascensor_estado = ascensor_estado;
 		this.puerta_estado = puerta_estado;
+
 		this.emergencia = false;
 		this.destinos = new ArrayList<Integer>();
-	}
 
+	}
+	
+	//--------------------------------------------------------------
+	//Setters y getters
+	//--------------------------------------------------------------
+	
 	public String getPuerta_estado() {
 		return puerta_estado;
 	}
@@ -55,24 +68,29 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 
 	public void setAscensor_estado(State ascensor_estado) {
 		this.ascensor_estado = ascensor_estado;
+
 	}
 
 	public void setAscensor_puerta(String puerta) {
 		this.puerta_estado = puerta;
 	}	
+	
+	//--------------------------------------------------------------
+	//Funciones de ascensor.
+	//--------------------------------------------------------------
+	
+	//Ya están
 	@Override
-	public ArrayList<Integer> moverAscensor(Planta Destino) {		
-		return null;
-
+	public void moverAscensor(int Destino) {
+			this.ascensor_estado.moverAscensor(this);
 	}
+	
+	//No están.
 	@Override
 	public void cambiarEstadoPuerta() {
 		this.ascensor_estado.cambiarEstadoPuerta(this);
 	}
-	@Override
-	public void cambiarEstadoAscensor() {
-		this.ascensor_estado.cambiarEstadoAscensor(this);
-	}
+
 	@Override
 	public void activarAlarma() {
 		// TODO Auto-generated method stub
@@ -92,8 +110,11 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 		return distancia;
 	}
 
-
-
+	@Override
+	public void mostrarPlantaActual() {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

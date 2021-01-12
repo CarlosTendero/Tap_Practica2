@@ -1,4 +1,4 @@
-package PracticaTAP2_20202021.Practica2;
+package PracticaTAP2_20202021;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -58,7 +58,7 @@ public class MyUI extends UI {
 		Resource res1 = new ThemeResource("ascensor.png");
 
 		//Introducción de 3 imagenes
-		Image ascensor =  new Image(null , res1);     
+		Image ascensor = new Image(null , res1);     
 		Image ascensor2 = new Image(null , res1); 
 		Image ascensor3 = new Image(null , res1);
 
