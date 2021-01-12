@@ -24,7 +24,7 @@ public class ParadoAbriendo implements State{
 	}
 
 	@Override
-	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino, int plantas) {
+	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino) {
 
 		System.out.println("Espera a que deje de abrirse la puerta");
 		
