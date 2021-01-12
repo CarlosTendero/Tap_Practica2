@@ -98,20 +98,32 @@ public class MyUI extends UI {
         		boton++;
         	}
         }        
-        //Boton abrir
+        //Boton abrir Puertas       
         Button abrirPeta = new Button("<>");
+        abrirPeta.addClickListener(event ->
+    	System.out.println(abrirPeta.getCaption()));
         tab2.addComponent(abrirPeta, 0, 3);
+
         
-        //Planta baja
+	    //Boton Cerrar Puertas	
+	    Button cerrarPeta = new Button("><");
+	    cerrarPeta.addClickListener(event ->
+	    System.out.println(cerrarPeta.getCaption()));
+        tab2.addComponent(cerrarPeta, 2, 3);
+    	
+	    	
+          
+        //Planta baja  
         Button pb = new Button("PB");
+        pb.addClickListener(event ->
+	    System.out.println(pb.getCaption()));  
         tab2.addComponent(pb, 1, 3);
 
-        //Boton cerrar
-        Button cerrarPeta = new Button("><");
-        tab2.addComponent(cerrarPeta, 2, 3);
         
         //Emergencia
         Button emergencia = new Button("Botón de emergencia");
+        emergencia.addClickListener(event ->
+	    System.out.println(emergencia.getCaption()));  
         tab2.addComponent(emergencia, 0, 4, 2, 4);
        
         /*PLANTA*/
