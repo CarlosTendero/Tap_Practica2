@@ -6,11 +6,6 @@ import Clases.Ascensor;
 import Clases.Impl.State;
 
 public class ParadoAbierto implements State{
-
-	//Constructor. Para definir la lista de observers.
-	public ParadoAbierto(/*Pasarle como referencia la lista de observers*/) {
-		//Lista de observers = 
-	}
 	
 	//Funciones
 	@Override

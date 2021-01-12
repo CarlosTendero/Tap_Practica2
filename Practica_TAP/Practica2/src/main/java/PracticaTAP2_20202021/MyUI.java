@@ -208,12 +208,7 @@ public class MyUI extends UI {
 		planta.setValue("Estamos en la planta 6");
 		
 		ascensores.get(0).setPuerta_estado("pepe");
-		try {
-			ascensores.get(0).CambiosLocos();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		planta_aux.setValue(ascensores.get(0).getPuerta_estado());
 		}
 				);
