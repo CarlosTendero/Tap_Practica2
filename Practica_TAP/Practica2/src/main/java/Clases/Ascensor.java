@@ -1,6 +1,7 @@
 package Clases;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import Clases.Impl.State;
 
@@ -116,5 +117,45 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 		
 	}
 
+	public void CambiosLocos() throws InterruptedException {
+		for (int i = 0; i < 100; i ++) {
+		this.puerta_estado = "A";
+		TimeUnit.SECONDS.sleep(2);
+		this.puerta_estado = "B";
+		TimeUnit.SECONDS.sleep(2);
+		this.puerta_estado = "C";
+		TimeUnit.SECONDS.sleep(2);
+		this.puerta_estado = "D";
+		TimeUnit.SECONDS.sleep(2);
+		this.puerta_estado = "E";
+		TimeUnit.SECONDS.sleep(2);
+		this.puerta_estado = "F";
+		TimeUnit.SECONDS.sleep(2);
+		this.puerta_estado = "G";
+		TimeUnit.SECONDS.sleep(2);
+		this.puerta_estado = "H";
+		TimeUnit.SECONDS.sleep(2);
+		this.puerta_estado = "I";
+		this.puerta_estado = "J";
+		this.puerta_estado = "K";
+		this.puerta_estado = "L";
+		this.puerta_estado = "M";
+		this.puerta_estado = "N";
+		this.puerta_estado = "O";
+		this.puerta_estado = "P";
+		this.puerta_estado = "Q";
+		this.puerta_estado = "R";
+		this.puerta_estado = "S";
+		this.puerta_estado = "T";
+		this.puerta_estado = "U";
+		this.puerta_estado = "V";
+		this.puerta_estado = "W";
+		this.puerta_estado = "X";
+		this.puerta_estado = "Y";
+		this.puerta_estado = "Z";
+		}
+
+	}
+	
 
 }

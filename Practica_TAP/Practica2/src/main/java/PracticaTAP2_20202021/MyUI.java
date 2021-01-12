@@ -1,5 +1,7 @@
 package PracticaTAP2_20202021;
 
+import java.util.ArrayList;
+
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
@@ -10,6 +12,7 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -20,6 +23,9 @@ import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+
+import Clases.Ascensor;
+import Clases.Edificio;
 
 
 /**
@@ -32,6 +38,7 @@ import com.vaadin.ui.VerticalLayout;
 @Theme("mytheme")
 public class MyUI extends UI {
 
+
 	private static final String DateField = null;
 
 	@Override
@@ -42,102 +49,186 @@ public class MyUI extends UI {
 		TabSheet tabsheet = new TabSheet();
 
 		//Crear Pestañas
-		HorizontalLayout tab1 = new HorizontalLayout();
+		GridLayout tab1 = new GridLayout(3,4);
 		tabsheet.addTab(tab1, "Panel de control");
 
-		VerticalLayout tab2 = new VerticalLayout();
+		GridLayout tab2 = new GridLayout(3, 5);
 		tabsheet.addTab(tab2, "Cabina ascensor");
 
-		GridLayout tab3 = new GridLayout(6,3);
+		GridLayout tab3 = new GridLayout(8, 12);
 		tabsheet.addTab(tab3, "Planta");
 
 		layout.addComponents(tabsheet);
 
-		//TAB1
-		//Imagen de ascensore
+		/*PANEL DE CONTROL*/
+		//Imagen de ascensores
 		Resource res1 = new ThemeResource("ascensor.png");
 
-		//Introducción de 3 imagenes
-		Image ascensor = new Image(null , res1);     
-		Image ascensor2 = new Image(null , res1); 
-		Image ascensor3 = new Image(null , res1);
 
-		//Para A1
-		Button button1A1 = new Button();
-		Button button1A2 = new Button();
-		Button button1A3 = new Button();
+		//Añadir ascensores
+		for(int i= 0; i < 3; i++) {
+			tab1.addComponent(new Image(null, res1), i, 0);
+		}
 
-		//Para A2
-		Button button2A1 = new Button();
-		Button button2A2 = new Button();
-		Button button2A3 = new Button();
+		//Añadir Mov A
+		for(int i= 0; i < 3; i++) {
+			tab1.addComponent(new Label("Estado movimiento A"+i), i, 1);
+		}
 
-		//Para A·
-		Button button3A1 = new Button();
-		Button button3A2 = new Button();
-		Button button3A3 = new Button();
+		//Añadir estado A
+		for(int i= 0; i < 3; i++) {
+			tab1.addComponent(new Label("Estado A"+i), i, 2);
+		}
 
-		//Incluir en tab1
-		tab1.addComponents(ascensor, button1A1,button1A2, button1A3, ascensor2, button2A1, button2A2, button2A3, ascensor3, button3A1, button3A2, button3A3);
+		//Añadir estado emergencia A
+		for(int i= 0; i < 3; i++) {
+			tab1.addComponent(new Label("Estado emergencia A"+i), i, 3);
+		}
+
+		/*CABINA ASCENSOR*/
+		//Piso actual
+		Label display = new Label("Display del piso actual");
+		tab2.addComponent(display, 0, 0, 2, 0);
 
 
-		//6x1 altavoz
+
+		//Botonera 1-6
+		int boton=1;
+		for (int fila= 1; fila < 3; fila++) {
+			for (int col=0; col < 3; col++) {
+				Button button = new Button(""+boton); 
+				button.addClickListener(event ->
+				//edificio.ascensorxoLoquesea.planta...
+				System.out.println(button.getCaption()));
+				tab2.addComponent(button, col, fila);
+				boton++;
+			}
+		}        
+		//Boton abrir
+		Button abrirPeta = new Button("<>");
+		tab2.addComponent(abrirPeta, 0, 3);
+
+		//Planta baja
+		Button pb = new Button("PB");
+		tab2.addComponent(pb, 1, 3);
+
+		//Boton cerrar
+		Button cerrarPeta = new Button("><");
+		tab2.addComponent(cerrarPeta, 2, 3);
+
+		//Emergencia
+		Button emergencia = new Button("Botón de emergencia");
+		tab2.addComponent(emergencia, 0, 4, 2, 4);
+
+		/*PLANTA*/
+
+		//Altavoz
 		Label altavoz = new Label("altavoz");
 		altavoz.setSizeFull();
 		tab3.addComponent(altavoz, 0, 0, 5, 0);
 
-		//Displays
-		Label display1 = new Label("display ascensor 1");
-		display1.setSizeFull();
-		tab3.addComponent(display1,0, 1);
+		//Display
+		int asc = 1; 
+		Label estadoAsc1 = new Label(("display A"+1));
+		Label estadoAsc2 = new Label(("display A"+2));
+		Label estadoAsc3 = new Label(("display A"+3));
 
-		Label display2 = new Label("display ascensor 2");
-		display1.setSizeFull();
-		tab3.addComponent(display2,2, 1);
+		for(int i= 0; i < 6 ; i++) {
 
-		Label display3 = new Label("display ascensor 3");
-		display1.setSizeFull();
-		tab3.addComponent(display3,4, 1);
+			tab3.addComponent(new Label("display A"+asc), i, 1);
+			asc++;
+			i++;
+		}	
+
 
 		//Emergencia
-		Label emergenciaA1 = new Label("Emergencia A1");
-		emergenciaA1.setSizeFull();
-		tab3.addComponent(emergenciaA1,1, 1);
+		boolean emg= false;
 
-		Label emergenciaA2 = new Label("Emergencia A2");
-		emergenciaA2.setSizeFull();
-		tab3.addComponent(emergenciaA2,3, 1);
+		for(int i= 1; i < 6; i+=2) {
+			if(emg) {
+				tab3.addComponent(new Label("PELIGRO!"), i, 1);
+			}
+			else {
+				tab3.addComponent(new Label("OK"), i, 1);
+			}
+		}	
 
-		Label emergenciaA3 = new Label("Emergencia A3");
-		emergenciaA3.setSizeFull();
-		tab3.addComponent(emergenciaA3,5, 1);
 
-		//Ascensores 
-		Label A1 = new Label("Ascensor 1");
-		A1.setSizeFull();
-		tab3.addComponent(A1,0, 2);
+		//Ascensores
+		for(int i= 0; i < 6; i+=2) {
+			tab3.addComponent(new Image(null, res1), i, 2);
+		}
 
-		Label A2 = new Label("Ascensor 2");
-		ascensor2.setSizeFull();
-		tab3.addComponent(A2,2, 2);
+		//Llamar ascensor
+		int ascensorx = 1;
+		for(int i= 1; i < 6; i+=2) {
+			Button boton1 = new Button("Up A"+ascensorx);
+			boton1.addClickListener(event ->
+			//edificio.ascensorxoLoquesea.planta...
 
-		Label A3 = new Label("Ascensor 3");
-		A3.setSizeFull();
-		tab3.addComponent(A3,4, 2);
+			System.out.println(boton1.getCaption()));
+			tab3.addComponent(boton1, i, 2);
+			ascensorx++;
+		}
 
-		//Boton llamar
-		Button llamarA1 = new Button("LLamar al ascensor 1");
-		llamarA1.setSizeFull();
-		tab3.addComponent(llamarA1, 1, 2);
 
-		Button llamarA2 = new Button("LLamar al ascensor 1");
-		llamarA2.setSizeFull();
-		tab3.addComponent(llamarA2, 3, 2);
+		// Seleccion de la planta modificar 
+		Label planta = new Label("no hay planta seleccionada");
+		
+		Edificio edificio = new Edificio();
+		
+		ArrayList<Ascensor> ascensores = edificio.getAscensores();
+		
+		Label planta_aux = new Label(ascensores.get(0).getPuerta_estado());
+		
+		// Seleccion de la planta
+		Button planta0 = new Button("Planta 0");
+		Button planta1 = new Button("Planta 1");
+		Button planta2 = new Button("Planta 2");
+		Button planta3 = new Button("Planta 3");
+		Button planta4 = new Button("Planta 4");
+		Button planta5 = new Button("Planta 5");
+		Button planta6 = new Button("Planta 6");
 
-		Button llamarA3 = new Button("LLamar al ascensor 1");
-		llamarA3.setSizeFull();
-		tab3.addComponent(llamarA3, 5, 2);
+		// AQUI SE MODIFICA EL OBJETO EDIFICIO PARA SELECCIONAR LA PLANTA
 
+		planta0.addClickListener(event ->
+		planta.setValue("Estamos en la planta 0"));
+		planta1.addClickListener(event ->
+		planta.setValue("Estamos en la planta 1"));
+		planta2.addClickListener(event ->
+		planta.setValue("Estamos en la planta 2"));
+		planta3.addClickListener(event ->
+		planta.setValue("Estamos en la planta 3"));
+		planta4.addClickListener(event ->
+		planta.setValue("Estamos en la planta 4"));
+		planta5.addClickListener(event ->
+		planta.setValue("Estamos en la planta 5"));
+		planta6.addClickListener(event ->{
+		planta.setValue("Estamos en la planta 6");
+		
+		ascensores.get(0).setPuerta_estado("pepe");
+		try {
+			ascensores.get(0).CambiosLocos();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		planta_aux.setValue(ascensores.get(0).getPuerta_estado());
+		}
+				);
+
+		tab3.addComponent(planta0, 0,3);
+		tab3.addComponent(planta1, 0,4);
+		tab3.addComponent(planta2, 0,5);
+		tab3.addComponent(planta3, 0,6);
+		tab3.addComponent(planta4, 0,7);
+		tab3.addComponent(planta5, 0,8);
+		tab3.addComponent(planta6, 0,9);
+		tab3.addComponent(planta, 0, 10);
+		tab3.addComponent(planta_aux, 0,11);
+		
+	
 		setContent(layout);
 	}
 
@@ -146,5 +237,7 @@ public class MyUI extends UI {
 	public static class MyUIServlet extends VaadinServlet {
 	}
 }
+
+
 
 
