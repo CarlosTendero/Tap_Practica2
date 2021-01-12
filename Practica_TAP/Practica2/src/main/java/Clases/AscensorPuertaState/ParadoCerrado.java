@@ -24,5 +24,11 @@ public class ParadoCerrado implements State{
 		return null;
 
 	}
+
+	@Override
+	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

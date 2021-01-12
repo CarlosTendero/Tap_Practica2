@@ -95,23 +95,10 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	@Override
 	public void activarAlarma(boolean emergencia) {
 		// TODO Auto-generated method stub
-		emergencia = true;
 		
-		while(emergencia) {
-			if(this.getPlanta_actual() == 7) {
-				this.ascensor_estado.moverAscensor(this, this.getPlanta_actual() - 1);
-				emergencia = false;
-			}
-			else if(this.getPlanta_actual() == 1) {
-				this.ascensor_estado.moverAscensor(this, this.getPlanta_actual() + 1);
-				emergencia = false;
-			}
-			else {
-				this.ascensor_estado.moverAscensor(this, this.getPlanta_actual() + 1);
-				emergencia = false;
-			}
-			
-		}
+		this.ascensor_estado.activarAlarma(this, emergencia);
+		
+		emergencia = true;
 	}
 	@Override
 	public void anyadirDestino(int destino) {
