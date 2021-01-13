@@ -12,7 +12,6 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	//Atributos
 	//--------------------------------------------------------------
 	
-
 	private int planta_actual;
 	private ArrayList<Integer> destinos;
 	private State ascensor_estado;
@@ -20,6 +19,7 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	//No sabemos si hace falta
 	private boolean emergencia;
 	private int numAscensor; 		//Identificador del ascensor.
+	
 
 	//--------------------------------------------------------------
 	//Constructor
@@ -81,6 +81,10 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 
 	public State getAscensor_estado() {
 		return ascensor_estado;
+	}
+	
+	public String getAscensor_estadostring() {
+		return ascensor_estado.toString();
 	}
 
 	public void setAscensor_estado(State ascensor_estado) {

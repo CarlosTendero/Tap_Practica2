@@ -19,6 +19,11 @@ public class PanelControl extends Observer implements Clases.Impl.PanelControlIm
 	//--------------------------------------------------------------
 	
 	public PanelControl(ArrayList<Ascensor> ascensores) {
+		
+		this.pisoActualAscensores 		= new ArrayList<Integer>();
+		this.emergenciaActualAscensores = new ArrayList<Boolean>();
+		this.estadoActualAscensores 	= new ArrayList<String>();
+		
 		for(int i = 0; i < ascensores.size(); i++) {
 			pisoActualAscensores.add(ascensores.get(i).getPlanta_actual());
 			emergenciaActualAscensores.add(ascensores.get(i).getEmergencia());

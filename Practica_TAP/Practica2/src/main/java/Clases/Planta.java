@@ -19,11 +19,13 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 	public Planta(ArrayList<Ascensor> ascensores, int numPlanta) {
 
 		this.numPlanta = numPlanta;
+		this.pisoActualAscensores = new ArrayList<Integer>();
+		this.emergenciaActualAscensores = new ArrayList<Boolean>();
+		
 		//Inicializamos la planta a su valor de por defecto.
 		for(int i = 0; i < ascensores.size(); i++) {
-			pisoActualAscensores.add(ascensores.get(i).getPlanta_actual());
-			emergenciaActualAscensores.add(ascensores.get(i).getEmergencia());
-
+			this.pisoActualAscensores.add(ascensores.get(i).getPlanta_actual());
+			this.emergenciaActualAscensores.add(ascensores.get(i).getEmergencia());
 		}
 	}
 	
