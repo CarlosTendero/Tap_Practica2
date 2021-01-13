@@ -11,6 +11,7 @@ public class ParadoCerrado implements State{
 	@Override
 	public void cambiarEstadoPuerta(Ascensor ascensor) {
 
+
 		//Cambiamos el estado de la puerta a abierto
 		ascensor.setAscensor_puerta("Puerta Abierta");
 		
@@ -36,7 +37,6 @@ public class ParadoCerrado implements State{
 	//Función de la acción a realizar al activar la alarma estando en este estado
 	@Override
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
-
 				
 		//Cambiamos el estado de la puerta a un mensaje de emergencia
 		ascensor.setAscensor_puerta("Puerta abriéndose por emergencia");
