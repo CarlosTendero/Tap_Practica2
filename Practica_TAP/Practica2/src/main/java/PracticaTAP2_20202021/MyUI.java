@@ -94,35 +94,51 @@ public class MyUI extends UI {
     	
         //Piso actual
         Label display_A1 = new Label("piso actual:" + edificio.getAscensores().get(0).getPlanta_actual());
-        tab2.addComponent(display_A1, 0, 0);
+        tab2.addComponent(display_A1, 0, 0, 2, 0);
         Label display_A2 = new Label("piso actual:" + edificio.getAscensores().get(1).getPlanta_actual());
-        tab2.addComponent(display_A2, 4, 0);
+        tab2.addComponent(display_A2, 3, 0, 5, 0);
         Label display_A3 = new Label("piso actual:" + edificio.getAscensores().get(2).getPlanta_actual());
-        tab2.addComponent(display_A3, 7, 0);
+        tab2.addComponent(display_A3, 6, 0, 8, 0);
         
+        //Display Ascensores
+        tab2.addComponent(new Label("Ascensor 1"), 0, 4, 2, 4);
+        tab2.addComponent(new Label("Ascensor 2"), 3, 4, 5, 4);
+        tab2.addComponent(new Label("Ascensor 3"), 6, 4, 8, 4);
+
         //------------------------------------------------------------------------			ASCENSOR 1
-        
+
         //Botonera 1-6
         int boton=1;
         for (int fila= 1; fila < 3; fila++) {
             for (int col=0; col < 3; col++) {
-                Button button = new Button(" "+boton); 
-                button.addClickListener(event ->
-                //edificio.ascensorxoLoquesea.planta...
-                System.out.println(button.getCaption()));
+                Button button = new Button(""+boton); 
+                button.addClickListener(event ->{
+                	edificio.getAscensores().get(0).anyadirDestino(Integer.parseInt(button.getCaption()));
+                });
                 tab2.addComponent(button, col, fila);
                 boton++;
             }
-        }  
-        //Boton abrir
+        } 
+        
+        //Boton abrir/cerrar
         Button abrirPeta = new Button("<>");
+        abrirPeta.addClickListener(event ->{
+        	edificio.getAscensores().get(0).cambiarEstadoPuerta();
+        });
         tab2.addComponent(abrirPeta, 0, 3);
 
         //Planta baja
         Button pb = new Button("PB");
+        pb.addClickListener(event ->{
+        	edificio.getAscensores().get(0).anyadirDestino(0);
+        });
         tab2.addComponent(pb, 1, 3);
+        
         //Emergencia
-        Button emergencia = new Button(" !");
+        Button emergencia = new Button("!");
+        emergencia.addClickListener(event ->{
+        	edificio.getAscensores().get(0).activarAlarma();
+        });
         tab2.addComponent(emergencia, 2,3);     
         
         //---------------------------------------------------------------------------		ASCENSOR 2
@@ -131,42 +147,88 @@ public class MyUI extends UI {
         boton=1;
         for (int fila= 1; fila < 3; fila++) {
             for (int col=3; col < 6; col++) {
-                Button button = new Button(" "+boton); 
-                button.addClickListener(event ->
-                //edificio.ascensorxoLoquesea.planta...
-                System.out.println(button.getCaption()));
+                Button button = new Button(""+boton); 
+                button.addClickListener(event ->{
+                	edificio.getAscensores().get(1).anyadirDestino(Integer.parseInt(button.getCaption()));
+                });
                 tab2.addComponent(button, col, fila);
                 boton++;
             }
         }  
         //Boton abrir
         Button abrirPeta2 = new Button("<>");
+        abrirPeta2.addClickListener(event ->{
+        	edificio.getAscensores().get(1).cambiarEstadoPuerta();
+        });
         tab2.addComponent(abrirPeta2, 3, 3);
 
         //Planta baja
         Button pb2 = new Button("PB");
+        pb2.addClickListener(event ->{
+        	edificio.getAscensores().get(1).anyadirDestino(0);
+        });
         tab2.addComponent(pb2, 4, 3);
+        
         //Emergencia
         Button emergencia2 = new Button("!");
+        emergencia2.addClickListener(event ->{
+        	edificio.getAscensores().get(1).activarAlarma();
+        });
         tab2.addComponent(emergencia2, 5, 3);
         
         //-----------------------------------------------------------------------------  	ASCENSOR 3
         
+        //Botonera 1-6
+        boton=1;
+        for (int fila= 1; fila < 3; fila++) {
+            for (int col=6; col < 9; col++) {
+                Button button = new Button(""+boton); 
+                button.addClickListener(event ->{
+                	edificio.getAscensores().get(2).anyadirDestino(Integer.parseInt(button.getCaption()));
+                });
+                tab2.addComponent(button, col, fila);
+                boton++;
+            }
+        }  
+        //Boton abrir
+        Button abrirPeta3 = new Button("<>");
+        abrirPeta3.addClickListener(event ->{
+        	edificio.getAscensores().get(2).cambiarEstadoPuerta();
+        });
+        tab2.addComponent(abrirPeta3, 6, 3);
+
+        //Planta baja
+        Button pb3 = new Button("PB");
+        pb3.addClickListener(event ->{
+        	edificio.getAscensores().get(2).anyadirDestino(0);
+        });
+        tab2.addComponent(pb3, 7, 3);
+        
+        //Emergencia
+        Button emergencia3 = new Button("!");
+        emergencia3.addClickListener(event ->{
+        	edificio.getAscensores().get(2).activarAlarma();
+        });
+        tab2.addComponent(emergencia3, 8, 3);
         
         
         
-        /*PLANTA*/      
+        
+        /*------------------------------------------------------PANTALLA PLANTA--------------------------------------------------------------*/
+        
         //Altavoz
-        Label altavoz = new Label("altavoz");
+        Label altavoz = new Label("Altavoz:");
         altavoz.setSizeFull();
         tab3.addComponent(altavoz, 0, 0, 5, 0);
+        
        //Display
        int asc = 1; 
        for(int i= 0; i < 6 ; i++) {
-        	tab3.addComponent(new Label("display A"+asc), i, 1);
+        	tab3.addComponent(new Label("Ascensor "+asc), i, 1);
         	asc++;
         	i++;
-        }	     
+        }	 
+       
        //Emergencia
        	boolean emg= false;       
         for(int i= 1; i < 6; i+=2) {
@@ -184,16 +246,18 @@ public class MyUI extends UI {
         //Llamar ascensor
         int ascensorx = 1;
         for(int i= 1; i < 6; i+=2) {
-        	Button boton1 = new Button("Up A"+ascensorx);
-        	boton1.addClickListener(event ->
-        	//edificio.ascensorxoLoquesea.planta...
-        	System.out.println(boton1.getCaption()));
+        	Button boton1 = new Button(""+ascensorx);
+        	boton1.addClickListener(event ->{
+        		edificio.getPlantas().get(Integer.parseInt(boton1.getCaption())).llamarAscensor(edificio.getAscensores().get(Integer.parseInt(boton1.getCaption())));
+        	});
         	tab3.addComponent(boton1, i, 2);
         	ascensorx++;
         }
         setContent(layout);
     }
 
+	//Array List con los elementos web de vaadin que van a cambiar referenciados y pasarlos por parámetro al pulsar un boton. 
+	
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet {

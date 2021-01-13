@@ -35,7 +35,7 @@ public class ParadoCerrando implements State{
 	//Función de acción a realizar al activar la alarma en este estado
 	@Override
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
-
+		
 		//La puerta no acaba de cerrarse del todo, sino que comienza a abrirse para que los ocupantes salgan
 		
 		//Cambiamos el estado de la puerta

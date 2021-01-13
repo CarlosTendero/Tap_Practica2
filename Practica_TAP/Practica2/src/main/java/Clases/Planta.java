@@ -50,13 +50,5 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 	//}
 
 	//Deberíamos revisar esta clase
-	
-	@Override
-	public void llamarAscensor() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	
-	
 }

@@ -121,7 +121,7 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 
 	//Función para activar la alarma
 	@Override
-	public void activarAlarma(boolean emergencia) {
+	public void activarAlarma() {
 		// TODO Auto-generated method stub
 		
 		this.ascensor_estado.activarAlarma(this, emergencia);
@@ -146,8 +146,5 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	@Override
 	public void mostrarPlantaActual() {
 		// TODO Auto-generated method stub
-		
 	}
-	
-
 }
