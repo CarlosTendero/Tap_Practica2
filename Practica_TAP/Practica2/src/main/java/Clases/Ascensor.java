@@ -139,9 +139,6 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 			distancia = Math.abs(destino - this.planta_actual);
 		return distancia;
 	}
-
-
-
 	@Override
 	public void mostrarPlantaActual() {
 		// TODO Auto-generated method stub
