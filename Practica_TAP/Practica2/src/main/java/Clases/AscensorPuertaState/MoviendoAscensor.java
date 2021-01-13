@@ -57,17 +57,17 @@ public class MoviendoAscensor implements State {
 		while(emergencia) {
 			//Si es igual a la planta máxima bajamos a la planta más cercana
 			if(ascensor.getPlanta_actual() == 7) {
-				ascensor.setAscensor_estado(new ParadoCerrando());
-				moverAscensor(this, ascensor.getPlanta_actual() - 1);
+				//ascensor.setAscensor_estado(new ParadoCerrando());
+				moverAscensor(ascensor, ascensor.getPlanta_actual() - 1);
 				emergencia = false;
 			}
 			//Si es igual a la planta mínima bajamos a la planta más cercana
-			else if(this.getPlanta_actual() == 1) {
-				this.ascensor_estado.moverAscensor(this, this.getPlanta_actual() + 1);
+			else if(ascensor.getPlanta_actual() == 1) {
+				moverAscensor(ascensor, ascensor.getPlanta_actual() + 1);
 				emergencia = false;
 			}
 			else {
-				this.ascensor_estado.moverAscensor(this, this.getPlanta_actual() + 1);
+				moverAscensor(ascensor, ascensor.getPlanta_actual() + 1);
 				emergencia = false;
 			}
 			
