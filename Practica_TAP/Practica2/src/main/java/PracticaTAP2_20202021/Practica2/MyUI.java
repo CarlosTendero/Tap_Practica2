@@ -155,16 +155,16 @@ public class MyUI extends UI {
         }
         
         //Llamar ascensor
-        int ascensorx = 1;
+       // int ascensorx = 1;
         for(int i= 1; i < 6; i+=2) {
-        	Button boton1 = new Button("Up A"+ascensorx);
+        	Button boton1 = new Button("🔴");
             boton1.addStyleName("botonLlamar");
         	boton1.addClickListener(event ->
         	//edificio.ascensorxoLoquesea.planta...
         	System.out.println(boton1.getCaption()));
 
         	tab3.addComponent(boton1, i, 2);
-        	ascensorx++;
+        	//ascensorx++;
         }
         
         
