@@ -42,18 +42,7 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 	public void update(Ascensor ascensor) {
 		pisoActualAscensores.set(ascensor.getNumAscensor(), ascensor.getPlanta_actual());
 		emergenciaActualAscensores.set(ascensor.getNumAscensor(), ascensor.getEmergencia());
-		//UpdateMyUI();
 	}
-
-	@Override
-	public void llamarAscensor() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	//public Object[] Update MyUI (){
-	//return (pisoActualAscensores, emergenciaActualAscensores)
-	//}
 
 	
 	

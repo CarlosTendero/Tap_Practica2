@@ -40,10 +40,5 @@ public class PanelControl extends Observer implements Clases.Impl.PanelControlIm
 		pisoActualAscensores.set(ascensor.getNumAscensor(), ascensor.getPlanta_actual());
 		emergenciaActualAscensores.set(ascensor.getNumAscensor(), ascensor.getEmergencia());
 		estadoActualAscensores.set(ascensor.getNumAscensor(), ascensor.getPuerta_estado());
-		//UpdateMyUI();
 	}
-	
-	//public Object[] Update MyUI (){
-	//return (pisoActualAscensores, emergenciaActualAscensores)
-	//}
 }
