@@ -56,7 +56,7 @@ public class MyUI extends UI {
     	GridLayout tab2 = new GridLayout(13, 13);
     	tabsheet.addTab(tab2, "Cabina ascensor");
     	  	
-        GridLayout tab3 = new GridLayout(8, 4);
+        GridLayout tab3 = new GridLayout(13, 13);
     	tabsheet.addTab(tab3, "Planta");
     	
         layout.addComponents(tabsheet);
@@ -253,6 +253,47 @@ public class MyUI extends UI {
         	tab3.addComponent(boton1, i, 2);
         	ascensorx++;
         }
+     // Seleccion de la planta modificar 
+        Label planta = new Label("no hay planta seleccionada");
+        // Seleccion de la planta
+        Button planta0 = new Button("Planta 0");
+        Button planta1 = new Button("Planta 1");
+        Button planta2 = new Button("Planta 2");
+        Button planta3 = new Button("Planta 3");
+        Button planta4 = new Button("Planta 4");
+        Button planta5 = new Button("Planta 5");
+        Button planta6 = new Button("Planta 6");
+
+        // AQUI SE MODIFICA EL OBJETO EDIFICIO PARA SELECCIONAR LA PLANTA
+
+        planta0.addClickListener(event ->
+        planta.setValue("Estamos en la planta 0"));
+        planta1.addClickListener(event ->
+        planta.setValue("Estamos en la planta 1"));
+        planta2.addClickListener(event ->
+        planta.setValue("Estamos en la planta 2"));
+        planta3.addClickListener(event ->
+        planta.setValue("Estamos en la planta 3"));
+        planta4.addClickListener(event ->
+        planta.setValue("Estamos en la planta 4"));
+        planta5.addClickListener(event ->
+        planta.setValue("Estamos en la planta 5"));
+        planta6.addClickListener(event ->
+        planta.setValue("Estamos en la planta 6"));
+
+        tab3.addComponent(planta0, 0,3);
+        tab3.addComponent(planta1, 0,4);
+        tab3.addComponent(planta2, 0,5);
+        tab3.addComponent(planta3, 0,6);
+        tab3.addComponent(planta4, 0,7);
+        tab3.addComponent(planta5, 0,8);
+        tab3.addComponent(planta6, 0,9);
+        tab3.addComponent(planta, 0,10);
+        
+        
+        
+        
+        //ESTO VA LO ÚLTIMO.
         setContent(layout);
     }
 
