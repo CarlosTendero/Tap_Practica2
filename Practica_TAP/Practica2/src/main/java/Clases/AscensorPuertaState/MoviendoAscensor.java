@@ -7,6 +7,7 @@ import Clases.Impl.State;
 
 public class MoviendoAscensor implements State {
 
+	//Función para cambiar el estado de la puerta y del ascensor
 	@Override
 	public void cambiarEstadoPuerta(Ascensor ascensor) {
 
@@ -15,6 +16,7 @@ public class MoviendoAscensor implements State {
 		// No hacer nada.
 	}
 
+	//Función de movimiento del ascensor
 	@Override
 	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino) {
 
@@ -50,6 +52,7 @@ public class MoviendoAscensor implements State {
 		return plantasVisitadas;
 	}
 
+	//Función de acción de la alarma al ser activada
 	@Override
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
 		// TODO Auto-generated method stub
@@ -69,9 +72,7 @@ public class MoviendoAscensor implements State {
 			else {
 				moverAscensor(ascensor, ascensor.getPlanta_actual() + 1);
 				emergencia = false;
-			}
-			
+			}			
 		}
-		
 	}
 }
