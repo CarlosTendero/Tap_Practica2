@@ -10,7 +10,7 @@ public class ParadoCerrado implements State{
 	//Función de cambio del estado de la puerta y del ascensor
 	@Override
 	public void cambiarEstadoPuerta(Ascensor ascensor) {
-
+		
 		//Cambiamos el estado de la puerta a abierto
 		ascensor.setAscensor_puerta("Puerta Abierta");
 		

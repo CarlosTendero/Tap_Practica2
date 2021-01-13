@@ -8,5 +8,6 @@ public interface AscensorImpl {
 	public void cambiarEstadoPuerta();
 	public void activarAlarma(boolean emergencia);
 	public void anyadirDestino(int destino);
-	public int calculoDistancia(int destino);
+	void mostrarPlantaActual();
+
 }

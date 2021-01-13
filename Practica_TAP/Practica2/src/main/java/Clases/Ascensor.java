@@ -2,9 +2,10 @@ package Clases;
 
 import java.util.ArrayList;
 
+import Clases.Impl.Observer_Notificadores;
 import Clases.Impl.State;
 
-public class Ascensor implements Clases.Impl.AscensorImpl{
+public class Ascensor extends Observer_Notificadores implements Clases.Impl.AscensorImpl{
 
 	//--------------------------------------------------------------
 	//Atributos
@@ -24,18 +25,22 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	
 	//No sabemos si hace falta
 	private boolean emergencia;
+	
+	//Variable que guarda el ascensor al que corresponde de nuestro array de ascensores
+	private int numAscensor;
+	
 
 	//--------------------------------------------------------------
 	//Constructor
 	//--------------------------------------------------------------
 	
-	public Ascensor(int planta_actual, State ascensor_estado, String puerta_estado) {
+	public Ascensor(int planta_actual, State ascensor_estado, String puerta_estado, int numAscensor) {
 		this.planta_actual = planta_actual;
 		this.ascensor_estado = ascensor_estado;
-		
 		this.puerta_estado = puerta_estado;
 		this.emergencia = false;
 		this.destinos = new ArrayList<Integer>();
+		this.numAscensor = numAscensor;
 
 	}
 	
@@ -74,16 +79,28 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	public State getAscensor_estado() {
 		return ascensor_estado;
 	}
+	
+	public String getAscensor_estadostring() {
+		return ascensor_estado.toString();
+	}
 
 	public void setAscensor_estado(State ascensor_estado) {
 		this.ascensor_estado = ascensor_estado;
 
 	}
-
 	public void setAscensor_puerta(String puerta) {
 		this.puerta_estado = puerta;
 	}	
 	
+	public boolean getEmergencia() {
+		return emergencia;
+	}
+	
+	public int getNumAscensor() {
+		return numAscensor;
+	}
+	
+
 	//--------------------------------------------------------------
 	//Funciones de ascensor.
 	//--------------------------------------------------------------
@@ -109,7 +126,6 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 		
 		emergencia = true;
 	}
-
 	//Función para añadir destinos secuencialmente a la ruta del ascensor
 	@Override
 	public void anyadirDestino(int destino) {
@@ -117,17 +133,13 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 		if(!this.getDestinos().contains(destino))
 			this.destinos.add(destino);
 	}
-	
-	//Función para calcular la distancia desde la planta actual al destino
-	//No sabemos si hace falta charles
-	@Override
-	public int calculoDistancia(int destino) {
-		// TODO Auto-generated method stub
-		int distancia = 0;
-		if(this.planta_actual != destino)
-			distancia = Math.abs(destino - this.planta_actual);
-		return distancia;
-	}
 
+
+	@Override
+	public void mostrarPlantaActual() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }
