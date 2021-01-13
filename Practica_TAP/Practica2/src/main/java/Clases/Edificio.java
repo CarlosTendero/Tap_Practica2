@@ -14,11 +14,9 @@ public class Edificio implements Clases.Impl.EdificioImpl{
 	
 	//--------------------------------------------------------------
 	//Constructor
-	//--------------------------------------------------------------
-	
+	//--------------------------------------------------------------	
 	public Edificio() {
 		panelControl = new PanelControl(ascensores);
-		
 		for (int i = 0; i < 3; i++)
 			this.ascensores.add(new Ascensor(0, new Clases.AscensorPuertaState.ParadoCerrado(), "Parado Cerrado", i));
 		for	(int i = 0; i < 7; i++)
@@ -31,11 +29,9 @@ public class Edificio implements Clases.Impl.EdificioImpl{
 				this.ascensores.get(i).attach(plantas.get(j));
 		}
 	}
-	
 	//--------------------------------------------------------------
 	//Setters y getters
 	//--------------------------------------------------------------
-	
 	public Edificio(ArrayList<Ascensor> ascensores, ArrayList<Planta> plantas) {
 		this.ascensores = ascensores;
 		this.plantas = plantas;
@@ -56,9 +52,5 @@ public class Edificio implements Clases.Impl.EdificioImpl{
 	public void setPlantas(ArrayList<Planta> plantas) {
 		this.plantas = plantas;
 	}
-	
-	//--------------------------------------------------------------
-	//Funciones?
-	//--------------------------------------------------------------
 	
 }

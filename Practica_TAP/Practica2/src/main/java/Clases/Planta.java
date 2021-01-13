@@ -46,4 +46,15 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 	//public Object[] Update MyUI (){
 	//return (pisoActualAscensores, emergenciaActualAscensores)
 	//}
+
+	//Deberíamos revisar esta clase
+	
+	@Override
+	public void llamarAscensor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
 }

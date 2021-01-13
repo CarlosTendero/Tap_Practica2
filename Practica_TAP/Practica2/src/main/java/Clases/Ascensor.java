@@ -12,6 +12,7 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	//Atributos
 	//--------------------------------------------------------------
 	
+
 	private int planta_actual;
 	private ArrayList<Integer> destinos;
 	private State ascensor_estado;
@@ -31,6 +32,19 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 		this.numAscensor = numAsc;
 		this.emergencia = false;
 		this.destinos = new ArrayList<Integer>();
+	}
+	
+	//--------------------------------------------------------------
+	//Constructor
+	//--------------------------------------------------------------
+	
+	public Ascensor(int planta_actual, State ascensor_estado, String puerta_estado) {
+		this.planta_actual = planta_actual;
+		this.ascensor_estado = ascensor_estado;
+		this.puerta_estado = puerta_estado;
+		this.emergencia = false;
+		this.destinos = new ArrayList<Integer>();
+
 	}
 	
 	//--------------------------------------------------------------
@@ -84,23 +98,24 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	public int getNumAscensor() {
 		return numAscensor;
 	}
+	
 
 	//--------------------------------------------------------------
 	//Funciones de ascensor.
 	//--------------------------------------------------------------
 	
-	//Ya están
 	@Override
 	public void moverAscensor(int Destino) {
 			this.ascensor_estado.moverAscensor(this, Destino);
 	}
 	
-	//No están.
+	//Función para cambiar el estado de la puerta desde el front
 	@Override
 	public void cambiarEstadoPuerta() {
 		this.ascensor_estado.cambiarEstadoPuerta(this);
 	}
 
+	//Función para activar la alarma
 	@Override
 	public void activarAlarma(boolean emergencia) {
 		// TODO Auto-generated method stub
@@ -109,6 +124,7 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 		
 		emergencia = true;
 	}
+	//Función para añadir destinos secuencialmente a la ruta del ascensor
 	@Override
 	public void anyadirDestino(int destino) {
 		// TODO Auto-generated method stub
@@ -124,10 +140,13 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 		return distancia;
 	}
 
+
+
 	@Override
 	public void mostrarPlantaActual() {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }

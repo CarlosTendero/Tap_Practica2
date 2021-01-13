@@ -10,4 +10,5 @@ public interface AscensorImpl {
 	public void anyadirDestino(int destino);
 	public int calculoDistancia(int destino);
 	void mostrarPlantaActual();
+
 }
