@@ -10,10 +10,18 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	//Atributos
 	//--------------------------------------------------------------
 	
+	//Variable donde guardamos la planta actual del ascensor
 	private int planta_actual;
+	
+	//Array donde guardamos los destinos
 	private ArrayList<Integer> destinos;
+	
+	//Variable para guardar el estado del ascensor (tipo State)
 	private State ascensor_estado;
+	
+	//String donde guardamos el estado de la puerta
 	private String puerta_estado;
+	
 	//No sabemos si hace falta
 	private boolean emergencia;
 
@@ -24,8 +32,8 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	public Ascensor(int planta_actual, State ascensor_estado, String puerta_estado) {
 		this.planta_actual = planta_actual;
 		this.ascensor_estado = ascensor_estado;
+		
 		this.puerta_estado = puerta_estado;
-
 		this.emergencia = false;
 		this.destinos = new ArrayList<Integer>();
 
@@ -79,19 +87,20 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 	//--------------------------------------------------------------
 	//Funciones de ascensor.
 	//--------------------------------------------------------------
-	
-	//Ya están
+
+	//Función para llamar al movimiento del ascensor desde el front
 	@Override
 	public void moverAscensor(int Destino) {
 			this.ascensor_estado.moverAscensor(this, Destino);
 	}
 	
-	//No están.
+	//Función para cambiar el estado de la puerta desde el front
 	@Override
 	public void cambiarEstadoPuerta() {
 		this.ascensor_estado.cambiarEstadoPuerta(this);
 	}
 
+	//Función para activar la alarma
 	@Override
 	public void activarAlarma(boolean emergencia) {
 		// TODO Auto-generated method stub
@@ -100,12 +109,17 @@ public class Ascensor implements Clases.Impl.AscensorImpl{
 		
 		emergencia = true;
 	}
+
+	//Función para añadir destinos secuencialmente a la ruta del ascensor
 	@Override
 	public void anyadirDestino(int destino) {
 		// TODO Auto-generated method stub
 		if(!this.getDestinos().contains(destino))
 			this.destinos.add(destino);
 	}
+	
+	//Función para calcular la distancia desde la planta actual al destino
+	//No sabemos si hace falta charles
 	@Override
 	public int calculoDistancia(int destino) {
 		// TODO Auto-generated method stub
