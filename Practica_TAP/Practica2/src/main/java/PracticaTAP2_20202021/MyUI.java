@@ -484,7 +484,7 @@ public class MyUI extends UI {
 				PL_estadoEmergenciaAscensores.get(i).setValue(sinEmergencia.getValue());		
 		}	
 
-		PL_MensajeAltavoz.setValue("Altavoz: "+ edificio.getPlantas().get(planta_Actual).getAltavoz().getAltavoz());
+		PL_MensajeAltavoz.setValue("🔊: "+ edificio.getPlantas().get(planta_Actual).getAltavoz().getAltavoz());
 		
 		//Refresh all please <3.
 		//It doesn't refresh... :(
