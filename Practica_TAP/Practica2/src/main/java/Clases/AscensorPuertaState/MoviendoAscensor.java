@@ -24,7 +24,7 @@ public class MoviendoAscensor implements State {
 	@Override
 	public void moverAscensor(Ascensor ascensor, int Destino) {
 		//Si estamos en otra planta que no es la de destino.
-		if(!(Destino == ascensor.getPlanta_actual())) {			
+		if((Destino != ascensor.getPlanta_actual())) {			
 			
 			//Si hay que subir plantas
 			if (ascensor.getPlanta_actual() < Destino) {
@@ -54,14 +54,12 @@ public class MoviendoAscensor implements State {
 					ascensor.notifyAllObservers(ascensor);
 				}
 			}
-
+		}
 			//Al terminar, abrimos las puertas y notificamos a los observers.
 			ascensor.setAscensor_estado(new ParadoAbriendo());
 			//Quitamos el piso destino de la lista.
 			ascensor.getDestinos().remove(0);
-			ascensor.notifyAllObservers(ascensor);	
 			ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);
-		}
 	}
 
 	//Función de acción de la alarma al ser activada
