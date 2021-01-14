@@ -27,11 +27,10 @@ public class ParadoCerrando implements State{
 
 	//Función de movimiento del ascensor
 	@Override
-	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino) {
+	public void moverAscensor(Ascensor ascensor, int Destino) {
 
 		System.out.println("Espera a que acabe de cerrarse la puerta");
 		
-		return null;
 	}
 
 	//Función de acción a realizar al activar la alarma en este estado

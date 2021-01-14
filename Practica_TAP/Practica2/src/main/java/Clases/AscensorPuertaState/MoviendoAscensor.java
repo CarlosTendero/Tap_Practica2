@@ -21,7 +21,7 @@ public class MoviendoAscensor implements State {
 
 	//Función de movimiento del ascensor
 	@Override
-	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino) {
+	public void moverAscensor(Ascensor ascensor, int Destino) {
 
 		// Lógica de actualizar planta.
 		// Calcular tiempo en subir según cuantas plantas subamos.
@@ -29,35 +29,41 @@ public class MoviendoAscensor implements State {
 		// listadeObservers.actualizarPisoActual(int plantaActual).
 		// Al terminar cambiar estado.
 		
-		ArrayList<Integer> plantasVisitadas = new ArrayList<Integer>();
-
 		// Sube 0-4
 		if (ascensor.getPlanta_actual() < Destino) {
 			for (int i = ascensor.getPlanta_actual(); i <= Destino; i++) {
-				plantasVisitadas.add(i);
 				//sleep
 				ascensor.setPlanta_actual(i);
+				//---------------------------------------------------
+				//Informamos a los observers de que hemos cambiado el estado del ascensor.
+				
+				//---------------------------------------------------
+				ascensor.notifyAllObservers(ascensor);
 			}
 		}
 		// Baja 4-0
 		else if (ascensor.getPlanta_actual() > Destino) {
-			for (int i = ascensor.getPlanta_actual(); i <= Destino; i++) {
-				plantasVisitadas.add(i);
+			for (int i = ascensor.getPlanta_actual(); i >= Destino; i--) {
 				//sleep
 				ascensor.setPlanta_actual(i);
+				//---------------------------------------------------
+				//Informamos a los observers de que hemos cambiado el estado del ascensor.
+				
+				//---------------------------------------------------
+				ascensor.notifyAllObservers(ascensor);
 			}
 		}
 		// Igual 4 ParadoCerrado - 4 ParadoAbriendo -> ParadoAbierto
 		else {
 			ascensor.setAscensor_estado(new ParadoAbriendo());
+			//---------------------------------------------------
+			//Informamos a los observers de que hemos cambiado el estado del ascensor.
+			
+			//---------------------------------------------------
+			ascensor.notifyAllObservers(ascensor);
 		}
+
 		
-		//---------------------------------------------------
-		//Informamos a los observers de que hemos cambiado el estado del ascensor.
-		ascensor.notifyAllObservers(ascensor);
-		//---------------------------------------------------
-		
-		return plantasVisitadas;
 	}
 
 	//Función de acción de la alarma al ser activada

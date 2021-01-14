@@ -32,11 +32,11 @@ public class ParadoCerrado implements State{
 
 	//Función de movimiento del ascensor en este estado
 	@Override
-	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino) {
+	public void moverAscensor(Ascensor ascensor, int Destino) {
 		//mover el ascensor
-		ascensor.setAscensor_estado(new MoviendoAscensor()); 
+		ascensor.setAscensor_estado(new MoviendoAscensor());
+		ascensor.getAscensor_estado().moverAscensor(ascensor, Destino);	
 		
-		return null;
 	}
 
 	//Función de la acción a realizar al activar la alarma estando en este estado

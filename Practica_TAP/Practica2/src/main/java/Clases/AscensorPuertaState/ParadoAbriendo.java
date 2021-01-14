@@ -37,13 +37,11 @@ public class ParadoAbriendo implements State{
 
 	//Función de movimiento del ascensor
 	@Override
-	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino) {
+	public void moverAscensor(Ascensor ascensor, int Destino) {
 
 		//NO puedes moverte porque la puerta está abriéndose
 
 		System.out.println("Espera a que deje de abrirse la puerta");
-		
-		return null;
 		
 	}
 

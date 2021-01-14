@@ -484,28 +484,28 @@ public class MyUI extends UI {
 		
 		//Actualizamos la pestaña Panel de Control.
 		for(int i= 0; i < 3; i++) {
-			PC_pisoActualAscensores.get(i).setCaption("Ascensor en planta "+ edificio.getAscensores().get(i).getPlanta_actual());
-			PC_estadoAscensores.get(i).setCaption("Estado: "+ edificio.getAscensores().get(i).getPuerta_estado());
-			PC_estadoEmergenciaAscensores.get(i).setCaption("Estado emergencia "+ edificio.getAscensores().get(i).getEmergencia());
+			PC_pisoActualAscensores.get(i).setValue("Ascensor en planta "+ edificio.getAscensores().get(i).getPlanta_actual());
+			PC_estadoAscensores.get(i).setValue("Estado: "+ edificio.getAscensores().get(i).getPuerta_estado());
+			PC_estadoEmergenciaAscensores.get(i).setValue("Estado emergencia "+ edificio.getAscensores().get(i).getEmergencia());
         }
 		
 		//Actualizamos la pestaña Cabina ascensores.
 		for(int i= 0; i < 3; i++) {
-			CA_pisoActualAscensores.get(i).setCaption("Piso actual:" + edificio.getAscensores().get(i).getPlanta_actual());
+			CA_pisoActualAscensores.get(i).setValue("Piso actual:" + edificio.getAscensores().get(i).getPlanta_actual());
 		}
 		
 		//Actualizamos la pestaña plantas.
 		for(int i= 0; i < 3; i++) {
-			PL_pisoActualAscensores.get(i).setCaption("Piso actual: " + edificio.getAscensores().get(i).getPlanta_actual());
+			PL_pisoActualAscensores.get(i).setValue("Piso actual: " + edificio.getAscensores().get(i).getPlanta_actual());
 			
 			boolean estadoEmergenciaActual = edificio.getAscensores().get(i).getEmergencia();
 			if(estadoEmergenciaActual)
-				PL_estadoEmergenciaAscensores.get(i).setCaption(conEmergencia.getCaption());
+				PL_estadoEmergenciaAscensores.get(i).setValue(conEmergencia.getCaption());
 			else if(!estadoEmergenciaActual)
-				PL_estadoEmergenciaAscensores.get(i).setCaption(sinEmergencia.getCaption());		
+				PL_estadoEmergenciaAscensores.get(i).setValue(sinEmergencia.getCaption());		
 		}	
 
-		PL_MensajeAltavoz.setCaption("Altavoz: "+ edificio.getPlantas().get(planta_Actual).getAltavoz().getAltavoz());
+		PL_MensajeAltavoz.setValue("Altavoz: "+ edificio.getPlantas().get(planta_Actual).getAltavoz().getAltavoz());
 		
 	}
 

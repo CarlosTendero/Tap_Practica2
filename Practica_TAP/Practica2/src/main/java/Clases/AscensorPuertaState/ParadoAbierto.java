@@ -33,11 +33,10 @@ public class ParadoAbierto implements State{
 
 	//Función de movimiento del ascensor
 	@Override
-	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino) {
+	public void moverAscensor(Ascensor ascensor, int Destino) {
 
 		System.out.println("Primero hay que cerrar la puerta");
 		//No hacer nada.		
-		return null;
 	}
 
 	//Función de la acción a realizar cuando se activa la alarma

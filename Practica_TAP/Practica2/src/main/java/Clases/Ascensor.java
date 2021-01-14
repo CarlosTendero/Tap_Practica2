@@ -17,6 +17,9 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	//Array donde guardamos los destinos
 	private ArrayList<Integer> destinos;
 	
+	
+	private ArrayList<Integer> plantas_visitadas;
+	
 	//Variable para guardar el estado del ascensor (tipo State)
 	private State ascensor_estado;
 	
@@ -31,6 +34,7 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 
 	private String mensaje_altavoz;
 
+	
 
 	//--------------------------------------------------------------
 	//Constructor
@@ -119,7 +123,8 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	public void moverAscensor(int Destino) {
 			this.ascensor_estado.moverAscensor(this, Destino);
 	}
-	
+
+
 	//Función para cambiar el estado de la puerta desde el front
 	@Override
 	public void cambiarEstadoPuerta() {
@@ -139,8 +144,12 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	@Override
 	public void anyadirDestino(int destino) {
 		// TODO Auto-generated method stub
-		if(!this.getDestinos().contains(destino))
+		if(!this.getDestinos().contains(destino)) {
 			this.destinos.add(destino);
+			this.moverAscensor(this.getDestinos().get(0));
+			this.getDestinos().remove(0);
+		}
+		
 	}
 
 	@Override
