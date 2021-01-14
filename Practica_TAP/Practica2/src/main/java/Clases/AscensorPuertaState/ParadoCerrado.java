@@ -32,21 +32,17 @@ public class ParadoCerrado implements State{
 	//Función de la acción a realizar al activar la alarma estando en este estado
 	@Override
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
-				
-		//Cambiamos el estado de la puerta a un mensaje de emergencia
-		ascensor.setAscensor_puerta("Puerta abriéndose por emergencia");
-		
-		//Cambiamos el estado del ascensor a abriendo
-		ascensor.setAscensor_estado(new ParadoAbriendo());
-		
-		//Directamente despues de estar en el estado abriendo, cambiamos de estado abriendo a abierto
-		//Para simular lo que tarda una puerta en abrirse 
-		ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);
-		
-		
-		//---------------------------------------------------
+		//Cambiar la alarma.
+		ascensor.setEmergencia(!ascensor.getEmergencia());
+		if(ascensor.getEmergencia()) {
+			//Cambiamos el estado del ascensor a abriendo
+			ascensor.setAscensor_estado(new ParadoAbriendo());
+			
+			//Directamente despues de estar en el estado abriendo, cambiamos de estado abriendo a abierto
+			//Para simular lo que tarda una puerta en abrirse 
+			ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);
+		}
 		//Informamos a los observers de que hemos cambiado el estado del ascensor.
 		ascensor.notifyAllObservers(ascensor);
-		//---------------------------------------------------		
 	}
 }

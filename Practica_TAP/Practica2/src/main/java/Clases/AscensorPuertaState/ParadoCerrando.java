@@ -21,13 +21,13 @@ public class ParadoCerrando implements State{
 		
         //Timer 
 		//Tiempo - Funciona?
-		System.out.println("Empezando timer");
+		/*System.out.println("Empezando timer");
         try {
         	//Duerme el programa 1 segundo
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 		System.out.println("acabando timer");
 		//Cambiamos el estado del ascensor
 		ascensor.setAscensor_estado(new ParadoCerrado());
@@ -54,22 +54,17 @@ public class ParadoCerrando implements State{
 	//Función de acción a realizar al activar la alarma en este estado
 	@Override
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
-
-		//La puerta no acaba de cerrarse del todo, sino que comienza a abrirse para que los ocupantes salgan
-		
-		//Cambiamos el estado de la puerta
-		ascensor.setAscensor_puerta("Puerta abriéndose por emergencia");
-		
-		//Cambiamos el estado del ascensor
-		ascensor.setAscensor_estado(new ParadoAbriendo());
-		
-		//Inmediatamente después, ejecutamos la función cambiarEstadoPuerta del nuevo estado (ParadoCerrando)
-		//Así simulamos la transición de la puerta de abierto a cerrado 
-		ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);
-		
-		//---------------------------------------------------
+		//Cambiar la alarma.
+		ascensor.setEmergencia(!ascensor.getEmergencia());
+		if(ascensor.getEmergencia()) {
+			//Cambiamos el estado del ascensor a abriendo
+			ascensor.setAscensor_estado(new ParadoAbriendo());
+			
+			//Directamente despues de estar en el estado abriendo, cambiamos de estado abriendo a abierto
+			//Para simular lo que tarda una puerta en abrirse 
+			ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);
+		}
 		//Informamos a los observers de que hemos cambiado el estado del ascensor.
 		ascensor.notifyAllObservers(ascensor);
-		//---------------------------------------------------
 	}
 }

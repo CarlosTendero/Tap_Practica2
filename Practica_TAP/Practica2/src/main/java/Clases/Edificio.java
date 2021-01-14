@@ -33,17 +33,16 @@ public class Edificio{
 			for(int j=0; j<plantas.size();j++)
 				this.ascensores.get(i).attach(this.plantas.get(j));
 		 
-		}
-		
+		}		
 	}
-	//--------------------------------------------------------------
-	//Setters y getters
-	//--------------------------------------------------------------
+
 	public Edificio(ArrayList<Ascensor> ascensores, ArrayList<Planta> plantas) {	
 		this.ascensores = ascensores;
 		this.plantas = plantas;
 	}
-	
+	//--------------------------------------------------------------
+	//Setters y getters
+	//--------------------------------------------------------------
 	public ArrayList<Ascensor> getAscensores() {				// Devuelve el array de ascensores
 		return ascensores;
 	}

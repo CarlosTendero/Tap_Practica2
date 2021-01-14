@@ -31,14 +31,14 @@ public class MoviendoAscensor implements State {
 				for (int i = ascensor.getPlanta_actual(); i <= Destino; i++) {
 			        //Timer 
 					//Tiempo - Funciona?
-					System.out.println("Empezando timer");
+					/*System.out.println("Empezando timer");
 			        try {
 			        	//Duerme el programa 1 segundo
 			            TimeUnit.SECONDS.sleep(1);
 			        } catch (InterruptedException e) {
 			            e.printStackTrace();
 			        }
-					System.out.println("acabando timer");
+					System.out.println("acabando timer");*/
 					ascensor.setPlanta_actual(i);
 					//Informamos a los observers de que hemos cambiado el estado del ascensor.
 					ascensor.notifyAllObservers(ascensor);
@@ -65,13 +65,10 @@ public class MoviendoAscensor implements State {
 	//Función de acción de la alarma al ser activada
 	@Override
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {		
-
-		//---------------------------------------------------
-		//Informamos a los observers de que hemos cambiado el estado del ascensor.
-		ascensor.notifyAllObservers(ascensor);
-		//---------------------------------------------------
 		
-		if(emergencia) {
+		//Cambiar la alarma.
+		ascensor.setEmergencia(!ascensor.getEmergencia());
+		if(ascensor.getEmergencia()) {
 			//Si es igual a la planta máxima bajamos a la planta más cercana
 			if(ascensor.getPlanta_actual() == 7) {
 				ascensor.setAscensor_estado(new ParadoCerrando());
@@ -92,11 +89,8 @@ public class MoviendoAscensor implements State {
 			}
 			ascensor.setEmergencia(emergencia);
 		}
-
-		//---------------------------------------------------
+			
 		//Informamos a los observers de que hemos cambiado el estado del ascensor.
-		ascensor.notifyAllObservers(ascensor);
-		//---------------------------------------------------
-		
+		ascensor.notifyAllObservers(ascensor);		
 	}
 }

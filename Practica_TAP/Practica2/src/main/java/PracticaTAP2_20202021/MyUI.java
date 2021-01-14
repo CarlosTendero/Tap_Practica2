@@ -25,6 +25,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import Clases.Ascensor;
 import Clases.Edificio;
 
 
@@ -181,6 +182,7 @@ public class MyUI extends UI {
 	    emergencia.addStyleNames("miBotonEmergencia");
         emergencia.addClickListener(event ->{
         	edificio.getAscensores().get(0).activarAlarma();
+        	System.out.println("Alarma 1");
         });
         tab2.addComponent(emergencia, 2,3);     
         
@@ -221,6 +223,8 @@ public class MyUI extends UI {
 	    emergencia2.addStyleNames("miBotonEmergencia");
         emergencia2.addClickListener(event ->{
         	edificio.getAscensores().get(1).activarAlarma();
+        	System.out.println("Alarma 2");
+
         });
         tab2.addComponent(emergencia2, 5, 3);
         
@@ -260,6 +264,8 @@ public class MyUI extends UI {
 	    emergencia3.addStyleNames("miBotonEmergencia");
         emergencia3.addClickListener(event ->{
         	edificio.getAscensores().get(2).activarAlarma();
+        	System.out.println("Alarma 3");
+
         });
         tab2.addComponent(emergencia3, 8, 3);
                    
@@ -303,23 +309,49 @@ public class MyUI extends UI {
         }  
         
         //Llamar ascensor
-        int ascensorx = 1;
-        
+        //int ascensorx = 1;
+        int[] ascensor_final = {};
+
         //Lista con los botones de la planta actual y sus registration.
     	ArrayList<Button> botonesPlanta = new ArrayList<Button>();
     	ArrayList<Registration> botonesPlanta_Registration = new ArrayList<Registration>();
 
-        for(int i= 1; i < 6; i+=2) {
-        	//Button boton1 = new Button("🔴");
-        	Button boton1 = new Button(""+ascensorx);
-            boton1.addStyleName("botonLlamar");
-            botonesPlanta_Registration.add(boton1.addClickListener(event ->{
-        		edificio.getPlantas().get(0).llamarAscensor(edificio.getAscensores().get(Integer.parseInt(boton1.getCaption())-1));
-        	}));
-			botonesPlanta.add(boton1);
-        	tab3.addComponent(boton1, i, 2);
-        	ascensorx++;
-        }
+        //Botones para llamar a los ascensores de la planta actual.
+    	
+    	//Button 1
+    	Button boton1 = new Button("1");
+        boton1.addStyleName("botonLlamar");
+    	        	
+        botonesPlanta_Registration.add(boton1.addClickListener(event ->{
+    		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(0));
+    		System.out.println(planta_Actual);
+    	}));
+        botonesPlanta.add(boton1);
+    	tab3.addComponent(boton1, 1, 2);
+    	
+    	//Button 2
+    	Button boton2 = new Button("2");
+        boton2.addStyleName("botonLlamar");
+    	        	
+        botonesPlanta_Registration.add(boton2.addClickListener(event ->{
+    		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(1));
+    		System.out.println(planta_Actual);
+    	}));
+        botonesPlanta.add(boton2);
+    	tab3.addComponent(boton2, 3, 2);
+    	
+    	//Button 3
+    	Button boton3 = new Button("3");
+        boton3.addStyleName("botonLlamar");
+    	        	
+        botonesPlanta_Registration.add(boton3.addClickListener(event ->{
+    		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(2));
+    		System.out.println(planta_Actual);
+    	}));
+
+        botonesPlanta.add(boton3);
+    	tab3.addComponent(boton3, 5, 2);
+        
         //Selección de la planta modificar 
         Label planta = new Label("Estamos en la planta 0");
 
@@ -339,131 +371,48 @@ public class MyUI extends UI {
         //Y así llamar al ascensor a la planta actual.
         //Se elimina el registration con remove() y se añade el clicklistener al boton.
         
+        
+        
         //Al pulsar el piso 0.
         planta0.addClickListener(event ->{
         	planta_Actual = 0;
 	        planta.setValue("Estamos en la planta Baja");
-	        botonesPlanta_Registration.get(0).remove();
-			botonesPlanta.get(0).addClickListener(event2 ->{
-        		edificio.getPlantas().get(0).llamarAscensor(edificio.getAscensores().get(0));
-			});
-	        botonesPlanta_Registration.get(1).remove();
-			botonesPlanta.get(1).addClickListener(event3 ->{
-        		edificio.getPlantas().get(0).llamarAscensor(edificio.getAscensores().get(1));
-			});
-	        botonesPlanta_Registration.get(2).remove();
-			botonesPlanta.get(2).addClickListener(event4 ->{
-        		edificio.getPlantas().get(0).llamarAscensor(edificio.getAscensores().get(2));
-			});
         });
         
         //Al pulsar el piso 1.        
         planta1.addClickListener(event ->{
         	planta_Actual = 1;
 	        planta.setValue("Estamos en la planta 1");
-	        botonesPlanta_Registration.get(0).remove();
-			botonesPlanta.get(0).addClickListener(event2 ->{
-        		edificio.getPlantas().get(1).llamarAscensor(edificio.getAscensores().get(0));
-			});
-	        botonesPlanta_Registration.get(1).remove();
-			botonesPlanta.get(1).addClickListener(event3 ->{
-        		edificio.getPlantas().get(1).llamarAscensor(edificio.getAscensores().get(1));
-			});
-	        botonesPlanta_Registration.get(2).remove();
-			botonesPlanta.get(2).addClickListener(event4 ->{
-        		edificio.getPlantas().get(1).llamarAscensor(edificio.getAscensores().get(2));
-			});
         });
         
         //Al pulsar el piso 2.
         planta2.addClickListener(event ->{
         	planta_Actual = 2;
 	        planta.setValue("Estamos en la planta 2");
-	        botonesPlanta_Registration.get(0).remove();
-			botonesPlanta.get(0).addClickListener(event2 ->{
-        		edificio.getPlantas().get(2).llamarAscensor(edificio.getAscensores().get(0));
-			});
-	        botonesPlanta_Registration.get(1).remove();
-			botonesPlanta.get(1).addClickListener(event3 ->{
-        		edificio.getPlantas().get(2).llamarAscensor(edificio.getAscensores().get(1));
-			});
-	        botonesPlanta_Registration.get(2).remove();
-			botonesPlanta.get(2).addClickListener(event4 ->{
-        		edificio.getPlantas().get(2).llamarAscensor(edificio.getAscensores().get(2));
-			});
         });
         
         //Al pulsar el piso 3.
         planta3.addClickListener(event ->{
         	planta_Actual = 3;
 	        planta.setValue("Estamos en la planta 3");
-	        planta_Actual = 3;
-	        botonesPlanta_Registration.get(0).remove();
-			botonesPlanta.get(0).addClickListener(event2 ->{
-        		edificio.getPlantas().get(3).llamarAscensor(edificio.getAscensores().get(0));
-			});
-	        botonesPlanta_Registration.get(1).remove();
-			botonesPlanta.get(1).addClickListener(event3 ->{
-        		edificio.getPlantas().get(3).llamarAscensor(edificio.getAscensores().get(1));
-			});
-	        botonesPlanta_Registration.get(2).remove();
-			botonesPlanta.get(2).addClickListener(event4 ->{
-        		edificio.getPlantas().get(3).llamarAscensor(edificio.getAscensores().get(2));
-			});
         });
         
         //Al pulsar el piso 4.
         planta4.addClickListener(event ->{
         	planta_Actual = 4;
         	planta.setValue("Estamos en la planta 4");
-	        botonesPlanta_Registration.get(0).remove();
-			botonesPlanta.get(0).addClickListener(event2 ->{
-        		edificio.getPlantas().get(4).llamarAscensor(edificio.getAscensores().get(0));
-			});
-	        botonesPlanta_Registration.get(1).remove();
-			botonesPlanta.get(1).addClickListener(event3 ->{
-        		edificio.getPlantas().get(4).llamarAscensor(edificio.getAscensores().get(1));
-			});
-	        botonesPlanta_Registration.get(2).remove();
-			botonesPlanta.get(2).addClickListener(event4 ->{
-        		edificio.getPlantas().get(4).llamarAscensor(edificio.getAscensores().get(2));
-			});
         });
         
         //Al pulsar el piso 5.
         planta5.addClickListener(event ->{
         	planta_Actual = 5;
 	        planta.setValue("Estamos en la planta 5");
-	        botonesPlanta_Registration.get(0).remove();
-			botonesPlanta.get(0).addClickListener(event2 ->{
-        		edificio.getPlantas().get(5).llamarAscensor(edificio.getAscensores().get(0));
-			});
-	        botonesPlanta_Registration.get(1).remove();
-			botonesPlanta.get(1).addClickListener(event3 ->{
-        		edificio.getPlantas().get(5).llamarAscensor(edificio.getAscensores().get(1));
-			});
-	        botonesPlanta_Registration.get(2).remove();
-			botonesPlanta.get(2).addClickListener(event4 ->{
-        		edificio.getPlantas().get(5).llamarAscensor(edificio.getAscensores().get(2));
-			});
         });
         
         //Al pulsar el piso 6.
         planta6.addClickListener(event ->{
         	planta_Actual = 6;
 	        planta.setValue("Estamos en la planta 6");
-	        botonesPlanta_Registration.get(0).remove();
-			botonesPlanta.get(0).addClickListener(event2 ->{
-        		edificio.getPlantas().get(6).llamarAscensor(edificio.getAscensores().get(0));
-			});
-	        botonesPlanta_Registration.get(1).remove();
-			botonesPlanta.get(1).addClickListener(event3 ->{
-        		edificio.getPlantas().get(6).llamarAscensor(edificio.getAscensores().get(1));
-			});
-	        botonesPlanta_Registration.get(2).remove();
-			botonesPlanta.get(2).addClickListener(event4 ->{
-        		edificio.getPlantas().get(6).llamarAscensor(edificio.getAscensores().get(2));
-			});
         });
         
         tab3.addComponent(planta0, 0,3);
@@ -499,13 +448,17 @@ public class MyUI extends UI {
 			
 			boolean estadoEmergenciaActual = edificio.getAscensores().get(i).getEmergencia();
 			if(estadoEmergenciaActual)
-				PL_estadoEmergenciaAscensores.get(i).setValue(conEmergencia.getCaption());
+				PL_estadoEmergenciaAscensores.get(i).setValue(conEmergencia.getValue());
 			else if(!estadoEmergenciaActual)
-				PL_estadoEmergenciaAscensores.get(i).setValue(sinEmergencia.getCaption());		
+				PL_estadoEmergenciaAscensores.get(i).setValue(sinEmergencia.getValue());		
 		}	
 
 		PL_MensajeAltavoz.setValue("Altavoz: "+ edificio.getPlantas().get(planta_Actual).getAltavoz().getAltavoz());
 		
+	}
+	
+	public void llamaAscensor(Ascensor asc, int destino) {
+		asc.moverAscensor(destino);
 	}
 
 	//Array List con los elementos web de vaadin que van a cambiar referenciados y pasarlos por parámetro al pulsar un boton. 

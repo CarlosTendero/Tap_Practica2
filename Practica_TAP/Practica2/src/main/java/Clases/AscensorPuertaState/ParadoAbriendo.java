@@ -18,7 +18,7 @@ public class ParadoAbriendo implements State{
 		ascensor.setMensajeAltavoz("Abriendo Puertas");
 		//Informamos a los observers de que hemos cambiado el estado del ascensor.
 		ascensor.notifyAllObservers(ascensor);
-		
+		/*
 		//Tiempo - Funciona?
         try {
         	//Duerme el programa 1 segundo
@@ -26,7 +26,7 @@ public class ParadoAbriendo implements State{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        
+        */
         //Cambiamos el estado del ascensor a ParadoAbierto (ya se ha abierto completamente)
 		ascensor.setAscensor_estado(new ParadoAbierto());
 		//Cambiamos el string del estado del ascensor.
@@ -51,16 +51,10 @@ public class ParadoAbriendo implements State{
 	//Función de acción a realizar al activar la alarma
 	@Override
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
+		//Cambiar la alarma.
+		ascensor.setEmergencia(!ascensor.getEmergencia());
 
-		//Tampoco hacer nada, esperar a que la puerta se habra y fin
-
-//Se activa o no se activa la emergencia? Independientemente de que haga algo.
-		//Tampoco hacer nada, esperar a que la puerta se abra y fin
-
-		
-		//---------------------------------------------------
 		//Informamos a los observers de que hemos cambiado el estado del ascensor.
 		ascensor.notifyAllObservers(ascensor);
-		//---------------------------------------------------
 	}
 }

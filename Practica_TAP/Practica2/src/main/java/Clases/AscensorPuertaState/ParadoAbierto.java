@@ -25,12 +25,12 @@ public class ParadoAbierto implements State{
 	public void moverAscensor(Ascensor ascensor, int Destino) {
 		if(!ascensor.getDestinos().isEmpty()) {
 			//Tiempo - Funciona?
-	        try {
+	        /*try {
 	        	//Duerme el programa 1 segundo
 	            TimeUnit.SECONDS.sleep(1);
 	        } catch (InterruptedException e) {
 	            e.printStackTrace();
-	        }
+	        }*/
 	        
 	        //Cambiamos el estado y su mensaje y el mensaje del altavoz. 
 	        ascensor.setAscensor_estado(new ParadoCerrando());
@@ -41,13 +41,9 @@ public class ParadoAbierto implements State{
 	//Función de la acción a realizar cuando se activa la alarma
 	@Override
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
-
-		//No hacer nada, la persona sale del ascensor sin más
-		//Se activa o no se activa la emergencia? Independientemente de que haga algo.
-		//---------------------------------------------------
-		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		//Cambiar la alarma.
+		ascensor.setEmergencia(!ascensor.getEmergencia());
 		ascensor.notifyAllObservers(ascensor);
-		//---------------------------------------------------
 	}
 
 }
