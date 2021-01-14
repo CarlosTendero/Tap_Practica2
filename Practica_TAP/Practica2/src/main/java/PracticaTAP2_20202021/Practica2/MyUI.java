@@ -49,7 +49,7 @@ public class MyUI extends UI {
     	GridLayout tab2 = new GridLayout(3, 5);
     	tabsheet.addTab(tab2, "Cabina ascensor");
     	  	
-        GridLayout tab3 = new GridLayout(8, 4);
+        GridLayout tab3 = new GridLayout(8, 11);
     	tabsheet.addTab(tab3, "Planta");
     	
         layout.addComponents(tabsheet);
@@ -123,7 +123,12 @@ public class MyUI extends UI {
 
        //Display
        int asc = 1; 
+       Label estadoAsc1 = new Label(("display A"+1));
+       Label estadoAsc2 = new Label(("display A"+2));
+       Label estadoAsc3 = new Label(("display A"+3));
+       
        for(int i= 0; i < 6 ; i++) {
+    	   
         	tab3.addComponent(new Label("display A"+asc), i, 1);
         	asc++;
         	i++;
@@ -154,6 +159,7 @@ public class MyUI extends UI {
         	Button boton1 = new Button("Up A"+ascensorx);
         	boton1.addClickListener(event ->
         	//edificio.ascensorxoLoquesea.planta...
+        	
         	System.out.println(boton1.getCaption()));
         	tab3.addComponent(boton1, i, 2);
         	ascensorx++;
@@ -189,13 +195,13 @@ public class MyUI extends UI {
         planta.setValue("Estamos en la planta 6"));
 
         tab3.addComponent(planta0, 0,3);
-        tab3.addComponent(planta1, 1,3);
-        tab3.addComponent(planta2, 2,3);
-        tab3.addComponent(planta3, 3,3);
-        tab3.addComponent(planta4, 4,3);
-        tab3.addComponent(planta5, 5,3);
-        tab3.addComponent(planta6, 6,3);
-        tab3.addComponent(planta, 7,3);
+        tab3.addComponent(planta1, 0,4);
+        tab3.addComponent(planta2, 0,5);
+        tab3.addComponent(planta3, 0,6);
+        tab3.addComponent(planta4, 0,7);
+        tab3.addComponent(planta5, 0,8);
+        tab3.addComponent(planta6, 0,9);
+        tab3.addComponent(planta, 0,10);
         
         setContent(layout);
     }
