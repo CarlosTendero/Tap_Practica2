@@ -3,6 +3,7 @@ package PracticaTAP2_20202021;
 import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 
+import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.ClassResource;
@@ -35,20 +36,31 @@ import Clases.Edificio;
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @Theme("mytheme")
+//@StyleSheet("vaadin\\themes\\mytheme\\styles.css")
 
 public class MyUI extends UI {
 
     private static final String DateField = null;
-     
+	
+    //Arrays de elementos en los que vamos a guardar los labels que van a ir cambiando.
+    //Variables de pestaña de panel de control
+	private static ArrayList<Label> PC_estadoAscensores = new ArrayList<Label>();
+	private static ArrayList<Label> PC_estadoEmergenciaAscensores = new ArrayList<Label>();
+	private static ArrayList<Label> PC_pisoActualAscensores = new ArrayList<Label>();
+
+    //Variables de pestaña de cabina ascensores
+	private static ArrayList<Label> CA_pisoActualAscensores = new ArrayList<Label>();
+	
+    //Variables de pestaña de Plantas
+	private static ArrayList<Label> PL_pisoActualAscensores = new ArrayList<Label>();
+	private static ArrayList<Label> PL_estadoEmergenciaAscensores = new ArrayList<Label>();
+	private static ArrayList<Label> PL_MensajeAltavoz = new ArrayList<Label>();
+
 	@Override
     protected void init(VaadinRequest vaadinRequest) {
     	
 		Edificio edificio = new Edificio();
-		
-		//Arrays de elementos en los que vamos a guardar los labels que van a ir cambiando.
-		ArrayList<Label> estadoAscensores = new ArrayList<Label>();
-    	ArrayList<Label> estadoEmergenciaAscensores = new ArrayList<Label>();
-	
+
 		//Creación del layout y de la tabsheet	
     	HorizontalLayout layout = new HorizontalLayout();	
         TabSheet tabsheet = new TabSheet();
@@ -76,14 +88,14 @@ public class MyUI extends UI {
         	tab1.addComponent(new Image(null, res1), i, 0);
         	tab1.addComponent(new Label("Estado Ascensor "+i), i, 1);
         	Label label1 = new Label(""+ edificio.getAscensores().get(i).getPuerta_estado());
-        	estadoAscensores.add(label1);
+        	PC_estadoAscensores.add(label1);
         	tab1.addComponent(label1, i, 2);
         }
         
         //Añadimos el estado de emergencia.
         for(int i= 0; i < 3; i++) {
         	Label label2 = new Label("Estado emergencia "+ edificio.getAscensores().get(i).getEmergencia());
-			estadoEmergenciaAscensores.add(label2);
+			PC_estadoEmergenciaAscensores.add(label2);
         	tab1.addComponent(label2, i, 3);
         }
         
@@ -440,8 +452,8 @@ public class MyUI extends UI {
         setContent(layout);
     }
 	
-	public void ActualizarCaptions(ArrayList<Label> PPCestadoAscensores, ArrayList<Label> PPCestadoEmergenciaAscensores , ArrayList<Label> PPCpisoActualAscensores) {
-		
+	static public void ActualizarCaptions() {
+		//estadoAscensores.get(0);
 	}
 
 	//Array List con los elementos web de vaadin que van a cambiar referenciados y pasarlos por parámetro al pulsar un boton. 

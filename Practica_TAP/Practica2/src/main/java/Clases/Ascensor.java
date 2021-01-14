@@ -19,7 +19,7 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	//No sabemos si hace falta
 	private boolean emergencia;
 	private int numAscensor; 		//Identificador del ascensor.
-	
+	private String mensaje_Altavoz;
 
 	//--------------------------------------------------------------
 	//Constructor
