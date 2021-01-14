@@ -1,14 +1,14 @@
 package Clases.Impl;
 
-import java.util.ArrayList;
-
-import Clases.Planta;
+//import Clases.Planta;
 
 public interface AscensorImpl {
 
-	public  ArrayList<Planta> movimientoAscensor(Planta Destino);	
+	public void moverAscensor(int Destino);	
 	public void cambiarEstadoPuerta();
-	public void cambiarEstadoAscensor();
-	public void mostrarPlantaActual();
 	public void activarAlarma();
+	public void anyadirDestino(int destino);
+	public int calculoDistancia(int destino);
+	void mostrarPlantaActual();
+
 }

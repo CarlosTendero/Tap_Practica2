@@ -2,56 +2,46 @@ package Clases;
 
 import java.util.ArrayList;
 
+import Clases.Impl.Observer;
+
 import PracticaTAP2_20202021.MyUI;
 
-public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaImpl{
-
+public class PanelControl extends Observer implements Clases.Impl.PanelControlImpl{
 	//--------------------------------------------------------------
 	//Atributos
 	//--------------------------------------------------------------
 	//Arrays con los datos de los ascensores. Pos 0 = Ascensor 0, etc.
 	private ArrayList<Integer> pisoActualAscensores;
 	private ArrayList<Boolean> emergenciaActualAscensores;
-	private int numPlanta;		//Identificador de la planta actual.
-	private Altavoz altavoz;
+	private ArrayList<String> estadoActualAscensores;
+
 	
 	//--------------------------------------------------------------
 	//Constructor
 	//--------------------------------------------------------------
 	
-	public Planta(ArrayList<Ascensor> ascensores, int numPlanta) {
-
-		this.numPlanta = numPlanta;
-		this.pisoActualAscensores = new ArrayList<Integer>();
-		this.emergenciaActualAscensores = new ArrayList<Boolean>();
+	public PanelControl(ArrayList<Ascensor> ascensores) {
 		
-		//Inicializamos la planta a su valor de por defecto.
+		this.pisoActualAscensores 		= new ArrayList<Integer>();
+		this.emergenciaActualAscensores = new ArrayList<Boolean>();
+		this.estadoActualAscensores 	= new ArrayList<String>();
+		
 		for(int i = 0; i < ascensores.size(); i++) {
-			this.pisoActualAscensores.add(ascensores.get(i).getPlanta_actual());
-			this.emergenciaActualAscensores.add(ascensores.get(i).getEmergencia());
-		}	
-		this.altavoz = new Altavoz("");
-	}
-	
-	//Getter de la variable altavoz
-	public Altavoz getAltavoz() {
-		return this.altavoz;
+			pisoActualAscensores.add(ascensores.get(i).getPlanta_actual());
+			emergenciaActualAscensores.add(ascensores.get(i).getEmergencia());
+			estadoActualAscensores.add(ascensores.get(i).getPuerta_estado());	
+		}
 	}
 	
 	//--------------------------------------------------------------
 	//Funciones
 	//--------------------------------------------------------------
-	
-	@Override
-	public void llamarAscensor(Ascensor ascensor) {
-		ascensor.anyadirDestino(this.numPlanta);
-	}
-
+		
 	@Override
 	public void update(Ascensor ascensor) {
 		pisoActualAscensores.set(ascensor.getNumAscensor(), ascensor.getPlanta_actual());
 		emergenciaActualAscensores.set(ascensor.getNumAscensor(), ascensor.getEmergencia());
-		altavoz.setAltavoz(ascensor.getMensajeAltavoz());
+		estadoActualAscensores.set(ascensor.getNumAscensor(), ascensor.getPuerta_estado());
 		MyUI.ActualizarCaptions();
 	}
 }
