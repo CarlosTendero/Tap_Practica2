@@ -44,6 +44,5 @@ public class PanelControl extends Observer implements Clases.Impl.PanelControlIm
 		estadoActualAscensores.set(ascensor.getNumAscensor(), ascensor.getPuerta_estado());
 
 		MyUI.ActualizarCaptions();
-
 	}
 }

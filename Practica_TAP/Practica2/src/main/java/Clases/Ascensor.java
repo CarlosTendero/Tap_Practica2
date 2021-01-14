@@ -126,10 +126,12 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	@Override
 	public void anyadirDestino(int destino) {
 		// TODO Auto-generated method stub
-		if(!this.getDestinos().contains(destino)) {			//Comprobacion para evitar destinos repetidos en un ascensor
+		if(!this.getDestinos().contains(destino)) {
 			this.destinos.add(destino);						// anyadimos el destino
-			this.moverAscensor(this.getDestinos().get(0));	// movemos el ascensor a dicho destino
-			this.getDestinos().remove(0);					// una vez hemos movido el ascensor a ese destino lo eliminamos
+			//Petición de que queremos movernos al estado actual.
+			this.moverAscensor(this.getDestinos().get(0)); 	// movemos el ascensor a dicho destino
+					// una vez hemos movido el ascensor a ese destino lo eliminamos
+
 		}
 		
 	}

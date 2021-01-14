@@ -1,6 +1,7 @@
 package Clases.AscensorPuertaState;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import Clases.Ascensor;
 import Clases.Impl.State;
@@ -22,48 +23,43 @@ public class MoviendoAscensor implements State {
 	//Función de movimiento del ascensor
 	@Override
 	public void moverAscensor(Ascensor ascensor, int Destino) {
-
-		// Lógica de actualizar planta.
-		// Calcular tiempo en subir según cuantas plantas subamos.
-		// Al cambiar de planta informar a los observers.
-		// listadeObservers.actualizarPisoActual(int plantaActual).
-		// Al terminar cambiar estado.
-		
-		// Sube 0-4
-		if (ascensor.getPlanta_actual() < Destino) {
-			for (int i = ascensor.getPlanta_actual(); i <= Destino; i++) {
-				//sleep
-				ascensor.setPlanta_actual(i);
-				//---------------------------------------------------
-				//Informamos a los observers de que hemos cambiado el estado del ascensor.
-				
-				//---------------------------------------------------
-				ascensor.notifyAllObservers(ascensor);
-			}
-		}
-		// Baja 4-0
-		else if (ascensor.getPlanta_actual() > Destino) {
-			for (int i = ascensor.getPlanta_actual(); i >= Destino; i--) {
-				//sleep
-				ascensor.setPlanta_actual(i);
-				//---------------------------------------------------
-				//Informamos a los observers de que hemos cambiado el estado del ascensor.
-				
-				//---------------------------------------------------
-				ascensor.notifyAllObservers(ascensor);
-			}
-		}
-		// Igual 4 ParadoCerrado - 4 ParadoAbriendo -> ParadoAbierto
-		else {
-			ascensor.setAscensor_estado(new ParadoAbriendo());
-			//---------------------------------------------------
-			//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		//Si estamos en otra planta que no es la de destino.
+		if((Destino != ascensor.getPlanta_actual())) {			
 			
-			//---------------------------------------------------
-			ascensor.notifyAllObservers(ascensor);
+			//Si hay que subir plantas
+			if (ascensor.getPlanta_actual() < Destino) {
+				for (int i = ascensor.getPlanta_actual(); i <= Destino; i++) {
+			        //Timer 
+					//Tiempo - Funciona?
+					System.out.println("Empezando timer");
+			        try {
+			        	//Duerme el programa 1 segundo
+			            TimeUnit.SECONDS.sleep(1);
+			        } catch (InterruptedException e) {
+			            e.printStackTrace();
+			        }
+					System.out.println("acabando timer");
+					ascensor.setPlanta_actual(i);
+					//Informamos a los observers de que hemos cambiado el estado del ascensor.
+					ascensor.notifyAllObservers(ascensor);
+				}
+			}
+			
+			//Si hay que bajar plantas.
+			else if (ascensor.getPlanta_actual() > Destino) {
+				for (int i = ascensor.getPlanta_actual(); i >= Destino; i--) {
+					//sleep
+					ascensor.setPlanta_actual(i);
+					//Informamos a los observers de que hemos cambiado el estado del ascensor.
+					ascensor.notifyAllObservers(ascensor);
+				}
+			}
 		}
-
-		
+			//Al terminar, abrimos las puertas y notificamos a los observers.
+			ascensor.setAscensor_estado(new ParadoAbriendo());
+			//Quitamos el piso destino de la lista.
+			ascensor.getDestinos().remove(0);
+			ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);
 	}
 
 	//Función de acción de la alarma al ser activada
