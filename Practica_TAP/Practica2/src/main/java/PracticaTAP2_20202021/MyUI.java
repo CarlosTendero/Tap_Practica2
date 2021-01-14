@@ -45,7 +45,7 @@ public class MyUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
     	
 		Edificio edificio = new Edificio();
-		
+				
 		//Creación del layout y de la tabsheet	
     	final HorizontalLayout layout = new HorizontalLayout();	
         TabSheet tabsheet = new TabSheet();
@@ -448,6 +448,8 @@ public class MyUI extends UI {
         //ESTO VA LO ÚLTIMO.
         setContent(layout);
     }
+	
+	
 
 	//Array List con los elementos web de vaadin que van a cambiar referenciados y pasarlos por parámetro al pulsar un boton. 
 	

@@ -32,6 +32,11 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 		this.altavoz.setAltavoz(" ");
 	}
 	
+	//Getter de la variable altavoz
+	public Altavoz getAltavoz() {
+		return this.altavoz;
+	}
+	
 	//--------------------------------------------------------------
 	//Funciones
 	//--------------------------------------------------------------
