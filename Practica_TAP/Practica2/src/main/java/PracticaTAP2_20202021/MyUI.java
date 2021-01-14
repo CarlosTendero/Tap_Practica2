@@ -123,7 +123,7 @@ public class MyUI extends UI {
 		for(int i= 0; i < 3; i++) {
 			 Label display_A1 = new Label("Piso actual: " + edificio.getAscensores().get(i).getPlanta_actual());
 		     CA_pisoActualAscensores.add(display_A1);
-		     tab2.addComponent(display_A1, 0+(i*3), 0, 2+(i*3), 0);
+		     tab2.addComponent(display_A1, 0+(i*4), 0, 2+(i*4), 0);
 		}
 		/*
         Label display_A1 = new Label("Piso actual:" + edificio.getAscensores().get(0).getPlanta_actual());
@@ -159,7 +159,12 @@ public class MyUI extends UI {
                 boton++;
             }
         } 
-        
+        for (int fila = 1; fila <4; fila++ ) {
+        	Label label = new Label("");
+        	label.addStyleName("lineavacia");
+        	tab2.addComponent(label, 3, fila);
+        }
+
         //Boton abrir/cerrar
         Button abrirPeta = new Button("<>");
         abrirPeta.addStyleName("miBoton");
@@ -177,7 +182,7 @@ public class MyUI extends UI {
         tab2.addComponent(pb, 1, 3);
         
         //Emergencia
-        Button emergencia = new Button("!");
+        Button emergencia = new Button("🔔");
 	    emergencia.addStyleNames("miBotonEmergencia");
         emergencia.addClickListener(event ->{
         	edificio.getAscensores().get(0).activarAlarma();
@@ -189,7 +194,7 @@ public class MyUI extends UI {
         //Botonera 1-6
         boton=1;
         for (int fila= 1; fila < 3; fila++) {
-            for (int col=3; col < 6; col++) {
+            for (int col=4; col < 7; col++) {
                 Button button = new Button(""+boton);         		
                 button.addStyleName("miBoton");
                 button.addClickListener(event ->{
@@ -199,6 +204,12 @@ public class MyUI extends UI {
                 boton++;
             }
         }  
+        
+        for (int fila = 1; fila <4; fila++ ) {
+        	Label label = new Label("");
+        	label.addStyleName("lineavacia");
+        	tab2.addComponent(label, 7, fila);
+        }
         //Boton abrir
         Button abrirPeta2 = new Button("<>");
         abrirPeta2.addStyleName("miBoton");
@@ -206,7 +217,7 @@ public class MyUI extends UI {
         abrirPeta2.addClickListener(event ->{
         	edificio.getAscensores().get(1).cambiarEstadoPuerta();
         });
-        tab2.addComponent(abrirPeta2, 3, 3);
+        tab2.addComponent(abrirPeta2, 4, 3);
 
         //Planta baja
         Button pb2 = new Button("PB");
@@ -214,22 +225,22 @@ public class MyUI extends UI {
         pb2.addClickListener(event ->{
         	edificio.getAscensores().get(1).anyadirDestino(0);
         });
-        tab2.addComponent(pb2, 4, 3);
+        tab2.addComponent(pb2, 5, 3);
         
         //Emergencia
-        Button emergencia2 = new Button("!");
+        Button emergencia2 = new Button("🔔");
 	    emergencia2.addStyleNames("miBotonEmergencia");
         emergencia2.addClickListener(event ->{
         	edificio.getAscensores().get(1).activarAlarma();
         });
-        tab2.addComponent(emergencia2, 5, 3);
+        tab2.addComponent(emergencia2, 6, 3);
         
         //--------------ASCENSOR 3-----------------        
         
         //Botonera 1-6
         boton=1;
         for (int fila= 1; fila < 3; fila++) {
-            for (int col=6; col < 9; col++) {
+            for (int col=8; col < 11; col++) {
                 Button button = new Button(""+boton);
         		button.addStyleName("miBoton");
                 button.addClickListener(event ->{
@@ -245,7 +256,7 @@ public class MyUI extends UI {
         abrirPeta3.addClickListener(event ->{
         	edificio.getAscensores().get(2).cambiarEstadoPuerta();
         });
-        tab2.addComponent(abrirPeta3, 6, 3);
+        tab2.addComponent(abrirPeta3, 8, 3);
 
         //Planta baja
         Button pb3 = new Button("PB");
@@ -253,16 +264,21 @@ public class MyUI extends UI {
         pb3.addClickListener(event ->{
         	edificio.getAscensores().get(2).anyadirDestino(0);
         });
-        tab2.addComponent(pb3, 7, 3);
+        tab2.addComponent(pb3, 9, 3);
         
         //Emergencia
-        Button emergencia3 = new Button("!");
+        Button emergencia3 = new Button("🔔");
 	    emergencia3.addStyleNames("miBotonEmergencia");
         emergencia3.addClickListener(event ->{
         	edificio.getAscensores().get(2).activarAlarma();
         });
-        tab2.addComponent(emergencia3, 8, 3);
-                   
+        tab2.addComponent(emergencia3, 10, 3);
+        
+        for (int fila = 1; fila <4; fila++ ) {
+        	Label label = new Label("");
+        	label.addStyleName("lineavacia");
+        	tab2.addComponent(label, 11, fila);
+        }
                 
         //-------------------------------------------------------------------------
         //PESTAÑA 3: Planta.
@@ -276,7 +292,7 @@ public class MyUI extends UI {
         layout.addComponents(tabsheet);
         
         //Altavoz
-        Label altavoz = new Label("Altavoz: ");
+        Label altavoz = new Label("🔊");
         altavoz.addStyleName("altavoz");
         altavoz.setSizeFull();
         //Funcionará?lo de abajo el igual.
@@ -465,15 +481,18 @@ public class MyUI extends UI {
         		edificio.getPlantas().get(6).llamarAscensor(edificio.getAscensores().get(2));
 			});
         });
+        Label label = new Label("");
+        label.addStyleName("lineavacia2");
         
-        tab3.addComponent(planta0, 0,3);
-        tab3.addComponent(planta1, 0,4);
-        tab3.addComponent(planta2, 0,5);
-        tab3.addComponent(planta3, 0,6);
-        tab3.addComponent(planta4, 0,7);
-        tab3.addComponent(planta5, 0,8);
-        tab3.addComponent(planta6, 0,9);
-        tab3.addComponent(planta, 0,10);   
+        tab3.addComponent(planta0, 0,5);
+        tab3.addComponent(planta1, 1,5);
+        tab3.addComponent(planta2, 2,5);
+        tab3.addComponent(planta3, 3,5);
+        tab3.addComponent(planta4, 4,5);
+        tab3.addComponent(planta5, 5,5);
+        tab3.addComponent(planta6, 7,5);
+        tab3.addComponent(label, 6,5);
+        tab3.addComponent(planta,0,7, 7,7);   
         
         //ESTO VA LO ÚLTIMO.
         setContent(layout);
