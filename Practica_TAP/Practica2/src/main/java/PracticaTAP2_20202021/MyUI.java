@@ -55,12 +55,21 @@ public class MyUI extends UI {
     //Variables de pestaña de Plantas
 	private static ArrayList<Label> PL_pisoActualAscensores = new ArrayList<Label>();
 	private static ArrayList<Label> PL_estadoEmergenciaAscensores = new ArrayList<Label>();
-	private static ArrayList<Label> PL_MensajeAltavoz = new ArrayList<Label>();
+	private static Label PL_MensajeAltavoz = new Label("Altavoz :");
      
+	//Variables de emergencia
+	private static final Label sinEmergencia = new Label("✓");
+	private static final Label conEmergencia = new Label("⚠");
+	
+	//Variables de la planta.
+	private static int planta_Actual = 0;
+	
+	//Variable de edificio.
+	private static Edificio edificio = new Edificio();
+
 	@Override
     protected void init(VaadinRequest vaadinRequest) {
     	
-		Edificio edificio = new Edificio();
 
 		//Creación del layout y de la tabsheet. Era final horizontal antes.	
     	HorizontalLayout layout = new HorizontalLayout();	
@@ -88,15 +97,15 @@ public class MyUI extends UI {
         //Añadimos los ascensores y su estado.
         for(int i= 0; i < 3; i++) {
         	tab1.addComponent(new Image(null, res1), i, 0);
-        	tab1.addComponent(new Label("Estado Ascensor "+i), i, 1);
-        	Label label1 = new Label(""+ edificio.getAscensores().get(i).getPuerta_estado());
+        	//PLanta actual.
+        	Label label0 = new Label("Ascensor en planta "+ edificio.getAscensores().get(i).getPlanta_actual());
+        	PC_pisoActualAscensores.add(label0);
+        	tab1.addComponent(label0, i, 1);
+        	//Estado ascernsor.
+        	Label label1 = new Label("Estado: "+ edificio.getAscensores().get(i).getPuerta_estado());
         	PC_estadoAscensores.add(label1);
         	tab1.addComponent(label1, i, 2);
-
-        }
-        
-        //Añadimos el estado de emergencia.
-        for(int i= 0; i < 3; i++) {
+        	//Emergencia.
         	Label label2 = new Label("Estado emergencia "+ edificio.getAscensores().get(i).getEmergencia());
 			PC_estadoEmergenciaAscensores.add(label2);
         	tab1.addComponent(label2, i, 3);
@@ -112,13 +121,25 @@ public class MyUI extends UI {
     	tabsheet.addTab(tab2, "Cabina ascensor");
     	  	    	
         //Piso actual
-        Label display_A1 = new Label("piso actual:" + edificio.getAscensores().get(0).getPlanta_actual());
+		for(int i= 0; i < 3; i++) {
+			 Label display_A1 = new Label("Piso actual: " + edificio.getAscensores().get(i).getPlanta_actual());
+		     CA_pisoActualAscensores.add(display_A1);
+		     tab2.addComponent(display_A1, 0+(i*3), 0, 2+(i*3), 0);
+		}
+		/*
+        Label display_A1 = new Label("Piso actual:" + edificio.getAscensores().get(0).getPlanta_actual());
+        CA_pisoActualAscensores.add(display_A1);
         tab2.addComponent(display_A1, 0, 0, 2, 0);
-        Label display_A2 = new Label("piso actual:" + edificio.getAscensores().get(1).getPlanta_actual());
-        tab2.addComponent(display_A2, 3, 0, 5, 0);
-        Label display_A3 = new Label("piso actual:" + edificio.getAscensores().get(2).getPlanta_actual());
-        tab2.addComponent(display_A3, 6, 0, 8, 0);
         
+        Label display_A2 = new Label("Piso actual:" + edificio.getAscensores().get(1).getPlanta_actual());
+        CA_pisoActualAscensores.add(display_A2);
+        tab2.addComponent(display_A2, 3, 0, 5, 0);
+        
+        Label display_A3 = new Label("Piso actual:" + edificio.getAscensores().get(2).getPlanta_actual());
+        CA_pisoActualAscensores.add(display_A3);
+        tab2.addComponent(display_A3, 6, 0, 8, 0);
+        */
+		
         //Display Ascensores  ----> En principio no ponemos nombre a los ascensores.
         //tab2.addComponent(new Label("Ascensor 1"), 0, 4, 2, 4);
         //tab2.addComponent(new Label("Ascensor 2"), 3, 4, 5, 4);
@@ -256,31 +277,27 @@ public class MyUI extends UI {
         layout.addComponents(tabsheet);
         
         //Altavoz
-        Label altavoz = new Label("Altavoz:");
+        Label altavoz = new Label("Altavoz: ");
         altavoz.addStyleName("altavoz");
         altavoz.setSizeFull();
+        //Funcionará?lo de abajo el igual.
+        PL_MensajeAltavoz = altavoz;
         tab3.addComponent(altavoz, 0, 0, 5, 0);
         
        //Display
-       int asc = 1; 
-       for(int i= 0; i < 6 ; i++) {
-        	tab3.addComponent(new Label("Ascensor "+asc), i, 1);
-        	asc++;
-        	i++;
+       for(int i= 0; i < 3 ; i++) {
+    	   Label label3 = new Label("Piso actual: " + edificio.getAscensores().get(i).getPlanta_actual());
+    	   PL_pisoActualAscensores.add(label3); 
+    	   tab3.addComponent(label3, i*2, 1);
         }	 
        
        //Emergencia
-       	boolean emg= false;   
-       	
-        for(int i= 1; i < 6; i+=2) {
-        	if(emg) {
-        		tab3.addComponent(new Label("⚠"), i, 1);
-        	}
-        	else {
-        		tab3.addComponent(new Label("✓"), i, 1);
-        	}
-        }	
-       
+       for(int i= 0; i < 3 ; i++) {
+    	   Label label4 = new Label("✓");
+    	   PL_estadoEmergenciaAscensores.add(label4);
+    	   tab3.addComponent(label4, (i*2)+1, 1);
+       }
+
         //Ascensores
         for(int i= 0; i < 6; i+=2) {
         	tab3.addComponent(new Image(null, res1), i, 2);
@@ -325,7 +342,8 @@ public class MyUI extends UI {
         
         //Al pulsar el piso 0.
         planta0.addClickListener(event ->{
-	        planta.setValue("Estamos en la planta 0");
+        	planta_Actual = 0;
+	        planta.setValue("Estamos en la planta Baja");
 	        botonesPlanta_Registration.get(0).remove();
 			botonesPlanta.get(0).addClickListener(event2 ->{
         		edificio.getPlantas().get(0).llamarAscensor(edificio.getAscensores().get(0));
@@ -340,8 +358,9 @@ public class MyUI extends UI {
 			});
         });
         
-        //Al pulsar el piso 0.        
+        //Al pulsar el piso 1.        
         planta1.addClickListener(event ->{
+        	planta_Actual = 1;
 	        planta.setValue("Estamos en la planta 1");
 	        botonesPlanta_Registration.get(0).remove();
 			botonesPlanta.get(0).addClickListener(event2 ->{
@@ -359,6 +378,7 @@ public class MyUI extends UI {
         
         //Al pulsar el piso 2.
         planta2.addClickListener(event ->{
+        	planta_Actual = 2;
 	        planta.setValue("Estamos en la planta 2");
 	        botonesPlanta_Registration.get(0).remove();
 			botonesPlanta.get(0).addClickListener(event2 ->{
@@ -376,7 +396,9 @@ public class MyUI extends UI {
         
         //Al pulsar el piso 3.
         planta3.addClickListener(event ->{
+        	planta_Actual = 3;
 	        planta.setValue("Estamos en la planta 3");
+	        planta_Actual = 3;
 	        botonesPlanta_Registration.get(0).remove();
 			botonesPlanta.get(0).addClickListener(event2 ->{
         		edificio.getPlantas().get(3).llamarAscensor(edificio.getAscensores().get(0));
@@ -393,7 +415,8 @@ public class MyUI extends UI {
         
         //Al pulsar el piso 4.
         planta4.addClickListener(event ->{
-	        planta.setValue("Estamos en la planta 4");
+        	planta_Actual = 4;
+        	planta.setValue("Estamos en la planta 4");
 	        botonesPlanta_Registration.get(0).remove();
 			botonesPlanta.get(0).addClickListener(event2 ->{
         		edificio.getPlantas().get(4).llamarAscensor(edificio.getAscensores().get(0));
@@ -410,6 +433,7 @@ public class MyUI extends UI {
         
         //Al pulsar el piso 5.
         planta5.addClickListener(event ->{
+        	planta_Actual = 5;
 	        planta.setValue("Estamos en la planta 5");
 	        botonesPlanta_Registration.get(0).remove();
 			botonesPlanta.get(0).addClickListener(event2 ->{
@@ -427,6 +451,7 @@ public class MyUI extends UI {
         
         //Al pulsar el piso 6.
         planta6.addClickListener(event ->{
+        	planta_Actual = 6;
 	        planta.setValue("Estamos en la planta 6");
 	        botonesPlanta_Registration.get(0).remove();
 			botonesPlanta.get(0).addClickListener(event2 ->{
@@ -456,7 +481,32 @@ public class MyUI extends UI {
     }
 	
 	static public void ActualizarCaptions() {
-		//estadoAscensores.get(0);
+		
+		//Actualizamos la pestaña Panel de Control.
+		for(int i= 0; i < 3; i++) {
+			PC_pisoActualAscensores.get(i).setCaption("Ascensor en planta "+ edificio.getAscensores().get(i).getPlanta_actual());
+			PC_estadoAscensores.get(i).setCaption("Estado: "+ edificio.getAscensores().get(i).getPuerta_estado());
+			PC_estadoEmergenciaAscensores.get(i).setCaption("Estado emergencia "+ edificio.getAscensores().get(i).getEmergencia());
+        }
+		
+		//Actualizamos la pestaña Cabina ascensores.
+		for(int i= 0; i < 3; i++) {
+			CA_pisoActualAscensores.get(i).setCaption("Piso actual:" + edificio.getAscensores().get(i).getPlanta_actual());
+		}
+		
+		//Actualizamos la pestaña plantas.
+		for(int i= 0; i < 3; i++) {
+			PL_pisoActualAscensores.get(i).setCaption("Piso actual: " + edificio.getAscensores().get(i).getPlanta_actual());
+			
+			boolean estadoEmergenciaActual = edificio.getAscensores().get(i).getEmergencia();
+			if(estadoEmergenciaActual)
+				PL_estadoEmergenciaAscensores.get(i).setCaption(conEmergencia.getCaption());
+			else if(!estadoEmergenciaActual)
+				PL_estadoEmergenciaAscensores.get(i).setCaption(sinEmergencia.getCaption());		
+		}	
+
+		PL_MensajeAltavoz.setCaption("Altavoz: "+ edificio.getPlantas().get(planta_Actual).getAltavoz().getAltavoz());
+		
 	}
 
 	//Array List con los elementos web de vaadin que van a cambiar referenciados y pasarlos por parámetro al pulsar un boton. 
