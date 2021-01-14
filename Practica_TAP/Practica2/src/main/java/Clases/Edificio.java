@@ -6,22 +6,19 @@ import Clases.AscensorPuertaState.ParadoCerrado;
 
 public class Edificio{
 
-
 	//--------------------------------------------------------------
 	//Atributos
 	//--------------------------------------------------------------
 
-	//Array para guardar los ascensores del edificio 
-	ArrayList<Ascensor> ascensores 	= new ArrayList<Ascensor>();
-	ArrayList<Planta> 	plantas		= new ArrayList<Planta>();
-	PanelControl panelControl;
-	private static Edificio instancia;
+	ArrayList<Ascensor> ascensores 	= new ArrayList<Ascensor>();	// Array ascensores
+	ArrayList<Planta> 	plantas		= new ArrayList<Planta>();		// Array plantas
+	PanelControl panelControl;										// Panel Control
+	private static Edificio instancia;								// instancia Edificio para el singleton
 	
 	//--------------------------------------------------------------
 	//Constructor
 	//--------------------------------------------------------------	
-	public Edificio() {
-		
+	public Edificio() {		// Generamos edificio
 		for (int i = 0; i < 3; i++)
 			this.ascensores.add(new Ascensor(0, new ParadoCerrado(), "Parado Cerrado", i));
 		for	(int i = 0; i < 7; i++)
