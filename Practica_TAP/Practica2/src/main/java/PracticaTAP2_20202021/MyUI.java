@@ -45,8 +45,7 @@ public class MyUI extends UI {
     	final HorizontalLayout layout = new HorizontalLayout();
     	
         TabSheet tabsheet = new TabSheet();
-        
-        
+
         //Crear Pestañas
         GridLayout tab1 = new GridLayout(3,4);
         tab1.setWidth("80%");
@@ -151,9 +150,6 @@ public class MyUI extends UI {
         tab2.addComponent(emergencia2, 5, 3);
         
         //-----------------------------------------------------------------------------  	ASCENSOR 3
-        
-        
-        
         
         /*PLANTA*/      
         //Altavoz
