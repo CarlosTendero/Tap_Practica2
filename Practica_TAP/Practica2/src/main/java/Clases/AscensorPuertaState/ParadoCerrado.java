@@ -11,32 +11,22 @@ public class ParadoCerrado implements State{
 	@Override
 	public void cambiarEstadoPuerta(Ascensor ascensor) {
 		
-		//Cambiamos el estado de la puerta a abierto
-		ascensor.setAscensor_puerta("Puerta Abierta");
-		
-		//Cambiamos el estado del ascensor a ParadoAbriendo
+		//Al pulsar el usuario cerrar puertas cambiamos el estado.
 		ascensor.setAscensor_estado(new ParadoAbriendo());
-		
+	
 		//Inmediatamente después, ejecutamos la función cambiarEstadoPuerta del nuevo estado (ParadoCerrando)
 		//Así simulamos la transición de la puerta de abierto a cerrado 
 		ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);
-		
-		//---------------------------------------------------
-		//Informamos a los observers de que hemos cambiado el estado del ascensor.
-		ascensor.notifyAllObservers(ascensor);
-		//---------------------------------------------------
-
-		//Cambiamos el mensaje del altavoz
-		ascensor.setMensajeAltavoz(" ");
 	}
 
 	//Función de movimiento del ascensor en este estado
 	@Override
 	public void moverAscensor(Ascensor ascensor, int Destino) {
 		//mover el ascensor
-		ascensor.setAscensor_estado(new MoviendoAscensor());
-		ascensor.getAscensor_estado().moverAscensor(ascensor, Destino);	
-		
+		if(!ascensor.getDestinos().isEmpty()) {
+			ascensor.setAscensor_estado(new MoviendoAscensor());
+			ascensor.getAscensor_estado().moverAscensor(ascensor, Destino);	
+		}	
 	}
 
 	//Función de la acción a realizar al activar la alarma estando en este estado

@@ -146,8 +146,9 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 		// TODO Auto-generated method stub
 		if(!this.getDestinos().contains(destino)) {
 			this.destinos.add(destino);
+			//Petición de que queremos movernos al estado actual.
 			this.moverAscensor(this.getDestinos().get(0));
-			this.getDestinos().remove(0);
+			//this.getDestinos().remove(0);
 		}
 		
 	}
