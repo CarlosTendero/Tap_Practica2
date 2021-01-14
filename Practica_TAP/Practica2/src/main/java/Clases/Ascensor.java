@@ -28,7 +28,9 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	
 	//Variable que guarda el ascensor al que corresponde de nuestro array de ascensores
 	private int numAscensor;
-	
+
+	private String mensaje_altavoz;
+
 
 	//--------------------------------------------------------------
 	//Constructor
@@ -100,6 +102,13 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 		return numAscensor;
 	}
 	
+	public String getMensajeAltavoz() {
+		return mensaje_altavoz;
+	}
+	
+	public void setMensajeAltavoz(String mensaje_altavoz) {
+		this.mensaje_altavoz = mensaje_altavoz;
+	}
 
 	//--------------------------------------------------------------
 	//Funciones de ascensor.
@@ -119,7 +128,7 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 
 	//Función para activar la alarma
 	@Override
-	public void activarAlarma(boolean emergencia) {
+	public void activarAlarma() {
 		// TODO Auto-generated method stub
 		
 		this.ascensor_estado.activarAlarma(this, emergencia);
@@ -134,12 +143,8 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 			this.destinos.add(destino);
 	}
 
-
 	@Override
 	public void mostrarPlantaActual() {
 		// TODO Auto-generated method stub
-		
 	}
-	
-
 }

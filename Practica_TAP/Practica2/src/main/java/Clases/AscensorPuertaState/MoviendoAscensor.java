@@ -13,8 +13,10 @@ public class MoviendoAscensor implements State {
 	public void cambiarEstadoPuerta(Ascensor ascensor) {
 
 		System.out.println("Espera que te estas moviendo");
-		/* Ayuda */
 		// No hacer nada.
+		
+		//Cambiamos el mensaje del altavoz
+		ascensor.setMensajeAltavoz(" ");
 	}
 
 	//Función de movimiento del ascensor
@@ -44,21 +46,30 @@ public class MoviendoAscensor implements State {
 				//sleep
 				ascensor.setPlanta_actual(i);
 			}
-			
 		}
 		// Igual 4 ParadoCerrado - 4 ParadoAbriendo -> ParadoAbierto
 		else {
 			ascensor.setAscensor_estado(new ParadoAbriendo());
 		}
+		
+		//---------------------------------------------------
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		//---------------------------------------------------
+		
 		return plantasVisitadas;
 	}
 
 	//Función de acción de la alarma al ser activada
 	@Override
-	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
-		// TODO Auto-generated method stub
+	public void activarAlarma(Ascensor ascensor, boolean emergencia) {		
+
+		//---------------------------------------------------
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		//---------------------------------------------------
 		
-		while(emergencia) {
+		if(emergencia) {
 			//Si es igual a la planta máxima bajamos a la planta más cercana
 			if(ascensor.getPlanta_actual() == 7) {
 				ascensor.setAscensor_estado(new ParadoCerrando());
@@ -66,17 +77,24 @@ public class MoviendoAscensor implements State {
 				emergencia = false;
 			}
 			//Si es igual a la planta mínima bajamos a la planta más cercana
-			else if(ascensor.getPlanta_actual() == 1) {		
+
+			else if(ascensor.getPlanta_actual() == 1) {			//antes ponia this preguntar Belen		
+				//this.ascensor_estado.moverAscensor(this, this.getPlanta_actual() + 1);
+
 				ascensor.getAscensor_estado().moverAscensor(ascensor, ascensor.getPlanta_actual() + 1);	
 				emergencia = false;
 			}
 			else {
 				ascensor.getAscensor_estado().moverAscensor(ascensor, ascensor.getPlanta_actual() + 1);
-
 				emergencia = false;
 			}
-			
+			ascensor.setEmergencia(emergencia);
 		}
-	}
 
+		//---------------------------------------------------
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		//---------------------------------------------------
+		
+	}
 }

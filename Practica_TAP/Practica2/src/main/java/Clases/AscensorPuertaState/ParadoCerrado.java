@@ -20,17 +20,23 @@ public class ParadoCerrado implements State{
 		//Inmediatamente después, ejecutamos la función cambiarEstadoPuerta del nuevo estado (ParadoCerrando)
 		//Así simulamos la transición de la puerta de abierto a cerrado 
 		ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);
+		
+		//---------------------------------------------------
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		//---------------------------------------------------
+
+		//Cambiamos el mensaje del altavoz
+		ascensor.setMensajeAltavoz(" ");
 	}
 
 	//Función de movimiento del ascensor en este estado
 	@Override
 	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino) {
-
 		//mover el ascensor
 		ascensor.setAscensor_estado(new MoviendoAscensor()); 
 		
 		return null;
-
 	}
 
 	//Función de la acción a realizar al activar la alarma estando en este estado
@@ -46,6 +52,11 @@ public class ParadoCerrado implements State{
 		//Directamente despues de estar en el estado abriendo, cambiamos de estado abriendo a abierto
 		//Para simular lo que tarda una puerta en abrirse 
 		ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);
+		
+		
+		//---------------------------------------------------
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		//---------------------------------------------------		
 	}
-	
 }

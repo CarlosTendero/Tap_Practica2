@@ -189,7 +189,7 @@
 
 @-webkit-keyframes valo-animate-out-slide-left {
 		100% {
-		-webkit-transform: translateX(-100%);
+		-webkit-transform: translateX(-100%);label
 	}
 	}
 
@@ -1148,6 +1148,9 @@
 
 .v-scrollable {
 	overflow: auto;
+
+	background-color: #E2E7EA;
+
 }
 
 .v-scrollable  > .v-widget {
@@ -15426,4 +15429,73 @@ div.v-layout.v-horizontal.v-widget {
 	display: inline-block;
 	width: 19px;
 	overflow: hidden;
+
+}
+
+
+.mytheme .estiloTab .v-gridlayout-slot {	
+	border: 1px solid #bbbbbb2e;
+	text-align: center;
+}
+
+
+.mytheme .estiloTab .v-gridlayout-slot img {
+	width: 15em;
+	margin: auto;
+	display: block;
+}
+
+.mytheme .miBoton {
+	width: 3em;
+	height: 3em;
+	display: block;
+	margin: auto;
+}
+
+.mytheme .estiloTabPlanta .v-gridlayout-slot{
+	border: 0.1px solid #bbbbbb2e;
+	text-align: center;
+}
+
+.mytheme .estiloTabPlanta .v-gridlayout-slot img{
+	width: 15em;
+	margin: auto;
+	display: block;
+}
+
+.mytheme .miBotonEmergencia {
+	width: 3em;
+	height: 3em;
+	display: block;
+	margin: auto;
+}
+
+.mytheme .miBotonPB{
+	width: 3em;
+	height: 3em;
+	display: block;
+	margin: auto;
+	padding: 0.1em 0em;
+}
+
+.mytheme .botonLlamar{
+    margin: auto;
+    margin-top: 2.5em;
+    vertical-align: middle;
+}
+
+.mytheme .jacinta{
+	font-weight: bold;
+}
+
+.mytheme .altavoz{
+	text-align: center;
+}
+
+.mytheme .lineavacia{
+	margin: 0.5em;
+}
+
+.mytheme .lineavacia2{
+	margin: 2em;
 }
