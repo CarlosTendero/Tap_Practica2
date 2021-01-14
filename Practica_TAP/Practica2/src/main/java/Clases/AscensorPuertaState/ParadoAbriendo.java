@@ -18,21 +18,24 @@ public class ParadoAbriendo implements State{
 		ascensor.setMensajeAltavoz("Abriendo Puertas");
 		//Informamos a los observers de que hemos cambiado el estado del ascensor.
 		ascensor.notifyAllObservers(ascensor);
-		/*
+		
 		//Tiempo - Funciona?
+		/*
         try {
         	//Duerme el programa 1 segundo
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         */
+		//ascensor.setMensajeAltavoz("Puerta Abiertas");
+		
         //Cambiamos el estado del ascensor a ParadoAbierto (ya se ha abierto completamente)
 		ascensor.setAscensor_estado(new ParadoAbierto());
 		//Cambiamos el string del estado del ascensor.
 		ascensor.setAscensor_puerta("Parado Abierto");
 		//Cambiamos el mensaje del altavoz
-		ascensor.setMensajeAltavoz("");
+
 		//Informamos a los observers de que hemos cambiado el estado del ascensor.
 		ascensor.notifyAllObservers(ascensor);
 		//Llamamos a continuar el movimiento del ascensor.

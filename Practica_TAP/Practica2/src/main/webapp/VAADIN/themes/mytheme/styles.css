@@ -189,7 +189,7 @@
 
 @-webkit-keyframes valo-animate-out-slide-left {
 		100% {
-		-webkit-transform: translateX(-100%);
+		-webkit-transform: translateX(-100%);label
 	}
 	}
 
@@ -1148,7 +1148,13 @@
 
 .v-scrollable {
 	overflow: auto;
+<<<<<<< HEAD
 	background-color: #E2E7EA;
+=======
+
+	background-color: #E2E7EA;
+
+>>>>>>> Belen
 }
 
 .v-scrollable  > .v-widget {
@@ -15427,6 +15433,7 @@ div.v-layout.v-horizontal.v-widget {
 	display: inline-block;
 	width: 19px;
 	overflow: hidden;
+
 }
 
 
@@ -15481,6 +15488,10 @@ div.v-layout.v-horizontal.v-widget {
     vertical-align: middle;
 }
 
+.mytheme .jacinta{
+	font-weight: bold;
+}
+
 .mytheme .altavoz{
 	text-align: center;
 }
@@ -15490,5 +15501,9 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .lineavacia2{
+<<<<<<< HEAD
 	margin:1.5em;
+=======
+	margin: 2em;
+>>>>>>> Belen
 }

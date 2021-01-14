@@ -3,29 +3,20 @@ package PracticaTAP2_20202021;
 import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 
-import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.ClassResource;
 import com.vaadin.server.Resource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.Registration;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
-import com.vaadin.ui.InlineDateField;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TabSheet;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.renderers.ComponentRenderer;
-
 import Clases.Ascensor;
 import Clases.Edificio;
 
@@ -65,6 +56,9 @@ public class MyUI extends UI {
 	//Variables de la planta.
 	private static int planta_Actual = 0;
 	
+	
+	private static int ascensor_Actual = 0;
+	
 	//Variable de edificio.
 	private static Edificio edificio = new Edificio();
 
@@ -86,8 +80,6 @@ public class MyUI extends UI {
         //Creamos el gridlayout.
         GridLayout tab1 = new GridLayout(3,4);
         //Modificaciones del ancho y alto del MyUI sin el css.
-        //tab1.setWidth("80%");
-        //tab1.setHeight("80%");
         tab1.setMargin(true);
         tab1.addStyleName("estiloTab");
     	tabsheet.addTab(tab1, "Panel de control");
@@ -111,148 +103,14 @@ public class MyUI extends UI {
 			PC_estadoEmergenciaAscensores.add(label2);
         	tab1.addComponent(label2, i, 3);
         }
-        
-    	//-------------------------------------------------------------------------
-        //PESTAÑA 2: Cabina del ascensor.
-        //-------------------------------------------------------------------------
-        
-    	//Creamos el gridlayout.
-    	GridLayout tab2 = new GridLayout(13, 13);
-        tab2.setMargin(true);
-    	tabsheet.addTab(tab2, "Cabina ascensor");
-    	  	    	
-        //Piso actual
-		for(int i= 0; i < 3; i++) {
-			 Label display_A1 = new Label("Piso actual: " + edificio.getAscensores().get(i).getPlanta_actual());
-		     CA_pisoActualAscensores.add(display_A1);
-		     tab2.addComponent(display_A1, 0+(i*4), 0, 2+(i*4), 0);
-		}
-		/*
-        Label display_A1 = new Label("Piso actual:" + edificio.getAscensores().get(0).getPlanta_actual());
-        CA_pisoActualAscensores.add(display_A1);
-        tab2.addComponent(display_A1, 0, 0, 2, 0);
-        
-        Label display_A2 = new Label("Piso actual:" + edificio.getAscensores().get(1).getPlanta_actual());
-        CA_pisoActualAscensores.add(display_A2);
-        tab2.addComponent(display_A2, 3, 0, 5, 0);
-        
-        Label display_A3 = new Label("Piso actual:" + edificio.getAscensores().get(2).getPlanta_actual());
-        CA_pisoActualAscensores.add(display_A3);
-        tab2.addComponent(display_A3, 6, 0, 8, 0);
-        */
-		
-        //Display Ascensores  ----> En principio no ponemos nombre a los ascensores.
-        //tab2.addComponent(new Label("Ascensor 1"), 0, 4, 2, 4);
-        //tab2.addComponent(new Label("Ascensor 2"), 3, 4, 5, 4);
-        //tab2.addComponent(new Label("Ascensor 3"), 6, 4, 8, 4);
 
-        //--------------ASCENSOR 1-----------------
-
-       
-        
-        //--------------ASCENSOR 2-----------------     
-        
-        //Botonera 1-6
-        int boton=1;
-        for (int fila= 1; fila < 3; fila++) {
-            for (int col=4; col < 7; col++) {
-                Button button = new Button(""+boton);         		
-                button.addStyleName("miBoton");
-                button.addClickListener(event ->{
-                	edificio.getAscensores().get(1).anyadirDestino(Integer.parseInt(button.getCaption()));
-                });
-                tab2.addComponent(button, col, fila);
-                boton++;
-            }
-        }  
-        
-        for (int fila = 1; fila <4; fila++ ) {
-        	Label label = new Label("");
-        	label.addStyleName("lineavacia");
-        	tab2.addComponent(label, 7, fila);
-        }
-        //Boton abrir
-        Button abrirPeta2 = new Button("<>");
-        abrirPeta2.addStyleName("miBoton");
-
-        abrirPeta2.addClickListener(event ->{
-        	edificio.getAscensores().get(1).cambiarEstadoPuerta();
-        });
-        tab2.addComponent(abrirPeta2, 4, 3);
-
-        //Planta baja
-        Button pb2 = new Button("PB");
-	    pb2.addStyleName("miBotonPB");
-        pb2.addClickListener(event ->{
-        	edificio.getAscensores().get(1).anyadirDestino(0);
-        });
-        tab2.addComponent(pb2, 5, 3);
-        
-        //Emergencia
-        Button emergencia2 = new Button("🔔");
-	    emergencia2.addStyleNames("miBotonEmergencia");
-        emergencia2.addClickListener(event ->{
-        	edificio.getAscensores().get(1).activarAlarma();
-        	System.out.println("Alarma 2");
-
-        });
-        tab2.addComponent(emergencia2, 6, 3);
-        
-        //--------------ASCENSOR 3-----------------        
-        
-        //Botonera 1-6
-        boton=1;
-        for (int fila= 1; fila < 3; fila++) {
-            for (int col=8; col < 11; col++) {
-                Button button = new Button(""+boton);
-        		button.addStyleName("miBoton");
-                button.addClickListener(event ->{
-                	edificio.getAscensores().get(2).anyadirDestino(Integer.parseInt(button.getCaption()));
-                });
-                tab2.addComponent(button, col, fila);
-                boton++;
-            }
-        }  
-        //Boton abrir
-        Button abrirPeta3 = new Button("<>");
-        abrirPeta3.addStyleName("miBoton");
-        abrirPeta3.addClickListener(event ->{
-        	edificio.getAscensores().get(2).cambiarEstadoPuerta();
-    		ActualizarCaptions();
-        });
-        tab2.addComponent(abrirPeta3, 8, 3);
-
-        //Planta baja
-        Button pb3 = new Button("PB");
-	    pb3.addStyleName("miBotonPB");
-        pb3.addClickListener(event ->{
-        	edificio.getAscensores().get(2).anyadirDestino(0);
-    		ActualizarCaptions();
-        });
-        tab2.addComponent(pb3, 9, 3);
-        
-        //Emergencia
-        Button emergencia3 = new Button("🔔");
-	    emergencia3.addStyleNames("miBotonEmergencia");
-        emergencia3.addClickListener(event ->{
-        	edificio.getAscensores().get(2).activarAlarma();
-        	System.out.println("Alarma 3");
-    		ActualizarCaptions();
-        });
-        tab2.addComponent(emergencia3, 10, 3);
-        
-        for (int fila = 1; fila <4; fila++ ) {
-        	Label label = new Label("");
-        	label.addStyleName("lineavacia");
-        	tab2.addComponent(label, 11, fila);
-        }
                 
         //-------------------------------------------------------------------------
-        //PESTAÑA 3: Planta.
+        //PESTAÑA 2: Planta.
         //-------------------------------------------------------------------------
         
     	//Creamos el gridlayout.
-        GridLayout tab3 = new GridLayout(13, 13);
+        GridLayout tab3 = new GridLayout(13, 24);
         tab3.addStyleName("estiloTabPlanta");
         tab3.setMargin(true);
         tabsheet.addTab(tab3, "Planta");
@@ -262,78 +120,90 @@ public class MyUI extends UI {
         Label altavoz = new Label("🔊");
         altavoz.addStyleName("altavoz");
         altavoz.setSizeFull();
-        //Funcionará?lo de abajo el igual.
         PL_MensajeAltavoz = altavoz;
-        tab3.addComponent(altavoz, 0, 0, 5, 0);
+        tab3.addComponent(altavoz, 0, 2, 8, 2);
         
        //Display
        for(int i= 0; i < 3 ; i++) {
     	   Label label3 = new Label("Piso actual: " + edificio.getAscensores().get(i).getPlanta_actual());
     	   PL_pisoActualAscensores.add(label3); 
-    	   tab3.addComponent(label3, i*2, 1);
+    	   tab3.addComponent(label3, i*2, 3);
         }	 
        
        //Emergencia
        for(int i= 0; i < 3 ; i++) {
     	   Label label4 = new Label("✓");
     	   PL_estadoEmergenciaAscensores.add(label4);
-    	   tab3.addComponent(label4, (i*2)+1, 1);
+    	   tab3.addComponent(label4, (i*2)+1, 3);
        }
 
         //Ascensores
         for(int i= 0; i < 6; i+=2) {
-        	tab3.addComponent(new Image(null, res1), i, 2);
+        	tab3.addComponent(new Image(null, res1), i, 4);
         }  
         
-        //Llamar ascensor
-        //int ascensorx = 1;
-        int[] ascensor_final = {};
+
 
         //Lista con los botones de la planta actual y sus registration.
     	ArrayList<Button> botonesPlanta = new ArrayList<Button>();
     	ArrayList<Registration> botonesPlanta_Registration = new ArrayList<Registration>();
 
+
         //Botones para llamar a los ascensores de la planta actual.
     	
     	//Button 1
-    	Button boton1 = new Button("1");
+    	Button boton1 = new Button("🔴");
         boton1.addStyleName("botonLlamar");
     	        	
         botonesPlanta_Registration.add(boton1.addClickListener(event ->{
     		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(0));
+    		
+    		ascensor_Actual = 0;
+    		
     		System.out.println(planta_Actual);
     		ActualizarCaptions();
     	}));
         botonesPlanta.add(boton1);
-    	tab3.addComponent(boton1, 1, 2);
+    	tab3.addComponent(boton1, 1, 4);
     	
     	//Button 2
-    	Button boton2 = new Button("2");
+    	Button boton2 = new Button("🔴");
         boton2.addStyleName("botonLlamar");
     	        	
         botonesPlanta_Registration.add(boton2.addClickListener(event ->{
     		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(1));
+    		
+    		ascensor_Actual = 1;
+
+    		
     		System.out.println(planta_Actual);
     		ActualizarCaptions();
     	}));
         botonesPlanta.add(boton2);
-    	tab3.addComponent(boton2, 3, 2);
+    	tab3.addComponent(boton2, 3, 4);
     	
     	//Button 3
-    	Button boton3 = new Button("3");
+    	Button boton3 = new Button("🔴");
         boton3.addStyleName("botonLlamar");
     	        	
         botonesPlanta_Registration.add(boton3.addClickListener(event ->{
     		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(2));
+    		
+    		ascensor_Actual = 2;
+
+    		
     		System.out.println(planta_Actual);
     		ActualizarCaptions();
     	}));
 
         botonesPlanta.add(boton3);
-    	tab3.addComponent(boton3, 5, 2);
+    	tab3.addComponent(boton3, 5, 4);
         
+
         //Selección de la planta modificar 
-        Label planta = new Label("Estamos en la planta 0");
+        Label planta = new Label("Estamos en la planta baja");
+        //Siento el nombre pero es que no funcionaba con otro nombre tal y como label_planta
+        planta.addStyleName("jacinta");
 
         //Selección de la planta
         Button planta0 = new Button("Planta Baja");
@@ -351,7 +221,7 @@ public class MyUI extends UI {
         //Y así llamar al ascensor a la planta actual.
         //Se elimina el registration con remove() y se añade el clicklistener al boton.
         
-        
+ 
         
         //Al pulsar el piso 0.
         planta0.addClickListener(event ->{
@@ -404,35 +274,36 @@ public class MyUI extends UI {
         Label label = new Label("");
         label.addStyleName("lineavacia2");
         
-        tab3.addComponent(planta0, 0,5);
-        tab3.addComponent(planta1, 1,5);
-        tab3.addComponent(planta2, 2,5);
-        tab3.addComponent(planta3, 3,5);
-        tab3.addComponent(planta4, 4,5);
-        tab3.addComponent(planta5, 5,5);
-        tab3.addComponent(planta6, 7,5);
-        tab3.addComponent(label, 6,5);
-        tab3.addComponent(planta,0,7, 7,7);   
-        
-        GridLayout botonera1 = new GridLayout(5,5);
+        tab3.addComponent(planta0, 0,0);
+        tab3.addComponent(planta1, 1,0);
+        tab3.addComponent(planta2, 2,0);
+        tab3.addComponent(planta3, 3,0);
+        tab3.addComponent(planta4, 4,0);
+        tab3.addComponent(planta5, 5,0);
+        tab3.addComponent(planta6, 7,0);
+        tab3.addComponent(label, 6,0);
+        tab3.addComponent(planta,0,1, 7,1); 
+
+        //--------------ASCENSOR 1-----------------
+    	
+    	Label labelnew = new Label("");
+    	labelnew.addStyleName("lineavacia");
+    	tab3.addComponent(labelnew, 0, 5, 11, 5);
+
         //Botonera 1-6
-        boton=1;
-        for (int fila= 1; fila < 3; fila++) {
+        int boton=1;
+        GridLayout botonera = new GridLayout(4,4);
+        for (int fila= 0; fila < 2; fila++) {
             for (int col=0; col < 3; col++) {
                 Button button = new Button(""+boton); 
         		button.addStyleName("miBoton");
                 button.addClickListener(event ->{
                 	edificio.getAscensores().get(0).anyadirDestino(Integer.parseInt(button.getCaption()));
                 });
-                botonera1.addComponent(button, col, fila);
+                botonera.addComponent(button, col, fila);
                 boton++;
             }
         } 
-        for (int fila = 1; fila <4; fila++ ) {
-        	Label label1 = new Label("");
-        	label.addStyleName("lineavacia");
-        	botonera1.addComponent(label1, 3, fila);
-        }
 
         //Boton abrir/cerrar
         Button abrirPeta = new Button("<>");
@@ -440,7 +311,7 @@ public class MyUI extends UI {
         abrirPeta.addClickListener(event ->{
         	edificio.getAscensores().get(0).cambiarEstadoPuerta();
         });
-        botonera1.addComponent(abrirPeta, 0, 3);
+        botonera.addComponent(abrirPeta, 0, 2);
 
         //Planta baja
         Button pb = new Button("PB");
@@ -448,18 +319,106 @@ public class MyUI extends UI {
         pb.addClickListener(event ->{
         	edificio.getAscensores().get(0).anyadirDestino(0);
         });
-        botonera1.addComponent(pb, 1, 3);
+        botonera.addComponent(pb, 1, 2);
         
         //Emergencia
         Button emergencia = new Button("🔔");
 	    emergencia.addStyleNames("miBotonEmergencia");
         emergencia.addClickListener(event ->{
         	edificio.getAscensores().get(0).activarAlarma();
-        	System.out.println("Alarma 1");
         });
-        botonera1.addComponent(emergencia, 2,3);     
+        botonera.addComponent(emergencia, 2,2);
+        
+        tab3.addComponent(botonera, 0, 9);
+        
+        //--------------ASCENSOR 2-----------------     
+        
+        //Botonera 1-6
+        boton=1;
+        GridLayout botonera2 = new GridLayout(4,4);
+        for (int fila= 0; fila < 2; fila++) {
+            for (int col=0; col < 3; col++) {
+                Button button = new Button(""+boton);         		
+                button.addStyleName("miBoton");
+                button.addClickListener(event ->{
+                	edificio.getAscensores().get(1).anyadirDestino(Integer.parseInt(button.getCaption()));
+                });
+                botonera2.addComponent(button, col, fila);
+                boton++;
+            }
+        }  
+        //Boton abrir
+        Button abrirPeta2 = new Button("<>");
+        abrirPeta2.addStyleName("miBoton");
 
-        tab3.addComponent(botonera1, 0,8);
+        abrirPeta2.addClickListener(event ->{
+        	edificio.getAscensores().get(1).cambiarEstadoPuerta();
+        });
+        botonera2.addComponent(abrirPeta2, 0, 2);
+
+        //Planta baja
+        Button pb2 = new Button("PB");
+	    pb2.addStyleName("miBotonPB");
+        pb2.addClickListener(event ->{
+        	edificio.getAscensores().get(1).anyadirDestino(0);
+        });
+        botonera2.addComponent(pb2, 1, 2);
+        
+        //Emergencia
+        Button emergencia2 = new Button("🔔");
+	    emergencia2.addStyleNames("miBotonEmergencia");
+        emergencia2.addClickListener(event ->{
+        	edificio.getAscensores().get(1).activarAlarma();
+        });
+        botonera2.addComponent(emergencia2, 2, 2);
+        
+        tab3.addComponent(botonera2, 2, 9);
+        
+        //--------------ASCENSOR 3-----------------        
+        
+      //Botonera 1-6
+        boton=1;
+        GridLayout botonera3 = new GridLayout(4,4);
+        for (int fila= 0; fila < 2; fila++) {
+            for (int col=0; col < 3; col++) {
+                Button button = new Button(""+boton);         		
+                button.addStyleName("miBoton");
+                button.addClickListener(event ->{
+                	edificio.getAscensores().get(2).anyadirDestino(Integer.parseInt(button.getCaption()));
+                });
+                botonera3.addComponent(button, col, fila);
+                boton++;
+            }
+        }  
+        //Boton abrir
+        Button abrirPeta3 = new Button("<>");
+        abrirPeta3.addStyleName("miBoton");
+
+        abrirPeta3.addClickListener(event ->{
+        	edificio.getAscensores().get(2).cambiarEstadoPuerta();
+        });
+        botonera3.addComponent(abrirPeta3, 0, 2);
+
+        //Planta baja
+        Button pb3 = new Button("PB");
+	    pb3.addStyleName("miBotonPB");
+        pb3.addClickListener(event ->{
+        	edificio.getAscensores().get(2).anyadirDestino(0);
+        });
+        botonera3.addComponent(pb3, 1, 2);
+        
+        //Emergencia
+        Button emergencia3 = new Button("🔔");
+	    emergencia3.addStyleNames("miBotonEmergencia");
+        emergencia3.addClickListener(event ->{
+        	edificio.getAscensores().get(2).activarAlarma();
+        });
+        botonera3.addComponent(emergencia3, 2, 2);
+        
+        tab3.addComponent(botonera3, 4, 9);
+
+        
+        
         //ESTO VA LO ÚLTIMO.
         setContent(layout);
     }
@@ -473,11 +432,14 @@ public class MyUI extends UI {
 			PC_estadoEmergenciaAscensores.get(i).setValue("Estado emergencia "+ edificio.getAscensores().get(i).getEmergencia());
         }
 		
+
 		//Actualizamos la pestaña Cabina ascensores.
+		/*
 		for(int i= 0; i < 3; i++) {
 			CA_pisoActualAscensores.get(i).setValue("Piso actual:" + edificio.getAscensores().get(i).getPlanta_actual());
-		}
+		}*/
 		
+
 		//Actualizamos la pestaña plantas.
 		for(int i= 0; i < 3; i++) {
 			PL_pisoActualAscensores.get(i).setValue("Piso actual: " + edificio.getAscensores().get(i).getPlanta_actual());
@@ -489,7 +451,10 @@ public class MyUI extends UI {
 				PL_estadoEmergenciaAscensores.get(i).setValue(sinEmergencia.getValue());		
 		}	
 
-		PL_MensajeAltavoz.setValue("🔊: "+ edificio.getPlantas().get(planta_Actual).getAltavoz().getAltavoz());
+		if( edificio.getAscensores().get(ascensor_Actual).getMensajeAltavoz()!= null)
+			PL_MensajeAltavoz.setValue("🔊: "+ edificio.getAscensores().get(ascensor_Actual).getMensajeAltavoz());
+		else			
+			PL_MensajeAltavoz.setValue("🔊: "+ "Aun no ha llamado ningun ascensor");
 		
 		//Refresh all please <3.
 		//It doesn't refresh... :(

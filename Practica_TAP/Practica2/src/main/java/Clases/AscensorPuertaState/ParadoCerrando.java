@@ -34,7 +34,7 @@ public class ParadoCerrando implements State{
 		//Cambiamos el string del estado del ascensor.
 		ascensor.setAscensor_puerta("Parado Cerrado");
 		//Cambiamos el mensaje del altavoz
-		ascensor.setMensajeAltavoz("");
+		//ascensor.setMensajeAltavoz("Puertas Cerradas");
 		
         //Informamos a los observers de que hemos cambiado el estado del ascensor.
 		ascensor.notifyAllObservers(ascensor);
