@@ -1148,7 +1148,7 @@
 
 .v-scrollable {
 	overflow: auto;
-	background-color: #e2e7ea;
+	background-color: #E2E7EA;
 }
 
 .v-scrollable  > .v-widget {
@@ -15429,6 +15429,7 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 }
 
+
 .mytheme .estiloTab .v-gridlayout-slot {	
 	border: 1px solid #bbbbbb2e;
 	text-align: center;
@@ -15483,4 +15484,3 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme .altavoz{
 	text-align: center;
 }
-
