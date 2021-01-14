@@ -20,11 +20,14 @@ public class ParadoAbierto implements State{
 
 		ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);		
 		//Lista de observers a quien informar el cambio de estado de la puerta.
-	}
-	
-	//Constructor. Para definir la lista de observers.
-	public ParadoAbierto(/*Pasarle como referencia la lista de observers*/) {
-		//Lista de observers = 
+		
+		//---------------------------------------------------
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		//---------------------------------------------------
+
+		//Cambiamos el mensaje del altavoz
+		ascensor.setMensajeAltavoz(" ");
 	}
 	
 
@@ -42,7 +45,11 @@ public class ParadoAbierto implements State{
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
 
 		//No hacer nada, la persona sale del ascensor sin más
-		
+		//Se activa o no se activa la emergencia? Independientemente de que haga algo.
+		//---------------------------------------------------
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		//---------------------------------------------------
 	}
 
 }

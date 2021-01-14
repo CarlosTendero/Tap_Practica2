@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import Clases.Impl.Observer;
 
+import PracticaTAP2_20202021.MyUI;
+
 public class PanelControl extends Observer implements Clases.Impl.PanelControlImpl{
 	//--------------------------------------------------------------
 	//Atributos
@@ -40,5 +42,8 @@ public class PanelControl extends Observer implements Clases.Impl.PanelControlIm
 		pisoActualAscensores.set(ascensor.getNumAscensor(), ascensor.getPlanta_actual());
 		emergenciaActualAscensores.set(ascensor.getNumAscensor(), ascensor.getEmergencia());
 		estadoActualAscensores.set(ascensor.getNumAscensor(), ascensor.getPuerta_estado());
+
+		MyUI.ActualizarCaptions();
+
 	}
 }
