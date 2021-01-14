@@ -2,6 +2,8 @@ package Clases;
 
 import java.util.ArrayList;
 
+import PracticaTAP2_20202021.MyUI;
+
 public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaImpl{
 
 	//--------------------------------------------------------------
@@ -11,7 +13,8 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 	private ArrayList<Integer> pisoActualAscensores;
 	private ArrayList<Boolean> emergenciaActualAscensores;
 	private int numPlanta;		//Identificador de la planta actual.
-
+	private Altavoz altavoz;
+	
 	//--------------------------------------------------------------
 	//Constructor
 	//--------------------------------------------------------------
@@ -26,7 +29,13 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 		for(int i = 0; i < ascensores.size(); i++) {
 			this.pisoActualAscensores.add(ascensores.get(i).getPlanta_actual());
 			this.emergenciaActualAscensores.add(ascensores.get(i).getEmergencia());
-		}
+		}	
+		this.altavoz.setAltavoz(" ");
+	}
+	
+	//Getter de la variable altavoz
+	public Altavoz getAltavoz() {
+		return this.altavoz;
 	}
 	
 	//--------------------------------------------------------------
@@ -42,13 +51,7 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 	public void update(Ascensor ascensor) {
 		pisoActualAscensores.set(ascensor.getNumAscensor(), ascensor.getPlanta_actual());
 		emergenciaActualAscensores.set(ascensor.getNumAscensor(), ascensor.getEmergencia());
-		//UpdateMyUI();
+		altavoz.setAltavoz(ascensor.getMensajeAltavoz());
+		MyUI.ActualizarCaptions();
 	}
-	
-	//public Object[] Update MyUI (){
-	//return (pisoActualAscensores, emergenciaActualAscensores)
-	//}
-
-	//Deberíamos revisar esta clase
-
 }

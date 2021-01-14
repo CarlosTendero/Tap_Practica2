@@ -19,7 +19,8 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	//No sabemos si hace falta
 	private boolean emergencia;
 	private int numAscensor; 		//Identificador del ascensor.
-	private String mensaje_Altavoz;
+
+	private String mensaje_altavoz;
 
 	//--------------------------------------------------------------
 	//Constructor
@@ -103,6 +104,13 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 		return numAscensor;
 	}
 	
+	public String getMensajeAltavoz() {
+		return mensaje_altavoz;
+	}
+	
+	public void setMensajeAltavoz(String mensaje_altavoz) {
+		this.mensaje_altavoz = mensaje_altavoz;
+	}
 
 	//--------------------------------------------------------------
 	//Funciones de ascensor.

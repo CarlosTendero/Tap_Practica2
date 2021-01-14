@@ -3,8 +3,8 @@ package Clases;
 import java.util.ArrayList;
 
 import Clases.Impl.Observer;
+
 import PracticaTAP2_20202021.MyUI;
-import PracticaTAP2_20202021.MyUI.MyUIServlet;
 
 public class PanelControl extends Observer implements Clases.Impl.PanelControlImpl{
 	//--------------------------------------------------------------
@@ -45,9 +45,3 @@ public class PanelControl extends Observer implements Clases.Impl.PanelControlIm
 		MyUI.ActualizarCaptions();
 	}
 }
-
-
-
-
-
-

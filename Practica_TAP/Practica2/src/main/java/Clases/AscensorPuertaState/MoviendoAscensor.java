@@ -13,8 +13,10 @@ public class MoviendoAscensor implements State {
 	public void cambiarEstadoPuerta(Ascensor ascensor) {
 
 		System.out.println("Espera que te estas moviendo");
-		/* Ayuda */
 		// No hacer nada.
+		
+		//Cambiamos el mensaje del altavoz
+		ascensor.setMensajeAltavoz(" ");
 	}
 
 
@@ -62,7 +64,7 @@ public class MoviendoAscensor implements State {
 	//Función de acción de la alarma al ser activada
 	@Override
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {		
-		
+
 		//---------------------------------------------------
 		//Informamos a los observers de que hemos cambiado el estado del ascensor.
 		ascensor.notifyAllObservers(ascensor);

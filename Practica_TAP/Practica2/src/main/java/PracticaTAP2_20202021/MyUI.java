@@ -55,14 +55,15 @@ public class MyUI extends UI {
 	private static ArrayList<Label> PL_pisoActualAscensores = new ArrayList<Label>();
 	private static ArrayList<Label> PL_estadoEmergenciaAscensores = new ArrayList<Label>();
 	private static ArrayList<Label> PL_MensajeAltavoz = new ArrayList<Label>();
-
+     
 	@Override
     protected void init(VaadinRequest vaadinRequest) {
     	
 		Edificio edificio = new Edificio();
 
-		//Creación del layout y de la tabsheet	
+		//Creación del layout y de la tabsheet. Era final horizontal antes.	
     	HorizontalLayout layout = new HorizontalLayout();	
+
         TabSheet tabsheet = new TabSheet();
         
         //Creamos las distintas pestañas.
@@ -90,6 +91,7 @@ public class MyUI extends UI {
         	Label label1 = new Label(""+ edificio.getAscensores().get(i).getPuerta_estado());
         	PC_estadoAscensores.add(label1);
         	tab1.addComponent(label1, i, 2);
+
         }
         
         //Añadimos el estado de emergencia.
@@ -303,7 +305,7 @@ public class MyUI extends UI {
         }
         //Selección de la planta modificar 
         Label planta = new Label("Estamos en la planta 0");
-        
+
         //Selección de la planta
         Button planta0 = new Button("Planta 0");
         Button planta1 = new Button("Planta 1");

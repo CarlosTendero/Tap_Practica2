@@ -21,6 +21,8 @@ public class ParadoCerrando implements State{
 		ascensor.notifyAllObservers(ascensor);
 		//---------------------------------------------------
 		
+		//Cambiamos el mensaje del altavoz
+		ascensor.setMensajeAltavoz("Cerrando");
 	}
 
 	//Función de movimiento del ascensor
