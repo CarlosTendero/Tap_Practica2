@@ -1,7 +1,6 @@
 package PracticaTAP2_20202021;
 
 import java.util.ArrayList;
-
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
@@ -46,8 +45,12 @@ public class MyUI extends UI {
     	
 		Edificio edificio = new Edificio();
 		
+		//Arrays de elementos en los que vamos a guardar los labels que van a ir cambiando.
+		ArrayList<Label> estadoAscensores = new ArrayList<Label>();
+    	ArrayList<Label> estadoEmergenciaAscensores = new ArrayList<Label>();
+	
 		//Creación del layout y de la tabsheet	
-    	final HorizontalLayout layout = new HorizontalLayout();	
+    	HorizontalLayout layout = new HorizontalLayout();	
         TabSheet tabsheet = new TabSheet();
         
         //Creamos las distintas pestañas.
@@ -71,13 +74,17 @@ public class MyUI extends UI {
         //Añadimos los ascensores y su estado.
         for(int i= 0; i < 3; i++) {
         	tab1.addComponent(new Image(null, res1), i, 0);
-        	tab1.addComponent(new Label("Estado: "+ edificio.getAscensores().get(i).getPuerta_estado()), i, 1);
-        	tab1.addComponent(new Label("Estado A"+i), i, 2);
+        	tab1.addComponent(new Label("Estado Ascensor "+i), i, 1);
+        	Label label1 = new Label(""+ edificio.getAscensores().get(i).getPuerta_estado());
+        	estadoAscensores.add(label1);
+        	tab1.addComponent(label1, i, 2);
         }
         
         //Añadimos el estado de emergencia.
         for(int i= 0; i < 3; i++) {
-        	tab1.addComponent(new Label("Estado emergencia "+ edificio.getAscensores().get(i).getEmergencia() ), i, 3);
+        	Label label2 = new Label("Estado emergencia "+ edificio.getAscensores().get(i).getEmergencia());
+			estadoEmergenciaAscensores.add(label2);
+        	tab1.addComponent(label2, i, 3);
         }
         
     	//-------------------------------------------------------------------------
@@ -263,8 +270,10 @@ public class MyUI extends UI {
         for(int i= 0; i < 6; i+=2) {
         	tab3.addComponent(new Image(null, res1), i, 2);
         }  
+        
         //Llamar ascensor
         int ascensorx = 1;
+        
         //Lista con los botones de la planta actual y sus registration.
     	ArrayList<Button> botonesPlanta = new ArrayList<Button>();
     	ArrayList<Registration> botonesPlanta_Registration = new ArrayList<Registration>();
@@ -282,6 +291,7 @@ public class MyUI extends UI {
         }
         //Selección de la planta modificar 
         Label planta = new Label("Estamos en la planta 0");
+        
         //Selección de la planta
         Button planta0 = new Button("Planta 0");
         Button planta1 = new Button("Planta 1");
@@ -416,25 +426,6 @@ public class MyUI extends UI {
         		edificio.getPlantas().get(6).llamarAscensor(edificio.getAscensores().get(2));
 			});
         });
-        /*
-        planta1.addClickListener(event ->{
-        planta.setValue("Estamos en la planta 1");
-        });
-        planta2.addClickListener(event ->{
-        planta.setValue("Estamos en la planta 2");
-        });
-        planta3.addClickListener(event ->{
-        planta.setValue("Estamos en la planta 3");
-        });
-        planta4.addClickListener(event ->{
-        planta.setValue("Estamos en la planta 4");
-        });
-        planta5.addClickListener(event ->{
-        planta.setValue("Estamos en la planta 5");
-        });
-        planta6.addClickListener(event ->{
-        planta.setValue("Estamos en la planta 6");
-        });*/
         
         tab3.addComponent(planta0, 0,3);
         tab3.addComponent(planta1, 0,4);
@@ -448,6 +439,10 @@ public class MyUI extends UI {
         //ESTO VA LO ÚLTIMO.
         setContent(layout);
     }
+	
+	public void ActualizarCaptions(ArrayList<Label> PPCestadoAscensores, ArrayList<Label> PPCestadoEmergenciaAscensores , ArrayList<Label> PPCpisoActualAscensores) {
+		
+	}
 
 	//Array List con los elementos web de vaadin que van a cambiar referenciados y pasarlos por parámetro al pulsar un boton. 
 	
