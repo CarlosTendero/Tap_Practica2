@@ -31,8 +31,7 @@ public class Edificio implements Clases.Impl.EdificioImpl{
 			for(int j=0; j<plantas.size();j++)
 				this.ascensores.get(i).attach(this.plantas.get(j));
 		 
-		} //Lo soluciona otro ---> OK.
-		
+		}
 	}
 	//--------------------------------------------------------------
 	//Setters y getters
