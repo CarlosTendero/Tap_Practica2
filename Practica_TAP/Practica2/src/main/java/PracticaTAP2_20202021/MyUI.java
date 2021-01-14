@@ -37,7 +37,7 @@ import Clases.Edificio;
  */
 
 @Theme("mytheme")
-//@StyleSheet("vaadin\\themes\\mytheme\\styles.css")
+@StyleSheet("vaadin\\themes\\mytheme\\styles.css")
 
 public class MyUI extends UI {
 
