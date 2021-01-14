@@ -11,6 +11,7 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 	private ArrayList<Integer> pisoActualAscensores;
 	private ArrayList<Boolean> emergenciaActualAscensores;
 	private int numPlanta;		//Identificador de la planta actual.
+	private Altavoz altavoz;
 
 	//--------------------------------------------------------------
 	//Constructor
@@ -27,6 +28,8 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 			this.pisoActualAscensores.add(ascensores.get(i).getPlanta_actual());
 			this.emergenciaActualAscensores.add(ascensores.get(i).getEmergencia());
 		}
+		
+		this.altavoz.setAltavoz(" ");
 	}
 	
 	//--------------------------------------------------------------
@@ -42,6 +45,7 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 	public void update(Ascensor ascensor) {
 		pisoActualAscensores.set(ascensor.getNumAscensor(), ascensor.getPlanta_actual());
 		emergenciaActualAscensores.set(ascensor.getNumAscensor(), ascensor.getEmergencia());
+		altavoz.setAltavoz(ascensor.getMensajeAltavoz());
 		//UpdateMyUI();
 	}
 	

@@ -30,6 +30,9 @@ public class ParadoAbriendo implements State{
 		//Informamos a los observers de que hemos cambiado el estado del ascensor.
 		ascensor.notifyAllObservers(ascensor);
 		//---------------------------------------------------	
+		
+		//Cambiamos el mensaje del altavoz
+		ascensor.setMensajeAltavoz("Abriendo");
 	}
 
 	//Función de movimiento del ascensor

@@ -13,8 +13,10 @@ public class MoviendoAscensor implements State {
 	public void cambiarEstadoPuerta(Ascensor ascensor) {
 
 		System.out.println("Espera que te estas moviendo");
-		/* Ayuda */
 		// No hacer nada.
+		
+		//Cambiamos el mensaje del altavoz
+		ascensor.setMensajeAltavoz(" ");
 	}
 
 
