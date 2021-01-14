@@ -15,6 +15,7 @@ public class ParadoAbierto implements State{
 		//Al pulsar el usuario cerrar puertas cambiamos el estado.
 		ascensor.setAscensor_estado(new ParadoCerrando());
 	
+		ascensor.setMensajeAltavoz("Cerrando puertas");
 		//Inmediatamente después, ejecutamos la función cambiarEstadoPuerta del nuevo estado (ParadoCerrando)
 		//Así simulamos la transición de la puerta de abierto a cerrado 
 		ascensor.getAscensor_estado().cambiarEstadoPuerta(ascensor);	

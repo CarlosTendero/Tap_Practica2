@@ -64,6 +64,9 @@ public class MyUI extends UI {
 	//Variables de la planta.
 	private static int planta_Actual = 0;
 	
+	
+	private static int ascensor_Actual = 0;
+	
 	//Variable de edificio.
 	private static Edificio edificio = new Edificio();
 
@@ -342,6 +345,9 @@ public class MyUI extends UI {
     	        	
         botonesPlanta_Registration.add(boton1.addClickListener(event ->{
     		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(0));
+    		
+    		ascensor_Actual = 0;
+    		
     		System.out.println(planta_Actual);
     		ActualizarCaptions();
     	}));
@@ -354,6 +360,10 @@ public class MyUI extends UI {
     	        	
         botonesPlanta_Registration.add(boton2.addClickListener(event ->{
     		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(1));
+    		
+    		ascensor_Actual = 1;
+
+    		
     		System.out.println(planta_Actual);
     		ActualizarCaptions();
     	}));
@@ -366,6 +376,10 @@ public class MyUI extends UI {
     	        	
         botonesPlanta_Registration.add(boton3.addClickListener(event ->{
     		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(2));
+    		
+    		ascensor_Actual = 2;
+
+    		
     		System.out.println(planta_Actual);
     		ActualizarCaptions();
     	}));
@@ -484,7 +498,10 @@ public class MyUI extends UI {
 				PL_estadoEmergenciaAscensores.get(i).setValue(sinEmergencia.getValue());		
 		}	
 
-		PL_MensajeAltavoz.setValue("🔊: "+ edificio.getPlantas().get(planta_Actual).getAltavoz().getAltavoz());
+		if( edificio.getAscensores().get(ascensor_Actual).getMensajeAltavoz()!= null)
+			PL_MensajeAltavoz.setValue("🔊: "+ edificio.getAscensores().get(ascensor_Actual).getMensajeAltavoz());
+		else			
+			PL_MensajeAltavoz.setValue("🔊: "+ "Aun no ha llamado ningun ascensor");
 		
 		//Refresh all please <3.
 		//It doesn't refresh... :(

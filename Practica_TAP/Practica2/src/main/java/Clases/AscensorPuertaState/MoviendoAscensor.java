@@ -17,7 +17,7 @@ public class MoviendoAscensor implements State {
 		// No hacer nada.
 		
 		//Cambiamos el mensaje del altavoz
-		ascensor.setMensajeAltavoz(" ");
+		ascensor.setMensajeAltavoz("1");
 	}
 
 	//Función de movimiento del ascensor
