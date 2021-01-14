@@ -45,7 +45,7 @@ public class MyUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
     	
 		Edificio edificio = new Edificio();
-				
+		
 		//Creación del layout y de la tabsheet	
     	final HorizontalLayout layout = new HorizontalLayout();	
         TabSheet tabsheet = new TabSheet();

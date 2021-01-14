@@ -6,6 +6,10 @@ public class Altavoz {
 	private String altavoz;
 
 	//Getters y setters
+	public Altavoz(String s) {
+		
+		this.altavoz = s;
+	}
 	
 	public String getAltavoz() {
 		return altavoz;

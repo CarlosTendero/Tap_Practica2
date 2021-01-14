@@ -29,7 +29,7 @@ public class Planta extends Clases.Impl.Observer implements Clases.Impl.PlantaIm
 			this.emergenciaActualAscensores.add(ascensores.get(i).getEmergencia());
 		}
 		
-		this.altavoz.setAltavoz(" ");
+		this.altavoz = new Altavoz(" ");
 	}
 	
 	//Getter de la variable altavoz
