@@ -64,10 +64,10 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	public boolean getEmergencia() { // Devuelve la emergencia
 		return emergencia;
 	}
-	public void setEmergencia(boolean emergencia) { // actualiza el valor de emergencia
+	public void setEmergencia(boolean emergencia) { 	// actualiza el valor de emergencia
 		this.emergencia = emergencia;
 	}
-	public ArrayList<Integer> getDestinos() { 		// Devuelve el array de destinos
+	public ArrayList<Integer> getDestinos() { 			// Devuelve el array de destinos
 		return destinos;
 	}
 	public int getPlanta_actual() {						// Devuelve la planta actual
@@ -115,12 +115,10 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 
 	//Función para activar la alarma
 	@Override
-	public void activarAlarma() {
+	public void activarAlarma() {							
 		// TODO Auto-generated method stub
-		
-		this.ascensor_estado.activarAlarma(this, emergencia);
-		
-		this.emergencia = true;
+		this.ascensor_estado.activarAlarma(this, emergencia);	// Cambio de estado
+		this.emergencia = true;									// Activamos la emergencia
 	}
 	//Función para añadir destinos secuencialmente a la ruta del ascensor
 	@Override
@@ -131,9 +129,6 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 			//Petición de que queremos movernos al estado actual.
 			this.moverAscensor(this.getDestinos().get(0)); 	// movemos el ascensor a dicho destino
 					// una vez hemos movido el ascensor a ese destino lo eliminamos
-
-		}
-		
+		}		
 	}
-
 }

@@ -39,38 +39,37 @@ public class Edificio{
 	//--------------------------------------------------------------
 	//Setters y getters
 	//--------------------------------------------------------------
-	public Edificio(ArrayList<Ascensor> ascensores, ArrayList<Planta> plantas) {
+	public Edificio(ArrayList<Ascensor> ascensores, ArrayList<Planta> plantas) {	
 		this.ascensores = ascensores;
 		this.plantas = plantas;
 	}
 	
-	public ArrayList<Ascensor> getAscensores() {
+	public ArrayList<Ascensor> getAscensores() {				// Devuelve el array de ascensores
 		return ascensores;
 	}
 	
-	public void setAscensores(ArrayList<Ascensor> ascensores) {
+	public void setAscensores(ArrayList<Ascensor> ascensores) {	// Actualiza el array de ascensores
 		this.ascensores = ascensores;
 	}
 	
-	public ArrayList<Planta> getPlantas() {
+	public ArrayList<Planta> getPlantas() {						// Devuelve el array de plantas
 		return plantas;
 	}
 	
-	public void setPlantas(ArrayList<Planta> plantas) {
+	public void setPlantas(ArrayList<Planta> plantas) {			// Actualiza el array de plantas
 		this.plantas = plantas;
 	}
 
-	public PanelControl getPanelControl() {
+	public PanelControl getPanelControl() {						// Devuelve el Panel de Control
 		return panelControl;
 	}
-	public void setPanelControl(PanelControl panelControl) {
+	public void setPanelControl(PanelControl panelControl) {	// Actualiza el Panel de Control
 		this.panelControl = panelControl;
 	}
-	
 	//--------------------------------------------------------------
 	//Funciones
 	//--------------------------------------------------------------
-	public static Edificio instancia() {
+	public static Edificio instancia() {						// Instancia para realizar el Singleton
         if(Edificio.instancia == null) {
             Edificio.instancia = new Edificio();
         }
