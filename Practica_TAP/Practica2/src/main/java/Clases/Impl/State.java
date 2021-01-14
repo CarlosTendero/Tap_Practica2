@@ -8,5 +8,5 @@ public interface State {
 	
 	void cambiarEstadoPuerta(Ascensor ascensor);
 	void moverAscensor(Ascensor ascensor, int Destino);
-	void activarAlarma(Ascensor ascensor, boolean emergencia);
+	void activarAlarma(Ascensor ascensor);
 }

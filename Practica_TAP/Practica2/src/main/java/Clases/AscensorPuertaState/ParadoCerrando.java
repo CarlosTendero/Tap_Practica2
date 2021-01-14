@@ -53,7 +53,7 @@ public class ParadoCerrando implements State{
 
 	//Función de acción a realizar al activar la alarma en este estado
 	@Override
-	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
+	public void activarAlarma(Ascensor ascensor) {
 		//Cambiar la alarma.
 		ascensor.setEmergencia(!ascensor.getEmergencia());
 		if(ascensor.getEmergencia()) {

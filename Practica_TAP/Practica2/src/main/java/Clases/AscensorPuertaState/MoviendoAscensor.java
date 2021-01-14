@@ -64,10 +64,10 @@ public class MoviendoAscensor implements State {
 
 	//Función de acción de la alarma al ser activada
 	@Override
-	public void activarAlarma(Ascensor ascensor, boolean emergencia) {		
-		
-		//Cambiar la alarma.
+	public void activarAlarma(Ascensor ascensor) {		
 		ascensor.setEmergencia(!ascensor.getEmergencia());
+		boolean emergencia = ascensor.getEmergencia();
+		//Cambiar la alarma.
 		if(ascensor.getEmergencia()) {
 			//Si es igual a la planta máxima bajamos a la planta más cercana
 			if(ascensor.getPlanta_actual() == 7) {

@@ -117,8 +117,8 @@ public class Ascensor extends Observer_Notificadores implements Clases.Impl.Asce
 	@Override
 	public void activarAlarma() {							
 		// TODO Auto-generated method stub
-		this.ascensor_estado.activarAlarma(this, emergencia);	// Cambio de estado
-		this.emergencia = true;									// Activamos la emergencia
+		this.ascensor_estado.activarAlarma(this);	// Cambio de estado
+
 	}
 	//Función para añadir destinos secuencialmente a la ruta del ascensor
 	@Override

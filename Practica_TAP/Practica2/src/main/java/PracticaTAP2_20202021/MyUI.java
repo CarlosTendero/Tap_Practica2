@@ -259,6 +259,7 @@ public class MyUI extends UI {
         abrirPeta3.addStyleName("miBoton");
         abrirPeta3.addClickListener(event ->{
         	edificio.getAscensores().get(2).cambiarEstadoPuerta();
+    		ActualizarCaptions();
         });
         tab2.addComponent(abrirPeta3, 8, 3);
 
@@ -267,6 +268,7 @@ public class MyUI extends UI {
 	    pb3.addStyleName("miBotonPB");
         pb3.addClickListener(event ->{
         	edificio.getAscensores().get(2).anyadirDestino(0);
+    		ActualizarCaptions();
         });
         tab2.addComponent(pb3, 9, 3);
         
@@ -276,7 +278,7 @@ public class MyUI extends UI {
         emergencia3.addClickListener(event ->{
         	edificio.getAscensores().get(2).activarAlarma();
         	System.out.println("Alarma 3");
-
+    		ActualizarCaptions();
         });
         tab2.addComponent(emergencia3, 10, 3);
         
@@ -341,6 +343,7 @@ public class MyUI extends UI {
         botonesPlanta_Registration.add(boton1.addClickListener(event ->{
     		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(0));
     		System.out.println(planta_Actual);
+    		ActualizarCaptions();
     	}));
         botonesPlanta.add(boton1);
     	tab3.addComponent(boton1, 1, 2);
@@ -352,6 +355,7 @@ public class MyUI extends UI {
         botonesPlanta_Registration.add(boton2.addClickListener(event ->{
     		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(1));
     		System.out.println(planta_Actual);
+    		ActualizarCaptions();
     	}));
         botonesPlanta.add(boton2);
     	tab3.addComponent(boton2, 3, 2);
@@ -363,6 +367,7 @@ public class MyUI extends UI {
         botonesPlanta_Registration.add(boton3.addClickListener(event ->{
     		edificio.getPlantas().get(planta_Actual).llamarAscensor(edificio.getAscensores().get(2));
     		System.out.println(planta_Actual);
+    		ActualizarCaptions();
     	}));
 
         botonesPlanta.add(boton3);
@@ -372,7 +377,7 @@ public class MyUI extends UI {
         Label planta = new Label("Estamos en la planta 0");
 
         //Selección de la planta
-        Button planta0 = new Button("Planta 0");
+        Button planta0 = new Button("Planta Baja");
         Button planta1 = new Button("Planta 1");
         Button planta2 = new Button("Planta 2");
         Button planta3 = new Button("Planta 3");
@@ -393,42 +398,49 @@ public class MyUI extends UI {
         planta0.addClickListener(event ->{
         	planta_Actual = 0;
 	        planta.setValue("Estamos en la planta Baja");
+	        ActualizarCaptions();
         });
         
         //Al pulsar el piso 1.        
         planta1.addClickListener(event ->{
         	planta_Actual = 1;
 	        planta.setValue("Estamos en la planta 1");
+	        ActualizarCaptions();
         });
         
         //Al pulsar el piso 2.
         planta2.addClickListener(event ->{
         	planta_Actual = 2;
 	        planta.setValue("Estamos en la planta 2");
+	        ActualizarCaptions();
         });
         
         //Al pulsar el piso 3.
         planta3.addClickListener(event ->{
         	planta_Actual = 3;
 	        planta.setValue("Estamos en la planta 3");
+	        ActualizarCaptions();
         });
         
         //Al pulsar el piso 4.
         planta4.addClickListener(event ->{
         	planta_Actual = 4;
         	planta.setValue("Estamos en la planta 4");
+	        ActualizarCaptions();
         });
         
         //Al pulsar el piso 5.
         planta5.addClickListener(event ->{
         	planta_Actual = 5;
 	        planta.setValue("Estamos en la planta 5");
+	        ActualizarCaptions();
         });
         
         //Al pulsar el piso 6.
         planta6.addClickListener(event ->{
         	planta_Actual = 6;
 	        planta.setValue("Estamos en la planta 6");
+	        ActualizarCaptions();
         });
         Label label = new Label("");
         label.addStyleName("lineavacia2");
@@ -474,10 +486,8 @@ public class MyUI extends UI {
 
 		PL_MensajeAltavoz.setValue("Altavoz: "+ edificio.getPlantas().get(planta_Actual).getAltavoz().getAltavoz());
 		
-	}
-	
-	public void llamaAscensor(Ascensor asc, int destino) {
-		asc.moverAscensor(destino);
+		//Refresh all please <3.
+		//It doesn't refresh... :(
 	}
 
 	//Array List con los elementos web de vaadin que van a cambiar referenciados y pasarlos por parámetro al pulsar un boton. 

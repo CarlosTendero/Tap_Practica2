@@ -50,7 +50,7 @@ public class ParadoAbriendo implements State{
 
 	//Función de acción a realizar al activar la alarma
 	@Override
-	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
+	public void activarAlarma(Ascensor ascensor) {
 		//Cambiar la alarma.
 		ascensor.setEmergencia(!ascensor.getEmergencia());
 
