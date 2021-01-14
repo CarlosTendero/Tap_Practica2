@@ -24,6 +24,7 @@ import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.renderers.ComponentRenderer;
 
 import Clases.Ascensor;
 import Clases.Edificio;
@@ -147,54 +148,12 @@ public class MyUI extends UI {
 
         //--------------ASCENSOR 1-----------------
 
-        //Botonera 1-6
-        int boton=1;
-        for (int fila= 1; fila < 3; fila++) {
-            for (int col=0; col < 3; col++) {
-                Button button = new Button(""+boton); 
-        		button.addStyleName("miBoton");
-                button.addClickListener(event ->{
-                	edificio.getAscensores().get(0).anyadirDestino(Integer.parseInt(button.getCaption()));
-                });
-                tab2.addComponent(button, col, fila);
-                boton++;
-            }
-        } 
-        for (int fila = 1; fila <4; fila++ ) {
-        	Label label = new Label("");
-        	label.addStyleName("lineavacia");
-        	tab2.addComponent(label, 3, fila);
-        }
-
-        //Boton abrir/cerrar
-        Button abrirPeta = new Button("<>");
-        abrirPeta.addStyleName("miBoton");
-        abrirPeta.addClickListener(event ->{
-        	edificio.getAscensores().get(0).cambiarEstadoPuerta();
-        });
-        tab2.addComponent(abrirPeta, 0, 3);
-
-        //Planta baja
-        Button pb = new Button("PB");
-	    pb.addStyleName("miBotonPB");
-        pb.addClickListener(event ->{
-        	edificio.getAscensores().get(0).anyadirDestino(0);
-        });
-        tab2.addComponent(pb, 1, 3);
-        
-        //Emergencia
-        Button emergencia = new Button("🔔");
-	    emergencia.addStyleNames("miBotonEmergencia");
-        emergencia.addClickListener(event ->{
-        	edificio.getAscensores().get(0).activarAlarma();
-        	System.out.println("Alarma 1");
-        });
-        tab2.addComponent(emergencia, 2,3);     
+       
         
         //--------------ASCENSOR 2-----------------     
         
         //Botonera 1-6
-        boton=1;
+        int boton=1;
         for (int fila= 1; fila < 3; fila++) {
             for (int col=4; col < 7; col++) {
                 Button button = new Button(""+boton);         		
@@ -455,6 +414,52 @@ public class MyUI extends UI {
         tab3.addComponent(label, 6,5);
         tab3.addComponent(planta,0,7, 7,7);   
         
+        GridLayout botonera1 = new GridLayout(5,5);
+        //Botonera 1-6
+        boton=1;
+        for (int fila= 1; fila < 3; fila++) {
+            for (int col=0; col < 3; col++) {
+                Button button = new Button(""+boton); 
+        		button.addStyleName("miBoton");
+                button.addClickListener(event ->{
+                	edificio.getAscensores().get(0).anyadirDestino(Integer.parseInt(button.getCaption()));
+                });
+                botonera1.addComponent(button, col, fila);
+                boton++;
+            }
+        } 
+        for (int fila = 1; fila <4; fila++ ) {
+        	Label label1 = new Label("");
+        	label.addStyleName("lineavacia");
+        	botonera1.addComponent(label1, 3, fila);
+        }
+
+        //Boton abrir/cerrar
+        Button abrirPeta = new Button("<>");
+        abrirPeta.addStyleName("miBoton");
+        abrirPeta.addClickListener(event ->{
+        	edificio.getAscensores().get(0).cambiarEstadoPuerta();
+        });
+        botonera1.addComponent(abrirPeta, 0, 3);
+
+        //Planta baja
+        Button pb = new Button("PB");
+	    pb.addStyleName("miBotonPB");
+        pb.addClickListener(event ->{
+        	edificio.getAscensores().get(0).anyadirDestino(0);
+        });
+        botonera1.addComponent(pb, 1, 3);
+        
+        //Emergencia
+        Button emergencia = new Button("🔔");
+	    emergencia.addStyleNames("miBotonEmergencia");
+        emergencia.addClickListener(event ->{
+        	edificio.getAscensores().get(0).activarAlarma();
+        	System.out.println("Alarma 1");
+        });
+        botonera1.addComponent(emergencia, 2,3);     
+
+        tab3.addComponent(botonera1, 0,8);
         //ESTO VA LO ÚLTIMO.
         setContent(layout);
     }
