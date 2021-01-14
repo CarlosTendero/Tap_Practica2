@@ -25,14 +25,13 @@ public class Edificio implements Clases.Impl.EdificioImpl{
 		this.panelControl = new PanelControl(ascensores);
 		
 		//Añadimos los observers a los ascensores. Observers = Plantas + Panel de Control.
-		/*
+		
 		for (int i = 0; i < 3; i++) {
 			this.ascensores.get(i).attach(this.panelControl);
 			for(int j=0; j<plantas.size();j++)
 				this.ascensores.get(i).attach(this.plantas.get(j));
 		 
-		} Lo soluciona otro
-		*/
+		}
 	}
 	//--------------------------------------------------------------
 	//Setters y getters

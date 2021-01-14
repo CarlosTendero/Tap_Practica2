@@ -24,9 +24,12 @@ public class ParadoAbriendo implements State{
         }
         
         //Cambiamos el estado del ascensor a ParadoAbierto (ya se ha abierto completamente)
-
 		ascensor.setAscensor_estado(new ParadoAbierto());
 		
+		//---------------------------------------------------
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		//---------------------------------------------------	
 	}
 
 	//Función de movimiento del ascensor
@@ -46,12 +49,13 @@ public class ParadoAbriendo implements State{
 	//Función de acción a realizar al activar la alarma
 	@Override
 	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
-
-		// TODO Auto-generated method stub
-
-
-		//Tampoco hacer nada, esperar a que la puerta se habra y fin
+		//Se activa o no se activa la emergencia? Independientemente de que haga algo.
+		//Tampoco hacer nada, esperar a que la puerta se abra y fin
 
 		
+		//---------------------------------------------------
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		//---------------------------------------------------
 	}
 }
