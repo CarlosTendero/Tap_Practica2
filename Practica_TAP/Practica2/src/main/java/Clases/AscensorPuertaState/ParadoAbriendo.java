@@ -14,44 +14,47 @@ public class ParadoAbriendo implements State{
 	public void cambiarEstadoPuerta(Ascensor ascensor) {
 		//System.out.println("Esta abriéndose");
 		ascensor.setAscensor_puerta("Puerta Abriéndose");
-		
-		//Tiempo
+		//Cambiamos el mensaje del altavoz
+		ascensor.setMensajeAltavoz("Abriendo Puertas");
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		/*
+		//Tiempo - Funciona?
         try {
         	//Duerme el programa 1 segundo
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        
+        */
         //Cambiamos el estado del ascensor a ParadoAbierto (ya se ha abierto completamente)
-
 		ascensor.setAscensor_estado(new ParadoAbierto());
-		
+		//Cambiamos el string del estado del ascensor.
+		ascensor.setAscensor_puerta("Parado Abierto");
+		//Cambiamos el mensaje del altavoz
+		ascensor.setMensajeAltavoz("");
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
+		//Llamamos a continuar el movimiento del ascensor.
+		if(!(ascensor.getDestinos().isEmpty()))
+			ascensor.getAscensor_estado().moverAscensor(ascensor, ascensor.getDestinos().get(0));
 	}
 
 	//Función de movimiento del ascensor
 	@Override
-	public ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino) {
-
-
+	public void moverAscensor(Ascensor ascensor, int Destino) {
 
 		//NO puedes moverte porque la puerta está abriéndose
-
-		System.out.println("Espera a que deje de abrirse la puerta");
-		
-		return null;
-		
+		System.out.println("Espera a que deje de abrirse la puerta");	
 	}
 
 	//Función de acción a realizar al activar la alarma
 	@Override
-	public void activarAlarma(Ascensor ascensor, boolean emergencia) {
+	public void activarAlarma(Ascensor ascensor) {
+		//Cambiar la alarma.
+		ascensor.setEmergencia(!ascensor.getEmergencia());
 
-		// TODO Auto-generated method stub
-
-
-		//Tampoco hacer nada, esperar a que la puerta se habra y fin
-
-		
+		//Informamos a los observers de que hemos cambiado el estado del ascensor.
+		ascensor.notifyAllObservers(ascensor);
 	}
 }

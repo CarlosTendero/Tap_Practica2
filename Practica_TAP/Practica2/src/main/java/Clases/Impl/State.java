@@ -7,6 +7,6 @@ import Clases.Ascensor;
 public interface State {
 	
 	void cambiarEstadoPuerta(Ascensor ascensor);
-	ArrayList<Integer> moverAscensor(Ascensor ascensor, int Destino);
-	void activarAlarma(Ascensor ascensor, boolean emergencia);
+	void moverAscensor(Ascensor ascensor, int Destino);
+	void activarAlarma(Ascensor ascensor);
 }
